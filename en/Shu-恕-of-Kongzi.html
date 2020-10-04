@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/philosophy/">
+            philosophy
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        Shu(恕) of the Analects
+    </h2>
+    <ul class="post-date">
+        <li>
+            2018-10-25
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <p>This passage considers the philosophical meaning of <em>shu</em>(恕) in Analects that has great significance in ancient Chinese philosophy. Both Mengzi and Kongzi explained <em>shu</em> with their own words. This passage will explore what Kongzi said from an experimental angle. </p>
+<a id="more"></a>
+
+<p><em>Cultural/empirical assessment stories/questions for Kongzi/the Analects</em></p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>This passage considers the philosophical meaning of <em>shu</em>(恕) in Analects that has great significance in ancient Chinese philosophy. Both Mengzi and Kongzi explained <em>shu</em> with their own words. This passage will explore what Kongzi said from an experimental angle. This article will explain what Kongzi said about <em>shu</em> in “subject explanation,” compare views from Kongzi and Mengzi in “comparatives perspective,” list and explain questions in “vignettes and questions” and consider and predict results at the end of passage.</p>
+<h1 id="Subject-explanation"><a href="#Subject-explanation" class="headerlink" title="Subject explanation"></a><strong>Subject explanation</strong></h1><p>Consider the philosophically rich anecdote in Analects 15.24, having to do with sympathy, respect, forgive and love.</p>
+<p>15.24 Zi Gong asked, saying, “Is there one word which may serve as a rule of practice for all one’s life?” The Master said, “Is not RECIPROCITY(恕) such a word? What you do not want done to yourself, do not do to others.” (Wei Ling Gong, 15.24 子贡问曰：“有一言而可以终身行之者乎？”子曰：“其恕乎！己所不欲，勿施于人。”)</p>
+<p>Here <em>reciprocity</em> is not a good translation for <em>shu</em>(恕), where <em>shu</em> was used here as ancient Chinese. <em>Shu</em> is now write as <em>tiliang</em> (体谅). <em>Tiliang</em> is meaningful in China and we cannot simply translate it as understand, consider or forgive. Ti(体) means body in Chinese, and here in this word it means transfer your soul to others’ body and experience what he or she feel. Liang(谅) means forgive others. In daily life, when you see something bad happens to someone, you’ll feel sympathy to the person, and this is <em>tiliang</em>; when you find that your teacher works day and night, you’ll respect him, and this is <em>tiliang</em>. When your friend who promised to return the money back to you forget that and you forgive him because he’s family is poor, this is <em>tiliang</em>. When your mother makes dinner for you and you feel her love to you, this is <em>tiliang</em>.</p>
+<h1 id="Comparatives-perspective"><a href="#Comparatives-perspective" class="headerlink" title="Comparatives perspective"></a><strong>Comparatives perspective</strong></h1><p>From comparatives perspective, a close-reading perspective. There are many similar points of view in ancient China. Mengzi and Kongzi have similar opinion that people should <em>tiliang</em> each other. </p>
+<p>Mengzi also said, “The benevolent man loves others. The man of propriety shows respect to others. He who loves others is constantly loved by them. He who respects others is constantly respected by them.” (Li Lou II, 君子以仁存心，以礼存心。仁者爱人，有礼者敬人。爱人者人恒爱之，敬人者人恒敬之。)</p>
+<p>Mengzi’s opinion is similar to Kongzi. Mengzi said “he who respects others is constantly respected by them,” and Kongzi said “what you do not want done to yourself, do not do to others,” which means people should respect others and do not do bad to others.</p>
+<p>Mengzi said, “Treat with the reverence due to age the elders in your own family, so that the elders in the families of others shall be similarly treated; treat with the kindness due to youth the young in your own family, so that the young in the families of others shall be similarly treated.” (Liang Hui Wang I, 老吾老，以及人之老；幼吾幼，以及人之幼。)</p>
+<p>Both Kongzi and Mengzi thought <em>tiliang</em> is a good character that we need. The following part will explore what Kongzi said from an experimental angle. </p>
+<h1 id="Vignettes-and-questions"><a href="#Vignettes-and-questions" class="headerlink" title="Vignettes and questions"></a><strong>Vignettes and questions</strong></h1><p>Would Chinese be more willing to agree with what Confucius said and more willing to <em>tiliang</em> others than Western? To get the answer we need to design an experiment. This experiment is separated to three parts. And it will explore what’s participants’ attitude towards others at three different situations.</p>
+<h2 id="Attitude-towards-parents-and-friends"><a href="#Attitude-towards-parents-and-friends" class="headerlink" title="Attitude towards parents and friends."></a>Attitude towards parents and friends.</h2><p>Your parents and friends are important to you because your daily life is connected to them. “No one is an island” and you cannot live without them because they are there. </p>
+<p>The first situation simulates the daily scene between you and your friends. Yesterday is your birthday, and your parents sent you a new pair of basketball shoes, white Nike shoes. You were very excited and wear this pair of shoes to school. Your classmates said that your shoes are so cool and they want to buy them. But in class, your desk-mate’s pen ink is blocked, so he began to shake the pen. You did not pay attention at the beginning, but after a while, you felt you right feet was wet, so you bowed down, and found that one of your shoes was stained with black ink. What will you do? </p>
+<h2 id="Attitude-towards-strangers-around-you"><a href="#Attitude-towards-strangers-around-you" class="headerlink" title="Attitude towards strangers around you."></a>Attitude towards strangers around you.</h2><p>The second paragraph simulates the daily scene between you and a stranger. Yesterday is your birthday, and your parents sent you a new pair of basketball shoes, white Nike shoes. You were very excited and wear this pair of shoes to school. On the bus to school, you were thinking how envious your friends will be. Suddenly, the bus stopped and a stranger stepped on your shoes. You felt hurt and bowed done, and you found that your shoes are very dirty. What will you do? </p>
+<h2 id="Attitude-towards-strangers-on-the-other-side-of-the-network"><a href="#Attitude-towards-strangers-on-the-other-side-of-the-network" class="headerlink" title="Attitude towards strangers on the other side of the network."></a>Attitude towards strangers on the other side of the network.</h2><p>The third paragraph is adapted from <em>the price of shame</em>, and it’s about Cyber Violence (Lewinsky). You were disappointing today because your new Nike shoes were stained. After arriving home, you opened your MacBook and read news. You found that a woman was scolded by many netizens, so you searched this woman and you found many reports said that she was a scorpion and got a high-paying position by undue relationship with the president. What will you do? </p>
+<h1 id="Consider-and-predict-results"><a href="#Consider-and-predict-results" class="headerlink" title="Consider and predict results"></a>Consider and predict results</h1><p>Chinese should be more willing to agree with what Confucius said and <em>tiliang</em> others more than Western. Chinese would feel ashamed if they blame their friends or families and other people found out that they did so. As to strangers, lots of Chinese may forgive them. But as to blame others on internet, the situation will be much complex. Because everything on the network is anonymous and none of their friends nor their parents would know what they said on the internet, which means they do not to be responsible for what they said. Though their behavior is not regulated, we can predict that although participants in the United States and China should be more willing to forgive (more accurate, <em>tiliang</em>) their friends who annoyed them than strangers, participants in Chinas should be more willing to forgive others.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><blockquote>
+<p>Lewinsky, M. (2015). The price of shame. <em>TED, March</em>.</p>
+<p>Sarkissian, H., &amp; Nichols, R. (2016). Chinese Philosophy as Experimental Philosophy. <em>The Bloomsbury Research Handbook of Chinese Philosophy Methodologies</em>, 353.</p>
+</blockquote>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>

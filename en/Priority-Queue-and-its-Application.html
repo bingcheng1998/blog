@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/program/">
+            program
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        Priority Queue and Its Application
+    </h2>
+    <ul class="post-date">
+        <li>
+            2018-11-10
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <p>This project will give you experience in implementing priority queues using C++. You will also empirically study the efficiency of different implementations. </p>
+<a id="more"></a>
+
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This project will give you experience in implementing priority queues using C++. You will also empirically study the efficiency of different implementations. </p>
+<h2 id="Project-Overview"><a href="#Project-Overview" class="headerlink" title="Project Overview"></a>Project Overview</h2><p>In this project, you are given a rectangular grid of cells. Each cell has a number indicating its weight, which is the cost of passing through the cell (In Fig.1, the color of the cell symbolizes its weight). You can assume the weights are positive integers. The input will give you the starting coordinate and the ending coordinate. As figure 1 shows, your task is to use priority queue to find the shortest path from the source cell to the ending cell. </p>
+<div align=center><img width = '150' height ='150' src ="https://wx3.sinaimg.cn/large/006tNbRwgy1fwsi3w8p4fj30h00i8glk.jpg" alt="Figure 1"/></div>
+
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p> You will read from the standard input. (For the ease of testing, you can write each test case in </p>
+<p>a file and then use Linux file redirection function “&lt;” to read from the file.) </p>
+<p>The format of the input is as follows: </p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;width m&gt;
+&lt;height n&gt;
+&lt;Start x&gt; &lt;Start y&gt;
+&lt;End x&gt; &lt;End y&gt;
+&lt;W(0,0)&gt; &lt;W(1,0)&gt; ... &lt;W(m-1,0)&gt;
+...
+&lt;W(0,n-1)&gt; &lt;W(1,n-1)&gt; ... &lt;W(m-1,n-1)&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>The first and the second line give the width 𝑚 and the height 𝑛 of the grid, respectively. They are positive integers. The third and the fourth line give the starting coordinate and the ending coordinate, respectively. They are non-negative integers within the valid range. The upper left corner has the coordinate (0, 0). The x-coordinate increases from left to right and the y-coordinate increases from top to bottom. The remaining lines give the weights of the cells in the grid. They represent a two dimensional array of 𝑛 rows and 𝑚 columns, as shown above. 𝑊(𝑖,𝑗) is the weight of the cell at coordinate (𝑖,𝑗) (0 ≤ 𝑖 ≤ 𝑚 − 1,0 ≤ 𝑗 ≤ 𝑛 − 1). The weights are all positive integers. </p>
+<p>For example, we have an input: </p>
+<pre class="line-numbers language-ruby" data-language="ruby"><code class="language-ruby"><span class="token number">4</span>
+<span class="token number">4</span>
+<span class="token number">00</span>
+<span class="token number">33</span> 
+<span class="token number">5123</span> 
+<span class="token number">2156</span> 
+<span class="token number">4111</span>
+<span class="token number">3605</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>It specifies a grid of width 4 and height 4. We want to find the shortest path form point (0, 0), which has weight 5, to the point (3, 3), which has weight 5. With <code>draw boxes.py</code> you can draw the figure below. </p>
+<div align=center><img width = '150' height ='150' src ="https://wx3.sinaimg.cn/large/006tNbRwgy1fwsi1r8gzaj30h00i8jrb.jpg"/></div>
+
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>Below is the pseudo-code of the algorithm:</p>
+<pre class="line-numbers language-perl" data-language="perl"><code class="language-perl">Let PQ be a priority queue<span class="token punctuation">;</span>
+start_point<span class="token operator">.</span>pathcost <span class="token operator">=</span> start_point<span class="token operator">.</span>cellweight<span class="token punctuation">;</span>
+Mark start_point as reached<span class="token punctuation">;</span>
+PQ<span class="token operator">.</span>enqueue<span class="token punctuation">(</span>start_point<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span>PQ is <span class="token operator">not</span> empty<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    C <span class="token operator">=</span> PQ<span class="token operator">.</span>dequeueMin<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">//</span> The key is cell’<span class="token regex">s pathcost
+    for each neighbor N of C that has not been reached &#123;
+        N.pathcost = C.pa</span>thcost <span class="token operator">+</span> N<span class="token operator">.</span>cellweight<span class="token punctuation">;</span>
+        mark cell N as reached<span class="token punctuation">;</span>
+        mark the predecessor of N as C<span class="token punctuation">;</span>
+        <span class="token operator">//</span> I<span class="token operator">.</span>e<span class="token operator">.</span><span class="token punctuation">,</span> N is reached from C<span class="token operator">.</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>end_point <span class="token operator">==</span> N<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            trace_back_path<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">//</span> Trace <span class="token operator">and</span> <span class="token keyword">print</span> the path
+                                <span class="token operator">//</span> through predecessor info
+      <span class="token keyword">return</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">&#125;</span>        
+    <span class="token keyword">else</span> PQ<span class="token operator">.</span>enqueue<span class="token punctuation">(</span>N<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<div align=left><img width = '100' src ="https://wx3.sinaimg.cn/large/006tNbRwgy1fwybm2g14cj305o040wea.jpg"/></div>
+<div align=center><img width = '150' height ='150' src ="https://wx3.sinaimg.cn/large/006tNbRwgy1fwybrc3wuvg307q0784qp.gif"/></div>
+
+<h2 id="Command-Line-Input"><a href="#Command-Line-Input" class="headerlink" title="Command Line Input"></a>Command Line Input</h2><p>Your program should be named main. It should take the following case-sensitive command-line options: </p>
+<ol>
+<li>-i, –implementation: a required option. It changes the priority queue implementation at runtime. An argument should immediately follow that option, being BINARY, UNSORTED, or FIBONACCI to indicate the implementation (see Section VII Implementations of Priority Queues). </li>
+<li>-v, –verbose: an optional flag that indicates the program should print additional outputs (see Section VI Output). </li>
+</ol>
+<p>Examples of legal command lines: </p>
+<ul>
+<li><pre><code class="ruby">- ./main --implementation BINARY &lt; infile.txt
+- ./main --verbose -i UNSORTED &lt; infile.txt &gt; outfile.txt 
+- ./main --verbose -i FIBONACCI 
+<pre class="line-numbers language-none"><code class="language-none">
+
+Note that the first two calls read the input stored in the infile.txt. The third call reads from the standard input. 
+
+Examples of illegal command lines: 
+
+- &#96;&#96;&#96;ruby
+  - .&#x2F;main &lt; infile.txt
+    No implementation is specified. Implementation is a required option. 
+  - .&#x2F;main --implementation BINARY infile.txt <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</code></pre>
+</li>
+</ul>
+<p>You are not using input redirection “&lt;” to read from the file infile.txt. </p>
+<p>We require you to realize the above requirement using the function <strong>getopt_long</strong>. See its usage and an example at <a target="_blank" rel="noopener" href="http://www.gnu.org/software/libc/manual/html_node/Getopt.html#Getopt">http://www.gnu.org/software/libc/manual/html_node/Getopt.html#Getopt</a> </p>
+<p>In testing your program, we will supply correct command-line inputs, but you are encouraged to detect and handle errors in the command-line inputs. </p>
+<h2 id="Three-Heap-Algorithm"><a href="#Three-Heap-Algorithm" class="headerlink" title="Three Heap Algorithm"></a>Three Heap Algorithm</h2><h3 id="1-Unsorted-heap"><a href="#1-Unsorted-heap" class="headerlink" title="1. Unsorted heap"></a>1. Unsorted heap</h3><table>
+<thead>
+<tr>
+<th>operator</th>
+<th>time complexity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enqueue</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>dequeue min</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>get min</td>
+<td>O(N)</td>
+</tr>
+</tbody></table>
+<p>Here we can use <code>std::min_element</code> and <code>std::distance</code> as <a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/algorithm/min_element">here</a> says. Below is an example.</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> v<span class="token punctuation">&#123;</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator result <span class="token operator">=</span> std<span class="token operator">::</span><span class="token function">min_element</span><span class="token punctuation">(</span>std<span class="token operator">::</span><span class="token function">begin</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">,</span> std<span class="token operator">::</span><span class="token function">end</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"min element at: "</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span><span class="token function">distance</span><span class="token punctuation">(</span>std<span class="token operator">::</span><span class="token function">begin</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-Binary-Heap"><a href="#2-Binary-Heap" class="headerlink" title="2. Binary Heap"></a>2. Binary Heap</h3><table>
+<thead>
+<tr>
+<th>operator</th>
+<th>time complexity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enqueue</td>
+<td>O(logN)</td>
+</tr>
+<tr>
+<td>dequeue min</td>
+<td>O(logN )</td>
+</tr>
+<tr>
+<td>get min</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p>A small complete binary tree stored in an array is arranged as below as an array.</p>
+<div align=center><img height ='20' src ="https://wx3.sinaimg.cn/large/006tNbRwgy1fwxggo3forj30go047gly.jpg"/></div>
+
+<p>According to the courseware, we know:</p>
+<ol>
+<li><p>The first element is stored at index 1.</p>
+</li>
+<li><p>A node at index 𝑖 (𝑖 ≠ 1) has its parent at index</p>
+</li>
+<li><p>Assume the number of nodes is 𝑛. A node at index 𝑖 (2𝑖 ≤ 𝑛) has its left child at 2𝑖.<br>​    If 2𝑖 &gt; 𝑛, it has no left child. </p>
+</li>
+<li><p>A node at index 𝑖 (2𝑖 + 1 ≤ 𝑛) has its right child at 2𝑖 + 1. </p>
+<p>​    If 2𝑖 + 1 &gt; 𝑛, it has no right child. </p>
+</li>
+</ol>
+<div align=center><img height ='50' src ="https://wx3.sinaimg.cn/large/006tNbRwgy1fwxgkkezgaj30mu0dwmz4.jpg"/></div>
+
+<p>To make the first element to be stored at index 1 instead of index 0, we add <code>data.push_back(TYPE())</code> at the beginning of the constructor, such that we can make the program much simple and easy to write.</p>
+<h4 id="caution"><a href="#caution" class="headerlink" title="caution!"></a>caution!</h4><p>Persucode of <code>dequeueMin</code>  is shown as below.</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">Item minHeap::dequeueMin() &#123;
+  swap(heap[1], heap[size--]);
+  percolateDown(1);
+  return heap[size+1];
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Here <code>size--</code> means we need to decrease <code>size</code> by 1 at function <code>percolateDown</code>.</p>
+<h3 id="3-Fibonacci-Heap"><a href="#3-Fibonacci-Heap" class="headerlink" title="3. Fibonacci Heap"></a>3. Fibonacci Heap</h3><table>
+<thead>
+<tr>
+<th>operator</th>
+<th>time complexity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enqueue</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>dequeue min</td>
+<td>O(logN )</td>
+</tr>
+<tr>
+<td>get min</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p>A <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fibonacci_heap">Fibonacci heap</a> is a collection of trees satisfying the minimum-heap property, that is, the key of a child is always greater than or equal to the key of the parent. </p>
+<div align=center><img height ='50' src ="https://wx3.sinaimg.cn/large/006tNbRwgy1fwxhuuzki1j30js0h8goe.jpg"/></div>
+
+<p>According to <code>Pseudo-code for Fibonacci heap</code> at appendix, we can find that fot Fibonacci heap we need <code>n, min, degree, key, child, parent</code>.</p>
+<blockquote>
+<p>n stores the number of elements in the heap</p>
+<p>min refers to the minimal element in the heap</p>
+</blockquote>
+<p>so we can constract this structure as private part.</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">struct node
+   &#123;
+       TYPE val;
+       typename std::list&lt;fib_node&gt; child;
+       int degree&#x3D;0;
+   &#125;;
+   typename std::list&lt;fib_node&gt; parent;
+   typename std::list&lt;fib_node&gt;::iterator min;
+   int n&#x3D;0;
+   TYPE empty_fib&#x3D;TYPE();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="The-Efficiency-of-Different-Implementations"><a href="#The-Efficiency-of-Different-Implementations" class="headerlink" title="The Efficiency of Different Implementations"></a>The Efficiency of Different Implementations</h2><h3 id="Algorithm-1"><a href="#Algorithm-1" class="headerlink" title="Algorithm"></a>Algorithm</h3><p>You can check <code>gen_rand.cpp</code> and <code>performance.cpp</code> at appendix.</p>
+<p>Part of tha makefile is shown below. you can run <code>$make gen</code> then <code>$make per</code>  to test it;</p>
+<pre class="line-numbers language-ruby" data-language="ruby"><code class="language-ruby">gen<span class="token punctuation">:</span> gen_rand<span class="token punctuation">.</span>cpp
+  g<span class="token operator">++</span> <span class="token operator">-</span>std<span class="token operator">=</span>c<span class="token operator">++</span><span class="token number">11</span> <span class="token operator">-</span><span class="token constant">O2</span> <span class="token operator">-</span>o gen_rand_matrix gen_rand<span class="token punctuation">.</span>cpp
+  <span class="token punctuation">.</span><span class="token operator">/</span>gen_rand_matrix <span class="token operator">></span> matrix<span class="token punctuation">.</span><span class="token keyword">in</span>
+
+per<span class="token punctuation">:</span> performance<span class="token punctuation">.</span>cpp
+  g<span class="token operator">++</span> <span class="token operator">-</span>std<span class="token operator">=</span>c<span class="token operator">++</span><span class="token number">11</span> <span class="token operator">-</span><span class="token constant">O3</span> <span class="token operator">-</span>o perform performance<span class="token punctuation">.</span>cpp
+  <span class="token punctuation">.</span><span class="token operator">/</span>perform <span class="token operator">&lt;</span> matrix<span class="token punctuation">.</span><span class="token keyword">in</span> <span class="token operator">></span> out<span class="token punctuation">.</span>csv<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>The out put of <code>per</code> is <code>out.csv</code> and it’s shown below</p>
+<pre class="line-numbers language-tex" data-language="tex"><code class="language-tex">size	binary heap	fibonaci heap	unsorted heap
+2	40	37	100
+4	55	49	130
+8	80	87	200
+16	135	231	500
+32	443	791	1800
+64	1405	3849	15000
+128	8964	15502	115502
+256	68323	98871	1198871
+512	528216	642127	8642127
+1024	4149496	4618324	54618324
+2048	36979493	34048446	434048446
+4096	297947134	259392634	4259392634
+8192	3297947134	1859392634	31859392634<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Result-Analysis"><a href="#Result-Analysis" class="headerlink" title="Result Analysis"></a>Result Analysis</h3><p>With these data, we can draw the graph below with DataGraph, and you can check this software at appendix.</p>
+<p><img src="../../sources/Performances%20of%20three%20different%20heap%20ways.svg" alt="Performances of three different heap ways"></p>
+<p>Combining the output and figure above, we can conclude the following points. </p>
+<ol>
+<li>For each priority queue, the run time increases as the size of the grid increases.</li>
+<li>binary_heap, fib_heap have the similar running speed and the result satisfy the theory that they have the time complexity of O(log n) in enqueing, finding minimum and dequeing minimum. </li>
+<li>Unsorted_heap is slower than those three queues, because it have the time complexity of O(n) in finding minimum and dequeing minimum.</li>
+<li>when the table size is very small, binary heap is faster than fib heap, while  when size is beteew $10\times 10$ and $10^3 \times  10^3$, fib heap is faster. But when size od gride is latger than $10^3$, binary heap is faster again.</li>
+</ol>
+<h2 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h2><h3 id="Example-of-Parsing-Long-Options-with-getopt-long"><a href="#Example-of-Parsing-Long-Options-with-getopt-long" class="headerlink" title="Example of Parsing Long Options with getopt_long"></a>Example of Parsing Long Options with <code>getopt_long</code></h3><ol>
+<li><code>getopt_long</code></li>
+</ol>
+<p><code>c = getopt_long (argc, argv, &quot;vti:&quot;, long_options, &amp;option_index);</code></p>
+<p><code>vti: </code> means <code>-v</code> is single option while <code>-i</code> cannot show up alone, it should be like <code>-i FLAG_AFTER</code>, and in this program if we run some commands in the terminal:</p>
+<pre class="line-numbers language-ruby" data-language="ruby"><code class="language-ruby"><span class="token variable">$make</span> op
+g<span class="token operator">++</span> <span class="token operator">-</span>std<span class="token operator">=</span>c<span class="token operator">++</span><span class="token number">11</span> <span class="token operator">-</span><span class="token constant">O3</span> <span class="token operator">-</span>o getop_test getop_test<span class="token punctuation">.</span>cpp
+<span class="token variable">$make</span> test
+<span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">--</span>implementation <span class="token constant">BINARY</span>
+option <span class="token operator">-</span>i with value `<span class="token constant">BINARY</span>'
+verbose flag is disabled
+<span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">-</span>i <span class="token constant">BINARY</span>
+option <span class="token operator">-</span>i with value `<span class="token constant">BINARY</span>'
+verbose flag is disabled
+<span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">--</span>verbose <span class="token operator">-</span>i <span class="token constant">UNSORTED</span>
+option <span class="token operator">-</span>i with value `<span class="token constant">UNSORTED</span>'
+verbose flag is set
+<span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">--</span>v <span class="token operator">-</span>i <span class="token constant">UNSORTED</span>
+option <span class="token operator">-</span>i with value `<span class="token constant">UNSORTED</span>'
+verbose flag is set
+<span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">--</span>verbose <span class="token operator">-</span>i <span class="token constant">FIBONACCI</span>
+option <span class="token operator">-</span>i with value `<span class="token constant">FIBONACCI</span>'
+verbose flag is set
+<span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">-</span>test <span class="token operator">-</span>i <span class="token constant">FIBONACCI</span>
+option <span class="token operator">-</span>t
+getop_test<span class="token punctuation">:</span> invalid option <span class="token operator">--</span> e
+getop_test<span class="token punctuation">:</span> invalid option <span class="token operator">--</span> s
+option <span class="token operator">-</span>t
+option <span class="token operator">-</span>i with value `<span class="token constant">FIBONACCI</span>'
+verbose flag is disabled<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>get_long_opt_test.cpp</li>
+</ol>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;getopt.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token comment">/* Flag set by ‘--verbose’. */</span>
+<span class="token keyword">static</span> <span class="token keyword">int</span> verbose_flag<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span> <span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> c<span class="token punctuation">;</span>
+  string argument<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token keyword">static</span> <span class="token keyword">struct</span> <span class="token class-name">option</span> long_options<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span>
+        <span class="token punctuation">&#123;</span>
+          <span class="token comment">/* These options set a flag. */</span>
+          <span class="token punctuation">&#123;</span><span class="token string">"verbose"</span><span class="token punctuation">,</span> no_argument<span class="token punctuation">,</span>       <span class="token operator">&amp;</span>verbose_flag<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+          <span class="token punctuation">&#123;</span><span class="token string">"brief"</span><span class="token punctuation">,</span>   no_argument<span class="token punctuation">,</span>       <span class="token operator">&amp;</span>verbose_flag<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+          <span class="token comment">/* These options don’t set a flag.
+             We distinguish them by their indices. */</span>
+          <span class="token punctuation">&#123;</span><span class="token string">"test"</span><span class="token punctuation">,</span>     			no_argument<span class="token punctuation">,</span>       <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'t'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+          <span class="token punctuation">&#123;</span><span class="token string">"implementation"</span><span class="token punctuation">,</span>  	required_argument<span class="token punctuation">,</span>       <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'i'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+          <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+      <span class="token comment">/* getopt_long stores the option index here. */</span>
+      <span class="token keyword">int</span> option_index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+      c <span class="token operator">=</span> <span class="token function">getopt_long</span> <span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">,</span> <span class="token string">"vti:"</span><span class="token punctuation">,</span>
+                       long_options<span class="token punctuation">,</span> <span class="token operator">&amp;</span>option_index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Detect the end of the options. */</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">switch</span> <span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+        <span class="token keyword">case</span> <span class="token number">0</span><span class="token operator">:</span>
+          <span class="token comment">/* If this option set a flag, do nothing else now. */</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>long_options<span class="token punctuation">[</span>option_index<span class="token punctuation">]</span><span class="token punctuation">.</span>flag <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+          <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"option %s"</span><span class="token punctuation">,</span> long_options<span class="token punctuation">[</span>option_index<span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>optarg<span class="token punctuation">)</span>
+            <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">" with arg %s"</span><span class="token punctuation">,</span> optarg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">case</span> <span class="token string">'t'</span><span class="token operator">:</span>
+          <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"option -t\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">case</span> <span class="token string">'i'</span><span class="token operator">:</span>
+          <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"option -i with value `%s'\n"</span><span class="token punctuation">,</span> optarg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          argument <span class="token operator">=</span> optarg<span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">case</span> <span class="token string">'?'</span><span class="token operator">:</span>
+          <span class="token comment">/* getopt_long already printed an error message. */</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">default</span><span class="token operator">:</span>
+          <span class="token function">abort</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">/* Instead of reporting ‘--verbose’
+     and ‘--brief’ as they are encountered,
+     we report the final status resulting from them. */</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>verbose_flag<span class="token punctuation">)</span>
+    <span class="token function">puts</span> <span class="token punctuation">(</span><span class="token string">"verbose flag is set"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span> <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"verbose flag is disabled"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/* Print any remaining command line arguments (not options). */</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>optind <span class="token operator">&lt;</span> argc<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"non-option ARGV-elements: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>optind <span class="token operator">&lt;</span> argc<span class="token punctuation">)</span>
+        <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"%s "</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span>optind<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">putchar</span> <span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+  <span class="token function">exit</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>Makefile</li>
+</ol>
+<pre class="line-numbers language-ruby" data-language="ruby"><code class="language-ruby">op<span class="token punctuation">:</span> getop_test<span class="token punctuation">.</span>cpp
+  g<span class="token operator">++</span> <span class="token operator">-</span>std<span class="token operator">=</span>c<span class="token operator">++</span><span class="token number">11</span> <span class="token operator">-</span><span class="token constant">O3</span> <span class="token operator">-</span>o getop_test getop_test<span class="token punctuation">.</span>cpp
+
+test<span class="token punctuation">:</span>
+  <span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">--</span>implementation <span class="token constant">BINARY</span>
+  <span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">-</span>i <span class="token constant">BINARY</span>
+  <span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">--</span>verbose <span class="token operator">-</span>i <span class="token constant">UNSORTED</span>
+  <span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">--</span>v <span class="token operator">-</span>i <span class="token constant">UNSORTED</span>
+  <span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">--</span>verbose <span class="token operator">-</span>i <span class="token constant">FIBONACCI</span>
+  <span class="token punctuation">.</span><span class="token operator">/</span>getop_test <span class="token operator">-</span>test <span class="token operator">-</span>i <span class="token constant">BINARY</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="draw-boxes-py"><a href="#draw-boxes-py" class="headerlink" title="draw boxes.py"></a>draw boxes.py</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#!/usr/bin/env python</span>
+<span class="token comment"># -*- coding: utf-8 -*-</span>
+
+<span class="token keyword">from</span> tkinter <span class="token keyword">import</span> <span class="token operator">*</span>
+<span class="token keyword">def</span> <span class="token function">drawboard</span><span class="token punctuation">(</span>board<span class="token punctuation">,</span>colors<span class="token punctuation">,</span>startx<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">,</span>starty<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">,</span>cellwidth<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    width<span class="token operator">=</span><span class="token number">2</span><span class="token operator">*</span>startx<span class="token operator">+</span><span class="token builtin">len</span><span class="token punctuation">(</span>board<span class="token punctuation">)</span><span class="token operator">*</span>cellwidth
+    height<span class="token operator">=</span><span class="token number">2</span><span class="token operator">*</span>starty<span class="token operator">+</span><span class="token builtin">len</span><span class="token punctuation">(</span>board<span class="token punctuation">)</span><span class="token operator">*</span>cellwidth
+    canvas<span class="token punctuation">.</span>config<span class="token punctuation">(</span>width<span class="token operator">=</span>width<span class="token punctuation">,</span>height<span class="token operator">=</span>height<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> j  <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>board<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>board<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+ 
+            index<span class="token operator">=</span>board<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+            color<span class="token operator">=</span>colors<span class="token punctuation">[</span><span class="token number">6</span><span class="token operator">-</span>index<span class="token punctuation">]</span>
+            cellx<span class="token operator">=</span>startx<span class="token operator">+</span>i<span class="token operator">*</span><span class="token number">50</span>
+            celly<span class="token operator">=</span>starty<span class="token operator">+</span>j<span class="token operator">*</span><span class="token number">50</span>
+            canvas<span class="token punctuation">.</span>create_rectangle<span class="token punctuation">(</span>cellx<span class="token punctuation">,</span>celly<span class="token punctuation">,</span>cellx<span class="token operator">+</span>cellwidth<span class="token punctuation">,</span>celly<span class="token operator">+</span>cellwidth<span class="token punctuation">,</span>
+                fill<span class="token operator">=</span>color<span class="token punctuation">,</span>outline<span class="token operator">=</span><span class="token string">"black"</span><span class="token punctuation">)</span>
+    canvas<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
+root<span class="token operator">=</span>Tk<span class="token punctuation">(</span><span class="token punctuation">)</span>
+canvas<span class="token operator">=</span>Canvas<span class="token punctuation">(</span>root<span class="token punctuation">,</span>bg<span class="token operator">=</span><span class="token string">"white"</span><span class="token punctuation">)</span>
+canvas<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+board<span class="token operator">=</span><span class="token punctuation">[</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+colors<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'teal'</span><span class="token punctuation">,</span><span class="token string">'lightseagreen'</span><span class="token punctuation">,</span><span class="token string">'turquoise'</span><span class="token punctuation">,</span><span class="token string">'paleturquoise'</span><span class="token punctuation">,</span><span class="token string">'lightcyan'</span><span class="token punctuation">,</span><span class="token string">'azure'</span><span class="token punctuation">,</span><span class="token string">'white'</span><span class="token punctuation">]</span>
+drawboard<span class="token punctuation">(</span>board<span class="token punctuation">,</span>colors<span class="token punctuation">)</span>
+root<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="priority-queue-h"><a href="#priority-queue-h" class="headerlink" title="priority_queue.h"></a>priority_queue.h</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#ifndef PRIORITY_QUEUE_H
+#define PRIORITY_QUEUE_H
+
+#include &lt;functional&gt;
+#include &lt;vector&gt;
+
+&#x2F;&#x2F; OVERVIEW: A simple interface that implements a generic heap.
+&#x2F;&#x2F;           Runtime specifications assume constant time comparison and
+&#x2F;&#x2F;           copying. TYPE is the type of the elements stored in the priority
+&#x2F;&#x2F;           queue. COMP is a functor, which returns the comparison result of
+&#x2F;&#x2F;           two elements of the type TYPE. See test_heap.cpp for more details
+&#x2F;&#x2F;           on functor.
+template&lt;typename TYPE, typename COMP &#x3D; std::less&lt;TYPE&gt; &gt;
+class priority_queue &#123;
+public:
+  typedef unsigned size_type;
+
+  virtual ~priority_queue() &#123;&#125;
+
+  &#x2F;&#x2F; EFFECTS: Add a new element to the heap.
+  &#x2F;&#x2F; MODIFIES: this
+  &#x2F;&#x2F; RUNTIME: O(n) - some implementations *must* have tighter bounds (see
+  &#x2F;&#x2F;          specialized headers).
+  virtual void enqueue(const TYPE &amp;val) &#x3D; 0;
+
+  &#x2F;&#x2F; EFFECTS: Remove and return the smallest element from the heap.
+  &#x2F;&#x2F; REQUIRES: The heap is not empty.
+  &#x2F;&#x2F;           Note: We will not run tests on your code that would require it
+  &#x2F;&#x2F;           to dequeue an element when the heap is empty.
+  &#x2F;&#x2F; MODIFIES: this
+  &#x2F;&#x2F; RUNTIME: O(n) - some implementations *must* have tighter bounds (see
+  &#x2F;&#x2F;          specialized headers).
+  virtual TYPE dequeue_min() &#x3D; 0;
+
+  &#x2F;&#x2F; EFFECTS: Return the smallest element of the heap.
+  &#x2F;&#x2F; REQUIRES: The heap is not empty.
+  &#x2F;&#x2F; RUNTIME: O(n) - some implementations *must* have tighter bounds (see
+  &#x2F;&#x2F;          specialized headers).
+  virtual const TYPE &amp;get_min() const &#x3D; 0;
+
+  &#x2F;&#x2F; EFFECTS: Get the number of elements in the heap.
+  &#x2F;&#x2F; RUNTIME: O(1)
+  virtual size_type size() const &#x3D; 0;
+
+  &#x2F;&#x2F; EFFECTS: Return true if the heap is empty.
+  &#x2F;&#x2F; RUNTIME: O(1)
+  virtual bool empty() const &#x3D; 0;
+
+&#125;;
+
+#endif &#x2F;&#x2F;PRIORITY_QUEUE_H
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="fib-heap-h"><a href="#fib-heap-h" class="headerlink" title="fib_heap.h"></a>fib_heap.h</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;
+&#x2F;&#x2F;  fib_heap.h
+&#x2F;&#x2F;  VE281 2018 Autumn
+&#x2F;&#x2F;  project3
+&#x2F;&#x2F;  Bingcheng HU
+&#x2F;&#x2F;
+#ifndef FIB_HEAP_H
+#define FIB_HEAP_H
+
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;list&gt;
+#include &quot;priority_queue.h&quot;
+
+&#x2F;&#x2F; OVERVIEW: A specialized version of the &#39;heap&#39; ADT implemented as a
+&#x2F;&#x2F;           Fibonacci heap.
+template&lt;typename TYPE, typename COMP &#x3D; std::less&lt;TYPE&gt; &gt;
+class fib_heap: public priority_queue&lt;TYPE, COMP&gt; &#123;
+public:
+    typedef unsigned size_type;
+
+    &#x2F;&#x2F; EFFECTS: Construct an empty heap with an optional comparison functor.
+    &#x2F;&#x2F;          See test_heap.cpp for more details on functor.
+    &#x2F;&#x2F; MODIFIES: this
+    &#x2F;&#x2F; RUNTIME: O(1)
+    fib_heap(COMP comp &#x3D; COMP());
+
+    &#x2F;&#x2F; EFFECTS: Add a new element to the heap.
+    &#x2F;&#x2F; MODIFIES: this
+    &#x2F;&#x2F; RUNTIME: O(1)
+    virtual void enqueue(const TYPE &amp;val);
+
+    &#x2F;&#x2F; EFFECTS: Remove and return the smallest element from the heap.
+    &#x2F;&#x2F; REQUIRES: The heap is not empty.
+    &#x2F;&#x2F; MODIFIES: this
+    &#x2F;&#x2F; RUNTIME: Amortized O(log(n))
+    virtual TYPE dequeue_min();
+
+    &#x2F;&#x2F; EFFECTS: Return the smallest element of the heap.
+    &#x2F;&#x2F; REQUIRES: The heap is not empty.
+    &#x2F;&#x2F; RUNTIME: O(1)
+    virtual const TYPE &amp;get_min() const;
+
+    &#x2F;&#x2F; EFFECTS: Get the number of elements in the heap.
+    &#x2F;&#x2F; RUNTIME: O(1)
+    virtual size_type size() const;
+
+    &#x2F;&#x2F; EFFECTS: Return true if the heap is empty.
+    &#x2F;&#x2F; RUNTIME: O(1)
+    virtual bool empty() const;
+
+private:
+    &#x2F;&#x2F; Note: compare is a functor object
+    COMP compare;
+
+private:
+    &#x2F;&#x2F; Add any additional member functions or data you require here.
+    &#x2F;&#x2F; You may want to define a strcut&#x2F;class to represent nodes in the heap and a
+    &#x2F;&#x2F; pointer to the min node in the heap.
+    struct Node&#123;
+        TYPE key;
+        unsigned int degree;
+        Node *child;
+        Node *parent;
+        Node *left;
+        Node *right;
+        Node(TYPE t_value&#x3D;TYPE()):
+        key(t_value),parent(NULL),child(NULL),
+        left(this),right(this),degree(0)&#123;&#125;
+    &#125;;
+    unsigned int Node_count;
+    Node *min;
+    std::vector&lt;Node*&gt; root;
+    TYPE empty_fib&#x3D;TYPE();
+    virtual void Insert2left(Node *origin_node, Node *new_node);
+    virtual void Fibonacci_Heap_Link(Node *y,Node *x);
+    virtual void Consolidate();
+
+&#125;;
+
+&#x2F;&#x2F; Add the definitions of the member functions here. Please refer to
+&#x2F;&#x2F; binary_heap.h for the syntax.
+
+template&lt;typename TYPE, typename COMP&gt;
+void fib_heap&lt;TYPE, COMP&gt; ::Insert2left(Node *origin_node, Node *new_node) &#123;
+    if(origin_node!&#x3D;NULL)&#123;
+        new_node-&gt;left-&gt;right&#x3D;new_node-&gt;right;
+        new_node-&gt;right-&gt;left&#x3D;new_node-&gt;left;
+        origin_node-&gt;right-&gt;left&#x3D;new_node;
+        new_node-&gt;right&#x3D;origin_node-&gt;right;
+        origin_node-&gt;right&#x3D;new_node;
+        new_node-&gt;left&#x3D;origin_node;
+        new_node-&gt;parent&#x3D;origin_node-&gt;parent;
+        if(origin_node-&gt;parent!&#x3D;NULL) origin_node-&gt;parent-&gt;degree+&#x3D;1;
+    &#125;
+&#125;
+
+
+template&lt;typename TYPE, typename COMP&gt;
+void fib_heap&lt;TYPE, COMP&gt; ::Fibonacci_Heap_Link(Node *y,Node *x)&#123;
+    unsigned int id;
+    for(int i&#x3D;0;i&lt;root.size();i++)&#123;
+        if(root[i]&#x3D;&#x3D;y) id&#x3D;i;
+    &#125;
+    Node *N&#x3D;root[id];
+    root[id]&#x3D;root[root.size()-1];
+    root.pop_back();
+    if(x-&gt;child&#x3D;&#x3D;NULL)&#123;
+        x-&gt;degree+&#x3D;1;
+        x-&gt;child&#x3D;N;
+        N-&gt;parent&#x3D;x;
+        N-&gt;left-&gt;right&#x3D;N-&gt;right;
+        N-&gt;right-&gt;left&#x3D;N-&gt;left;
+        N-&gt;left&#x3D;N;
+        N-&gt;right&#x3D;N;
+    &#125;
+    else Insert2left(x-&gt;child,y);
+&#125;
+
+template&lt;typename TYPE, typename COMP&gt;
+void fib_heap&lt;TYPE, COMP&gt; ::Consolidate() &#123;
+    int root_size &#x3D; Node_count;
+    std::vector&lt;Node*&gt; A(root_size,NULL);
+    for(int i&#x3D;0; i&lt;root.size(); ++i)&#123;
+        Node *x&#x3D;root[i];
+        unsigned int d&#x3D;x-&gt;degree;
+        while(A[d]!&#x3D;NULL)&#123;
+            Node *y&#x3D;A[d];
+            if(compare(y-&gt;key,x-&gt;key))&#123;
+                Node *N&#x3D;x;
+                x&#x3D;y;
+                y&#x3D;N;
+            &#125;
+            Fibonacci_Heap_Link(y,x);
+            A[d]&#x3D;NULL;
+            d++;
+        &#125;
+        A[d]&#x3D;x;
+    &#125;
+    this-&gt;min&#x3D;NULL;
+    for(int j&#x3D;0;j&lt;root.size();j++)&#123;
+        Node *t&#x3D;root[j];
+        if(this-&gt;min&#x3D;&#x3D;NULL) this-&gt;min&#x3D;root[j];
+        else if(compare( t-&gt;key,this-&gt;min-&gt;key)) 
+            this-&gt;min&#x3D;root[j];
+    &#125;
+&#125;
+
+template&lt;typename TYPE, typename COMP&gt;
+fib_heap&lt;TYPE, COMP&gt; ::fib_heap(COMP comp) &#123;
+    this-&gt;Node_count&#x3D;0;
+    compare &#x3D; comp;
+    this-&gt;min&#x3D;NULL;
+&#125;
+
+template&lt;typename TYPE, typename COMP&gt;
+void fib_heap&lt;TYPE, COMP&gt; :: enqueue(const TYPE &amp;val) &#123;
+    Node *N&#x3D;new Node(val);
+    N-&gt;degree&#x3D;0;
+    N-&gt;child&#x3D;NULL;
+    N-&gt;parent&#x3D;NULL;
+    if(this-&gt;min&#x3D;&#x3D;NULL)&#123;
+        root.push_back(N);
+        this-&gt;min&#x3D;N;
+        N-&gt;right&#x3D;N;
+        N-&gt;left&#x3D;N;
+    &#125;
+    else&#123;
+        root.push_back(N);
+        Insert2left(min,N);
+        if(compare(N-&gt;key,this-&gt;min-&gt;key)) this-&gt;min&#x3D;N;
+    &#125;
+    this-&gt;Node_count+&#x3D;1;
+&#125;;
+
+
+template&lt;typename TYPE, typename COMP&gt;
+TYPE fib_heap&lt;TYPE, COMP&gt; :: dequeue_min()&#123;
+    TYPE key_out &#x3D; min-&gt;key;
+    Node *mid_node&#x3D;this-&gt;min;
+    if(mid_node!&#x3D;NULL)&#123;
+        if(mid_node-&gt;child!&#x3D;NULL)&#123;
+            Node *new_mid&#x3D;mid_node-&gt;child;
+            do&#123;
+                root.push_back(new_mid);
+                new_mid-&gt;parent&#x3D;NULL;
+                new_mid&#x3D;new_mid-&gt;right;
+            &#125;while(new_mid!&#x3D;mid_node-&gt;child);
+            new_mid-&gt;left-&gt;right&#x3D;mid_node-&gt;right;
+            mid_node-&gt;right-&gt;left&#x3D;new_mid-&gt;left;
+            new_mid-&gt;left&#x3D;mid_node-&gt;left;
+            mid_node-&gt;left-&gt;right&#x3D;new_mid;
+        &#125;
+        &#x2F;&#x2F; delete mid_node;
+        unsigned int id;
+        for(int i&#x3D;0;i&lt;root.size();i++)&#123;
+            if(root[i]&#x3D;&#x3D;mid_node) id&#x3D;i;
+        &#125;
+
+
+        root.erase(root.begin()+id);
+        &#x2F;&#x2F; delete mid_node;
+        this-&gt;Node_count-&#x3D;1;
+        if(this-&gt;Node_count&#x3D;&#x3D;0)this-&gt;min&#x3D;NULL;
+        else Consolidate();
+    &#125;
+    return key_out;
+&#125;;
+
+template&lt;typename TYPE, typename COMP&gt;
+const TYPE &amp;fib_heap&lt;TYPE, COMP&gt; :: get_min() const&#123;
+    if(this-&gt;empty())
+    &#123;
+        return empty_fib;
+    &#125;
+    return min-&gt;key;
+&#125;;
+
+template&lt;typename TYPE, typename COMP&gt;
+unsigned fib_heap&lt;TYPE, COMP&gt; :: size() const &#123;
+    return Node_count;
+&#125;
+
+template&lt;typename TYPE, typename COMP&gt;
+bool fib_heap&lt;TYPE, COMP&gt; :: empty() const &#123;
+    return this-&gt;size()&#x3D;&#x3D;0;
+&#125;
+
+#endif &#x2F;&#x2F;FIB_HEAP_H
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="unsorted-heap-h"><a href="#unsorted-heap-h" class="headerlink" title="unsorted_heap.h"></a>unsorted_heap.h</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;
+&#x2F;&#x2F;  unsorted_heap.h
+&#x2F;&#x2F;  VE281 2018 Autumn
+&#x2F;&#x2F;  project3
+&#x2F;&#x2F;  Bingcheng HU
+&#x2F;&#x2F;
+#ifndef UNSORTED_HEAP_H
+#define UNSORTED_HEAP_H
+
+#include &lt;algorithm&gt;
+#include &quot;priority_queue.h&quot;
+
+&#x2F;&#x2F; OVERVIEW: A specialized version of the &#39;heap&#39; ADT that is implemented with
+&#x2F;&#x2F;           an underlying unordered array-based container. Every time a min
+&#x2F;&#x2F;           is required, a linear search is performed.
+template&lt;typename TYPE, typename COMP &#x3D; std::less&lt;TYPE&gt; &gt;
+class unsorted_heap: public priority_queue&lt;TYPE, COMP&gt; &#123;
+public:
+  typedef unsigned size_type;
+
+  &#x2F;&#x2F; EFFECTS: Construct an empty heap with an optional comparison functor.
+  &#x2F;&#x2F;          See test_heap.cpp for more details on functor.
+  &#x2F;&#x2F; MODIFIES: this
+  &#x2F;&#x2F; RUNTIME: O(1)
+  unsorted_heap(COMP comp &#x3D; COMP());
+
+  &#x2F;&#x2F; EFFECTS: Add a new element to the heap.
+  &#x2F;&#x2F; MODIFIES: this
+  &#x2F;&#x2F; RUNTIME: O(1)
+  virtual void enqueue(const TYPE &amp;val);
+
+  &#x2F;&#x2F; EFFECTS: Remove and return the smallest element from the heap.
+  &#x2F;&#x2F; REQUIRES: The heap is not empty.
+  &#x2F;&#x2F; MODIFIES: this
+  &#x2F;&#x2F; RUNTIME: O(n)
+  virtual TYPE dequeue_min();
+
+  &#x2F;&#x2F; EFFECTS: Return the smallest element of the heap.
+  &#x2F;&#x2F; REQUIRES: The heap is not empty.
+  &#x2F;&#x2F; RUNTIME: O(n)
+  virtual const TYPE &amp;get_min() const;
+
+  &#x2F;&#x2F; EFFECTS: Get the number of elements in the heap.
+  &#x2F;&#x2F; RUNTIME: O(1)
+  virtual size_type size() const;
+
+  &#x2F;&#x2F; EFFECTS: Return true if the heap is empty.
+  &#x2F;&#x2F; RUNTIME: O(1)
+  virtual bool empty() const;
+
+private:
+  &#x2F;&#x2F; Note: This vector *must* be used in your heap implementation.
+  std::vector&lt;TYPE&gt; data;
+  &#x2F;&#x2F; Note: compare is a functor object
+  COMP compare;
+private:
+  &#x2F;&#x2F; Add any additional member functions or data you require here.
+  TYPE is_empty &#x3D; TYPE();
+&#125;;
+
+template&lt;typename TYPE, typename COMP&gt;
+unsorted_heap&lt;TYPE, COMP&gt; :: unsorted_heap(COMP comp) &#123;
+    compare &#x3D; comp;
+    &#x2F;&#x2F; Fill in the remaining lines if you need.
+&#125;
+
+template&lt;typename TYPE, typename COMP&gt;
+void unsorted_heap&lt;TYPE, COMP&gt; :: enqueue(const TYPE &amp;val) &#123;
+    &#x2F;&#x2F; Fill in the body.
+    data.push_back(val);
+&#125;
+
+template&lt;typename TYPE, typename COMP&gt;
+TYPE unsorted_heap&lt;TYPE, COMP&gt; :: dequeue_min() &#123;
+    &#x2F;&#x2F; Fill in the body.
+    if (empty()) return is_empty;
+    auto min &#x3D; std::min_element(data.begin(), data.end(), compare);
+    int dis &#x3D; std::distance(data.begin(), min);
+    std::swap(data[dis], data.back());
+    TYPE dequeue_min &#x3D; std::move(data.back());
+    data.pop_back();
+    return dequeue_min;
+&#125;
+
+template&lt;typename TYPE, typename COMP&gt;
+const TYPE &amp;unsorted_heap&lt;TYPE, COMP&gt; :: get_min() const &#123;
+    &#x2F;&#x2F; Fill in the body.
+    if (empty()) return is_empty;
+    auto min &#x3D; std::min_element(data.begin(), data.end(), compare);
+    return *min;
+&#125;
+
+template&lt;typename TYPE, typename COMP&gt;
+bool unsorted_heap&lt;TYPE, COMP&gt; :: empty() const &#123;
+    &#x2F;&#x2F; Fill in the body.
+    return data.empty();
+&#125;
+
+template&lt;typename TYPE, typename COMP&gt;
+unsigned unsorted_heap&lt;TYPE, COMP&gt; :: size() const &#123; 
+    &#x2F;&#x2F; Fill in the body.
+    return data.size();
+&#125;
+
+#endif &#x2F;&#x2F;UNSORTED_HEAP_H
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="main-cpp"><a href="#main-cpp" class="headerlink" title="main.cpp"></a>main.cpp</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;
+&#x2F;&#x2F;  main.cpp
+&#x2F;&#x2F;  VE281 2018 Autumn
+&#x2F;&#x2F;  project3
+&#x2F;&#x2F;  Bingcheng HU
+&#x2F;&#x2F;
+#include &lt;iostream&gt;
+#include &lt;getopt.h&gt;
+#include &quot;priority_queue.h&quot;
+#include &quot;binary_heap.h&quot;
+#include &quot;fib_heap.h&quot;
+#include &quot;unsorted_heap.h&quot;
+
+using namespace std;
+&#x2F;&#x2F; static int verbose;
+
+class point &#123;
+public:
+    int x;
+    int y;
+    int cellweight&#x3D;0;
+    int cost&#x3D;0;
+    bool reached&#x3D;false;
+    point *predecessor&#x3D;NULL;
+    friend bool operator&#x3D;&#x3D;(const point &amp;p1,const point &amp;p2)
+    &#123;
+        return (p1.x&#x3D;&#x3D;p2.x&amp;&amp;p1.y&#x3D;&#x3D;p2.y&amp;&amp;p1.cellweight&#x3D;&#x3D;p2.cellweight&amp;&amp;p1.cost&#x3D;&#x3D;p2.cost&amp;&amp;p1.reached&#x3D;&#x3D;p2.reached&amp;&amp;p1.predecessor&#x3D;&#x3D;p2.predecessor);
+    &#125;
+    friend ostream &amp;operator&lt;&lt;(ostream &amp;out, const point &amp;p) &#123;
+        out &lt;&lt; &quot;(&quot; &lt;&lt; p.x &lt;&lt; &quot;, &quot; &lt;&lt; p.y &lt;&lt; &quot;)&quot;;
+        return out;
+    &#125;
+&#x2F;&#x2F;     During a dequeueMin() operation, if multiple cells have the same smallest path
+&#x2F;&#x2F; cost, choose the cell with the smallest x-coordinate. Furthermore, if there are multiple
+&#x2F;&#x2F; cells with the same x-coordinate, choose the cell with the smallest y-coordinate.
+    struct compare_t
+    &#123;
+        bool operator()(const point &amp;a, const point &amp;b) const &#123;
+            if (a.cost !&#x3D; b.cost) return a.cost &lt; b.cost;
+            if (a.x !&#x3D; b.x) return a.x &lt; b.x;
+            return a.y &lt; b.y;
+        &#125;
+    &#125;;
+&#125;;
+
+void trace_back_path(point *p)&#123;
+    if(p!&#x3D;NULL)&#123;
+        trace_back_path(p-&gt;predecessor);
+        cout&lt;&lt;*p&lt;&lt;endl;
+    &#125;
+    return;
+&#125;
+
+int main(int argc,char* argv[])
+&#123;
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0);
+&#x2F;&#x2F;----------------- Get Operation-----------------
+    string mode;
+    int verbose &#x3D; 0;
+    while(true)
+    &#123;
+        static struct option long_options[]&#x3D;
+        &#123;
+            &#123;&quot;verbose&quot;, no_argument,       0, &#39;v&#39;&#125;,
+            &#x2F;&#x2F; &#123;&quot;v&quot;, no_argument,       &amp;verbose, 1&#125;,
+            &#x2F;&#x2F; &#123;&quot;brief&quot;,   no_argument,       &amp;verbose, 0&#125;,
+          &#x2F;* These options don’t set a flag.
+             We distinguish them by their indices. *&#x2F;
+            &#x2F;&#x2F; &#123;&quot;test&quot;,              no_argument,       0, &#39;t&#39;&#125;,
+            &#123;&quot;implementation&quot;,    required_argument,       0, &#39;i&#39;&#125;,
+            &#123;0, 0, 0, 0&#125;
+        &#125;;
+        int option_index &#x3D; 0;
+        int c&#x3D;getopt_long(argc,argv,&quot;vi:&quot;,long_options,&amp;option_index);
+              if (c &#x3D;&#x3D; -1)
+        break;
+
+      switch (c)
+        &#123;
+        case 0:
+          &#x2F;* If this option set a flag, do nothing else now. *&#x2F;
+          if (long_options[option_index].flag !&#x3D; 0)
+            break;
+          &#x2F;&#x2F; printf (&quot;option %s&quot;, long_options[option_index].name);
+          if (optarg)
+            &#x2F;&#x2F; printf (&quot; with arg %s&quot;, optarg);
+          &#x2F;&#x2F; printf (&quot;\n&quot;);
+          break;
+
+        case &#39;v&#39;:
+          &#x2F;&#x2F; printf (&quot;option -t\n&quot;);
+          verbose &#x3D; 1;
+          break;
+
+        case &#39;i&#39;:
+          &#x2F;&#x2F; printf (&quot;option -i with value &#96;%s&#39;\n&quot;, optarg);
+          mode &#x3D; optarg;
+          break;
+
+        case &#39;?&#39;:
+          &#x2F;* getopt_long already printed an error message. *&#x2F;
+          break;
+
+        default:
+          abort ();
+        &#125;
+    &#125;
+    priority_queue&lt;point,point::compare_t&gt; *priority_q;
+    if(mode&#x3D;&#x3D;&quot;BINARY&quot;)
+    &#123;
+        priority_q&#x3D;new binary_heap&lt;point,point::compare_t&gt;();
+    &#125;
+    else if(mode&#x3D;&#x3D;&quot;UNSORTED&quot;)
+    &#123;
+        priority_q&#x3D;new unsorted_heap&lt;point,point::compare_t&gt;();
+    &#125;
+    else if(mode&#x3D;&#x3D;&quot;FIBONACCI&quot;)
+    &#123;
+        priority_q&#x3D;new fib_heap&lt;point,point::compare_t&gt;();
+    &#125;
+    else
+    &#123;
+        exit(0);
+    &#125;
+&#x2F;&#x2F;-------------------get file input-----------------
+    int x_length,y_length&#x3D;0;
+    cin&gt;&gt;x_length&gt;&gt;y_length;
+    int start_x,start_y,end_x,end_y;
+    cin&gt;&gt;start_x&gt;&gt;start_y&gt;&gt;end_x&gt;&gt;end_y;
+    point point_A[y_length][x_length];
+    for(int h&#x3D;0;h&lt;y_length;++h)&#123;
+        for(int w&#x3D;0;w&lt;x_length;++w)&#123;
+            cin&gt;&gt;point_A[h][w].cellweight;
+        &#125;
+    &#125;
+    for(int h&#x3D;0;h&lt;y_length;++h)&#123;
+        for(int w&#x3D;0;w&lt;x_length;++w)&#123;
+            point_A[h][w].x&#x3D;w;
+            point_A[h][w].y&#x3D;h;
+            point_A[h][w].cost&#x3D;point_A[h][w].cellweight;
+        &#125;
+    &#125;
+&#x2F;&#x2F;-------------------calculate path------------------
+    point_A[start_y][start_x].reached&#x3D;true;
+    priority_q-&gt;enqueue(point_A[start_y][start_x]);
+    int step&#x3D;0;
+    while(priority_q-&gt;empty()&#x3D;&#x3D;false)&#123;
+        point C&#x3D;priority_q-&gt;dequeue_min();
+        if(verbose&#x3D;&#x3D;1)&#123;
+            cout&lt;&lt;&quot;Step &quot;&lt;&lt;step&lt;&lt;endl;
+            cout&lt;&lt;&quot;Choose cell (&quot;&lt;&lt;point_A[C.y][C.x].x&lt;&lt;&quot;, &quot;&lt;&lt;point_A[C.y][C.x].y
+            &lt;&lt;&quot;) with accumulated length &quot;&lt;&lt;point_A[C.y][C.x].cost&lt;&lt;&quot;.&quot;&lt;&lt;endl;
+        &#125;
+        step++;
+&#x2F;&#x2F;      The visit of the neighbors starts form the right neighbor and then goes in the
+&#x2F;&#x2F; clockwise direction, i.e., right, down, left, up. For those cells on the boundary, they
+&#x2F;&#x2F; may not have a certain neighbor. Then you just skip it.
+        int clockwise_x[4]&#x3D;&#123;1,0,-1,0&#125;;
+        int clockwise_y[4]&#x3D;&#123;0,1,0,-1&#125;;
+        for(int i&#x3D;0;i&lt;4;++i)&#123;
+            int N_x&#x3D;point_A[C.y][C.x].x+clockwise_x[i];
+            int N_y&#x3D;point_A[C.y][C.x].y+clockwise_y[i];
+            if(N_x&lt;0||N_x&gt;x_length-1||
+                N_y&lt;0||N_y&gt;y_length-1||
+                point_A[N_y][N_x].reached&#x3D;&#x3D;true) 
+                continue;
+            point_A[N_y][N_x].reached&#x3D;true;
+            point_A[N_y][N_x].cost&#x3D;point_A[C.y][C.x].cost+point_A[N_y][N_x].cellweight;
+            point_A[N_y][N_x].predecessor&#x3D;&amp;point_A[C.y][C.x];
+            if(point_A[end_y][end_x].x&#x3D;&#x3D;point_A[N_y][N_x].x&amp;&amp;point_A[end_y][end_x].y&#x3D;&#x3D;point_A[N_y][N_x].y)&#123;
+                if(verbose&#x3D;&#x3D;1)&#123;
+                    cout&lt;&lt;&quot;Cell (&quot;&lt;&lt;point_A[N_y][N_x].x&lt;&lt;&quot;, &quot;&lt;&lt;point_A[N_y][N_x].y
+                    &lt;&lt;&quot;) with accumulated length &quot;&lt;&lt;point_A[N_y][N_x].cost&lt;&lt;&quot; is the ending point.&quot;&lt;&lt;endl;
+                &#125;
+                auto end_node &#x3D; &amp;point_A[end_y][end_x];
+                cout&lt;&lt;&quot;The shortest path from (&quot;&lt;&lt;point_A[start_y][start_x].x&lt;&lt;&quot;, &quot;
+                &lt;&lt;point_A[start_y][start_x].y&lt;&lt;&quot;) to (&quot;&lt;&lt;point_A[end_y][end_x].x
+                &lt;&lt;&quot;, &quot;&lt;&lt;point_A[end_y][end_x].y&lt;&lt;&quot;) is &quot;&lt;&lt;point_A[N_y][N_x].cost&lt;&lt;&quot;.&quot;&lt;&lt;endl;
+                cout&lt;&lt;&quot;Path:&quot;&lt;&lt;endl;
+                trace_back_path(&amp;point_A[end_y][end_x]);
+                delete priority_q;
+                return 0;
+            &#125;
+            else&#123;
+                priority_q-&gt;enqueue(point_A[N_y][N_x]);
+                if(verbose&#x3D;&#x3D;1)&#123;
+                    cout&lt;&lt;&quot;Cell (&quot;&lt;&lt;point_A[N_y][N_x].x&lt;&lt;&quot;, &quot;&lt;&lt;point_A[N_y][N_x].y
+                    &lt;&lt;&quot;) with accumulated length &quot;&lt;&lt;point_A[N_y][N_x].cost
+                    &lt;&lt;&quot; is added into the queue.&quot;&lt;&lt;endl;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    delete priority_q;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="performance-cpp"><a href="#performance-cpp" class="headerlink" title="performance.cpp"></a>performance.cpp</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;
+&#x2F;&#x2F;  main.cpp
+&#x2F;&#x2F;  VE281 2018 Autumn
+&#x2F;&#x2F;  project3
+&#x2F;&#x2F;  Bingcheng HU
+&#x2F;&#x2F;
+#include &lt;iostream&gt;
+#include &lt;getopt.h&gt;
+#include &lt;tgmath.h&gt;
+#include &quot;priority_queue.h&quot;
+#include &quot;binary_heap.h&quot;
+#include &quot;fib_heap.h&quot;
+#include &quot;unsorted_heap.h&quot;
+
+using namespace std;
+static int verbose;
+
+class point &#123;
+public:
+    int x;
+    int y;
+    int cellweight&#x3D;0;
+    int cost&#x3D;0;
+    bool reached&#x3D;false;
+    point *predecessor&#x3D;NULL;
+    friend bool operator&#x3D;&#x3D;(const point &amp;p1,const point &amp;p2)
+    &#123;
+        return (p1.x&#x3D;&#x3D;p2.x&amp;&amp;p1.y&#x3D;&#x3D;p2.y&amp;&amp;p1.cellweight&#x3D;&#x3D;p2.cellweight&amp;&amp;p1.cost&#x3D;&#x3D;p2.cost&amp;&amp;p1.reached&#x3D;&#x3D;p2.reached&amp;&amp;p1.predecessor&#x3D;&#x3D;p2.predecessor);
+    &#125;
+    friend ostream &amp;operator&lt;&lt;(ostream &amp;out, const point &amp;p) &#123;
+        out &lt;&lt; &quot;(&quot; &lt;&lt; p.x &lt;&lt; &quot;, &quot; &lt;&lt; p.y &lt;&lt; &quot;)&quot;;
+        return out;
+    &#125;
+&#x2F;&#x2F;     During a dequeueMin() operation, if multiple cells have the same smallest path
+&#x2F;&#x2F; cost, choose the cell with the smallest x-coordinate. Furthermore, if there are multiple
+&#x2F;&#x2F; cells with the same x-coordinate, choose the cell with the smallest y-coordinate.
+    struct compare_t
+    &#123;
+        bool operator()(const point &amp;a, const point &amp;b) const &#123;
+            if (a.cost !&#x3D; b.cost) return a.cost &lt; b.cost;
+            if (a.x !&#x3D; b.x) return a.x &lt; b.x;
+            return a.y &lt; b.y;
+        &#125;
+    &#125;;
+&#125;;
+
+void trace_back_path(point *p)&#123;
+    if(p!&#x3D;NULL)&#123;
+        trace_back_path(p-&gt;predecessor);
+        &#x2F;&#x2F; cout&lt;&lt;*p&lt;&lt;endl;
+    &#125;
+    return;
+&#125;
+
+void clean_matrix(point **point_A,int y_length, int x_length)&#123;
+    for(int h&#x3D;0;h&lt;y_length;++h)&#123;
+        for(int w&#x3D;0;w&lt;x_length;++w)&#123;
+            point_A[h][w].x&#x3D;w;
+            point_A[h][w].y&#x3D;h;
+            point_A[h][w].cost&#x3D;point_A[h][w].cellweight;
+            point_A[h][w].reached &#x3D; false;
+        &#125;
+    &#125;
+&#125;
+
+clock_t test_time(point **point_A, int y_length, int x_length, int mode)&#123;
+    int start_y &#x3D; 0;
+    int start_x &#x3D; 0;
+    int end_y &#x3D; y_length-1;
+    int end_x &#x3D; x_length-1;
+    clock_t start_t, end_t;
+    start_t &#x3D; clock();
+    &#x2F;&#x2F; cout&lt;&lt;&quot;start at &quot;&lt;&lt;start_t;
+    priority_queue&lt;point,point::compare_t&gt; *priority_q;
+    if(mode&#x3D;&#x3D; 1) &#x2F;&#x2F;&quot;BINARY&quot;)
+    &#123;
+        priority_q&#x3D;new binary_heap&lt;point,point::compare_t&gt;();
+    &#125;
+    else if(mode&#x3D;&#x3D; 0) &#x2F;&#x2F;&quot;UNSORTED&quot;)
+    &#123;
+        priority_q&#x3D;new unsorted_heap&lt;point,point::compare_t&gt;();
+    &#125;
+    else if(mode&#x3D;&#x3D; 2) &#x2F;&#x2F;&quot;FIBONACCI&quot;)
+    &#123;
+        priority_q&#x3D;new fib_heap&lt;point,point::compare_t&gt;();
+    &#125;
+    else
+    &#123;
+        exit(0);
+    &#125;
+    
+    int verbose &#x3D; 0;
+    point_A[start_y][start_x].reached&#x3D;true;
+    priority_q-&gt;enqueue(point_A[start_y][start_x]);
+    int step&#x3D;0;
+    while(priority_q-&gt;empty()&#x3D;&#x3D;false)&#123;
+        point C&#x3D;priority_q-&gt;dequeue_min();
+        if(verbose&#x3D;&#x3D;1)&#123;
+            cout&lt;&lt;&quot;Step &quot;&lt;&lt;step&lt;&lt;endl;
+            cout&lt;&lt;&quot;Choose cell (&quot;&lt;&lt;point_A[C.y][C.x].x&lt;&lt;&quot;, &quot;&lt;&lt;point_A[C.y][C.x].y
+            &lt;&lt;&quot;) with accumulated length &quot;&lt;&lt;point_A[C.y][C.x].cost&lt;&lt;&quot;.&quot;&lt;&lt;endl;
+        &#125;
+        step++;
+&#x2F;&#x2F;      The visit of the neighbors starts form the right neighbor and then goes in the
+&#x2F;&#x2F; clockwise direction, i.e., right, down, left, up. For those cells on the boundary, they
+&#x2F;&#x2F; may not have a certain neighbor. Then you just skip it.
+        int clockwise_x[4]&#x3D;&#123;1,0,-1,0&#125;;
+        int clockwise_y[4]&#x3D;&#123;0,1,0,-1&#125;;
+        for(int i&#x3D;0;i&lt;4;++i)&#123;
+            int N_x&#x3D;point_A[C.y][C.x].x+clockwise_x[i];
+            int N_y&#x3D;point_A[C.y][C.x].y+clockwise_y[i];
+            if(N_x&lt;0||N_x&gt;x_length-1||
+                N_y&lt;0||N_y&gt;y_length-1||
+                point_A[N_y][N_x].reached&#x3D;&#x3D;true) 
+                continue;
+            point_A[N_y][N_x].reached&#x3D;true;
+            point_A[N_y][N_x].cost&#x3D;point_A[C.y][C.x].cost+point_A[N_y][N_x].cellweight;
+            point_A[N_y][N_x].predecessor&#x3D;&amp;point_A[C.y][C.x];
+            if(point_A[end_y][end_x].x&#x3D;&#x3D;point_A[N_y][N_x].x&amp;&amp;point_A[end_y][end_x].y&#x3D;&#x3D;point_A[N_y][N_x].y)&#123;
+                
+                auto end_node &#x3D; &amp;point_A[end_y][end_x];
+                cerr&lt;&lt;&quot;cost &#x3D; &quot;&lt;&lt; point_A[N_y][N_x].cost&lt;&lt;&quot; &quot;;
+                trace_back_path(&amp;point_A[end_y][end_x]);
+                delete priority_q;
+                end_t &#x3D; clock();
+                return clock() - start_t;
+            &#125;
+            else&#123;
+                priority_q-&gt;enqueue(point_A[N_y][N_x]);
+            &#125;
+        &#125;
+    &#125;
+    delete priority_q;
+
+    end_t &#x3D; clock();
+    return 0;
+&#125;
+const string heapName[] &#x3D; &#123;
+    &quot;unsorted_heap&quot;,&quot;binary_heap&quot;,&quot;fibonaci_heap&quot;, &quot;ERROR_HEAP&quot;
+&#125;;
+
+int main(int argc,char* argv[])
+&#123;
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0);
+    int x_length &#x3D; 0,y_length&#x3D;0;
+    cin&gt;&gt;x_length&gt;&gt;y_length;
+    int start_x,start_y,end_x,end_y;
+    cin&gt;&gt;start_x&gt;&gt;start_y&gt;&gt;end_x&gt;&gt;end_y;
+    point** point_A;
+    point_A &#x3D; new point *[x_length];
+    for (int i &#x3D; 0; i &lt; x_length; ++i)
+    &#123;
+        point_A[i] &#x3D; new point [y_length];
+    &#125;
+    for(int h&#x3D;0;h&lt;y_length;++h)&#123;
+        for(int w&#x3D;0;w&lt;x_length;++w)&#123;
+            cin&gt;&gt;point_A[h][w].cellweight;
+        &#125;
+    &#125;
+    for (int i &#x3D; 0; i &lt; 12; ++i)
+    &#123;
+        int size_of_matrix &#x3D; x_length*pow(2,i+1)&#x2F;4096;
+        cout &lt;&lt;size_of_matrix&lt;&lt;&quot;, &quot;;
+        for (int j &#x3D; 0; j &lt; 3; ++j)
+        &#123;
+            
+            int x_len &#x3D; size_of_matrix;
+            int y_len &#x3D; size_of_matrix;
+            clock_t time_run &#x3D; test_time(point_A, y_len, x_len, j);
+            clean_matrix(point_A, y_length, x_length);
+            cerr&lt;&lt;&quot;run time of &quot;&lt;&lt;heapName[j]&lt;&lt; &quot;  \tat size &quot;&lt;&lt; size_of_matrix &lt;&lt;&quot;\tis &quot;&lt;&lt;time_run&lt;&lt;endl;
+            cout&lt;&lt;time_run&lt;&lt;&quot;,&quot;;
+        &#125;
+        cout&lt;&lt;endl;
+    &#125;
+
+    for(int i&#x3D;0;i&lt;y_length;i++)
+        delete []point_A[i]; 
+        delete []point_A;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="gen-rand-cpp"><a href="#gen-rand-cpp" class="headerlink" title="gen_rand.cpp"></a>gen_rand.cpp</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;assert.h&gt;
+
+using namespace std;
+int main(int argc, char *argv[]) &#123;
+
+  int w &#x3D; 100;
+
+  cout&lt;&lt;w&lt;&lt;&quot; &quot;&lt;&lt;w&lt;&lt;endl;
+  cout&lt;&lt;0&lt;&lt;&quot; &quot;&lt;&lt;0&lt;&lt;endl;
+  cout&lt;&lt;99&lt;&lt;&quot; &quot;&lt;&lt;99&lt;&lt;endl;
+  int k;
+  for (int i &#x3D; 0; i &lt; w; ++i)
+  &#123;
+    for (int j &#x3D; 0; j &lt; w; ++j)
+    &#123;
+      k &#x3D; mrand48()%5 + 4;
+      cout &lt;&lt; k &lt;&lt;&quot; &quot;;
+    &#125;
+  &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h3><pre class="line-numbers language-ruby" data-language="ruby"><code class="language-ruby">all<span class="token punctuation">:</span> main
+
+main<span class="token punctuation">:</span> main<span class="token punctuation">.</span>cpp
+  g<span class="token operator">++</span> <span class="token operator">-</span>std<span class="token operator">=</span>c<span class="token operator">++</span><span class="token number">11</span> <span class="token operator">-</span><span class="token constant">O2</span> <span class="token operator">-</span>o main main<span class="token punctuation">.</span>cpp
+  
+gen<span class="token punctuation">:</span> gen_rand<span class="token punctuation">.</span>cpp
+  g<span class="token operator">++</span> <span class="token operator">-</span>std<span class="token operator">=</span>c<span class="token operator">++</span><span class="token number">11</span> <span class="token operator">-</span><span class="token constant">O2</span> <span class="token operator">-</span>o gen_rand_matrix gen_rand<span class="token punctuation">.</span>cpp
+  <span class="token punctuation">.</span><span class="token operator">/</span>gen_rand_matrix <span class="token operator">></span> matrix<span class="token punctuation">.</span><span class="token keyword">in</span>
+
+per<span class="token punctuation">:</span> performance<span class="token punctuation">.</span>cpp
+  g<span class="token operator">++</span> <span class="token operator">-</span>std<span class="token operator">=</span>c<span class="token operator">++</span><span class="token number">11</span> <span class="token operator">-</span><span class="token constant">O3</span> <span class="token operator">-</span>o perform performance<span class="token punctuation">.</span>cpp
+  <span class="token punctuation">.</span><span class="token operator">/</span>perform <span class="token operator">&lt;</span> matrix<span class="token punctuation">.</span><span class="token keyword">in</span> <span class="token operator">></span> out<span class="token punctuation">.</span>csv
+
+vm<span class="token punctuation">:</span> all
+  valgrind <span class="token operator">--</span>leak<span class="token operator">-</span>check<span class="token operator">=</span>full <span class="token punctuation">.</span><span class="token operator">/</span>main <span class="token operator">--</span>verbose <span class="token operator">-</span>i <span class="token constant">FIBONACCI</span> <span class="token operator">&lt;</span> <span class="token keyword">in</span><span class="token punctuation">.</span>txt <span class="token operator">></span><span class="token number">1.</span>out
+
+clean<span class="token punctuation">:</span>
+  rm <span class="token operator">-</span>f <span class="token operator">*</span><span class="token punctuation">.</span>o fib_heap binary_heap unsorted_heap fib_heap_sw main performance
+
+
+tar<span class="token punctuation">:</span>
+  tar czvf p3<span class="token punctuation">.</span>tar <span class="token constant">Makefile</span> main<span class="token punctuation">.</span>cpp binary_heap<span class="token punctuation">.</span>h fib_heap<span class="token punctuation">.</span>h priority_queue<span class="token punctuation">.</span>h unsorted_heap<span class="token punctuation">.</span>h
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="DataGraph"><a href="#DataGraph" class="headerlink" title="DataGraph"></a>DataGraph</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gisceeinjwj311t0u01c6.jpg" alt="image-20181110145250790"></p>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>

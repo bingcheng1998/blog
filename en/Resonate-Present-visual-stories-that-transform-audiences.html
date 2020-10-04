@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/art/">
+            art
+        </a>
+    </h4>
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/art/review/">
+            review
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        Resonate: Present Visual Stories That Transform Audiences
+    </h2>
+    <ul class="post-date">
+        <li>
+            2019-12-08
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <p><em>Resonate: Present visual stories that transform audiences</em> , written by Nancy Duarte, is a book that clarifies the aim of presentation and then shows the right way to reach this goal. </p>
+<a id="more"></a>
+
+<p><em>Resonate: Present visual stories that transform audiences</em> , written by Nancy Duarte, is a book that clarifies the aim of presentation and then shows the right way to reach this goal. Nowadays, there are so many presentations that make audiences feel so boring that they want to sleep and it’s just a waste of their time [1]. Some presentations are just a combination of powerpoint and speech, and audiences cannot follow the idea of the speaker. However, the presenter needs to convey its content with passion, persuasion, and impact, not just with Powerpoint. </p>
+<p>To achieve this goal, some suggestions are presented:</p>
+<ul>
+<li>Focuses on content development methodologies that are not only fundamental but will move people to action</li>
+<li>Upends the usual paradigm by making the audience the hero and the presenter the mentor</li>
+<li>Shows how to use story techniques of conflict and resolution</li>
+</ul>
+<p>The most interesting point is the third one, and it’s very enlightening.</p>
+<p>The first point is often reiterated, and the second point is too abstract and needs much practice to master that skill. When talking about the third point, it’s a totally different picture. It’s so enlightening and so convincing that I cannot avoid myself to learn how to do that. </p>
+<h3 id="Shows-how-to-use-story-techniques-of-conflict-and-resolution"><a href="#Shows-how-to-use-story-techniques-of-conflict-and-resolution" class="headerlink" title="Shows how to use story techniques of conflict and resolution"></a><strong>Shows how to use story techniques of conflict and resolution</strong></h3><p>This point is rarely asserted in other presentation teaching material, but it is easy to learn and practice. There are some steps and methods given to do that. By using these methods, my presentation will be more appealing.</p>
+<p>When talking about my presentation topic, I need to reiterate that. The thesis of the presentation is “Recommendation Algorithms in Applications”, and we want to the definition of those algorithms and their appearance scenarios first, then we will compare the positive effects and negative effects of it. Finally, the possible solution to this issue will be presented. And there are some points which are so inspiring and can help me to improve my presentation.</p>
+<h3 id="Facts-Alone-Fall-Short"><a href="#Facts-Alone-Fall-Short" class="headerlink" title="Facts Alone Fall Short"></a><strong>Facts Alone Fall Short</strong></h3><p>According to this book, information itself is not as important as emotional impact. In fact, people seldom act on causality. In order to enhance their persuasion, they must touch people’s deep-rooted desires and beliefs. This requires a sharper “stab” to stab the soul. This “stab” is emotion. To my presentation topic, it’s very useful. There are lots of data that show how much more profits do these company who use this “Recommendation Algorithms” make than before, but these data are just death numbers that cannot make audiences feel the significance of it. Just as Aristotle said that the man who is in command of persuasion must be able “to understand the emotions – that is, to name them and describe them, to know their causes and the way in which they are excited,” and that “persuasion may come through the hearers, when the speech stirs their emotions”, there need more than data to clarify the significance of the “Recommendation Algorithms” [2].</p>
+<h3 id="Stories-Convey-Meaning-Turn-Information-Into-Stories"><a href="#Stories-Convey-Meaning-Turn-Information-Into-Stories" class="headerlink" title="Stories Convey Meaning: Turn Information Into Stories"></a><strong>Stories Convey Meaning: Turn Information Into Stories</strong></h3><p>Then, what do we need more than data? this book also gives out its answer: stories. Nancy thinks that “stories convey meaning” [1]. According to the case study of Cisco Systems, the story is important for presentation. The story is not only the most favorable and lasting tool for information transmission, but also better than any other art form, and it also maintains people’s mind. When the values, beliefs, and ethics are intertwined, your ideas will naturally become reality in the mind of the audience [1]. By telling stories, a presenter can make his or her audiences accept the idea of values, beliefs, and ethics that the presenter wants to convey. In this case, we can use stories to illustrate our ideas about Recommendation Algorithms. </p>
+<p>Use the Recommendation Algorithms, Jindong find that different people would like to buy one product of different price. though the goods may be exactly the same, the rich customers may be more likely to buy the more expensive one. Due to this reason, Jingdong decides to use the  Recommendation Algorithms to calculate which person would like to pay more, and then show a higher price for the product. Here, I come up with a story to tell the fact that “one good, different price” in Jindong, one of the biggest shopping market online. </p>
+<p>One rich girl and one girl in the middle class are roommates. The rich girl always likes to buy expensive goods, like Chanel’s bag and GUCCI perfume. When there comes up a new kind of lipstick called “Chopping Men”, both of them want to buy it and they both choose Jingdong because there are fewer fack goods. Finally, the rich girl buys the expensive one, ￥1000, and the other girl buys the cheap one, ￥700. When they receive the goods, they compared their lipsticks, and surprisingly find that both lipsticks are the same. Moreover, they find that they bought the lipsticks in the same online shop. By searching the internet, they discover there are many people encountered this situation, and this is because of the usage of the Recommendation Algorithms. So the rich girl is mad and thinks this is not legal. Is the price discrimination based on Recommendation Algorithms legal？</p>
+<h3 id="Evocative-Visuals-Putting-Your-Story-on-the-Silver-Screen"><a href="#Evocative-Visuals-Putting-Your-Story-on-the-Silver-Screen" class="headerlink" title="Evocative Visuals: Putting Your Story on the Silver Screen"></a><strong>Evocative Visuals: Putting Your Story on the Silver Screen</strong></h3><p>A good story can make a presentation more convincing, but it’s not sufficient. Nancy asserts that evocative visuals are significant because they can not only evoke happiness but the pain. Visuals like figures and graphs are useful for a presentation, and it’s a good idea to transfer a bunch of text to visuals. For my presentation, I’d better transfer my story to manga (comics) for better emotion evocation. First, I can draw this story on my iPad, and then show them in my powerpoint one by one. It’s not a good idea to show a bunch of text on the powerpoint as your speak because it will make audiences hard to focus – they will be confused which one is more important, your speech or the text.</p>
+<p>Summing it up, to achieve a good response, there is some points relevance to my presentation. First, because “Facts Alone Fall Short”, the fact should not be presented blandly. Secondly, because stories convey meaning, we should turn information into stories. The fact in the applications of recommendation algorithms should be converted to a story. Third, to achieve this goal, evocative visuals are important, so we need to put this story on the silver screen.</p>
+<p>These points are novel and I rarely noticed it at other places. many points cannot be ignored, but they are always emphasized by teachers or other materials. This idea to transfer your data to stories are quite fascinating that can improve the presentation of my group to a large extent.</p>
+<blockquote>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p>[1] Resonate, Present Visual Stories that Transform Audiences. Wiley, 2010.</p>
+<p>[2] Aristotle. The Art of Rhetoric. London: Penguin Books, 1991.</p>
+</blockquote>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>

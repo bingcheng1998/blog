@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/philosophy/">
+            philosophy
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        Whether Human Nature Is Good or Bad?
+    </h2>
+    <ul class="post-date">
+        <li>
+            2018-11-28
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <p>Mengzi thinks that “<strong>human nature is good</strong>“, while Xunzi thinks that “<strong>human nature is bad</strong>“. Mengzi says that “the feeling of commiseration is essential to man” and thinks human nature to be the sympathy towards the person who is in suffer . Xunzi disagrees with him and says this is not true. </p>
+<a id="more"></a>
+
+<h1 id="Exploring-Thoughts-of-Mengzi-and-Xunzi"><a href="#Exploring-Thoughts-of-Mengzi-and-Xunzi" class="headerlink" title="Exploring Thoughts of Mengzi and Xunzi"></a>Exploring Thoughts of Mengzi and Xunzi</h1><p>Mengzi thinks that “<strong>human nature is good</strong>“, while Xunzi thinks that “<strong>human nature is bad</strong>“(Ivanhoe &amp; Norden, 284, 288). Mengzi says that “the feeling of commiseration is essential to man” and thinks human nature to be the sympathy towards the person who is in suffer (Mengzi, Gong Sun Chou I). Xunzi disagrees with him and says this is not true (Ivanhoe &amp; Norden, 288). He insisted that Mengzi did not attain knowledge of human nature, nor did he clearly see the differences between human nature and their deliberate efforts. Both are well-founded and justified, but they all have illogicalities. </p>
+<p>Meng Xue, Mengzi’s thought, came directly from <em>Zhongyong</em>, which is wrote by Confucius’s grandson Zi Si, and later generations called his thought “Si Meng’s study”. While Xun Xue, the thought of Xunzi, is directly related to the study of Jing(经), and his thought was succeeded by Confucius through Zi Xia. The fundamental point of the difference between Meng Xue and Xun Xue is that their understanding of the core of Confucianism is different (Ying-Fa, 101).</p>
+<hr>
+<p>The academic community unanimously believes that “human nature is good” is the theoretical basis of Mengzi’s humanities system (Ying-Fa, 100). Mengzi’s theory believes that human nature is good, and “goodness” is born with it. To illustrate that “human nature is good” is true, Mengzi gives a vivid example in Gong Sun Chou. Mengzi says that “if men suddenly see a child about to fall into a well, they will without exception experience a feeling of alarm and distress… the feeling of commiseration is essential to man (Mengzi, Gong Sun Chou I).” </p>
+<p>Mengzi believes that this core is “benevolence” and builds its own ideological system along the path of “benevolence” guided by Confucius. After Confucius’s concept of “benevolence”, Mengzi focused on the concept of “righteousness” and advocated the implementation of “benevolence”. His political activities throughout his life were to persuade the monarchs at that time to be benevolent to the people and implement the politics of “benevolence.” (Ying-Fa, 101)</p>
+<hr>
+<p>Though Mengzi says that “human nature is good” and lots of Confucian disciples agrees with him, Xunzi says “this is not so (Ivanhoe &amp; Norden, 285).” Xunzi believes that the core of Confucius’s wisdom is “ritual” and builds his own ideological system along the path of “ritual” guided by Confucius. Xunzi focused on the concept of “ritual” and advocated respecting rituals and enacting laws and regulations, and he thinks that it can transform the bad nature to good character and making people’s actions conform to laws, ethics, and ritual (Ying-Fa, 101).</p>
+<blockquote>
+<p>This is a case of not attaining knowledge of people’s nature and of not inspecting clearly the division between people’s nature and their deliberate efforts. In every case, the nature of a thing is the accomplishment of Heaven. It cannot be learned. It cannot be worked at (Ivanhoe &amp; Norden, 285).</p>
+<p>As for the way that the eyes like pretty colors, the ears like beautiful sounds, the mouth like good flavors, the heart likes what is beneficial, and the bones and flesh like what is comfortable—these are produced from people’s inborn dispositions and nature (Ivanhoe &amp; Norden, 286). </p>
+</blockquote>
+<p>To further prove that human nature is bad, Xunzi makes a hypothesis. Through this hypothesis, Xunzi explores human nature.</p>
+<blockquote>
+<p>Now suppose one were to try doing away with the power of rulers and superiors, try doing without the transformation from ritual and the standards of righteousness, try doing away with the order of laws and standards, try doing without the restraint of punishments and fines. Then stand aside and observe how all the people of the world would treat each other. If it were like this, then the strong would harm the weak and take from them. The many would tyrannize the few and shout them down. One would not have to wait even a moment for all under Heaven to arrive at unruliness and chaos and perish (Ivanhoe &amp; Norden, 288).</p>
+</blockquote>
+<p>Xunzi says looking at human nature in this way, “it is clear that people’s nature is bad, and that their goodness is a matter of deliberate effort (Ivanhoe &amp; Norden, 289).” </p>
+<hr>
+<p>But by studying their thoughts, it can be found that both of their theories are not perfect.</p>
+<p>Mengzi believes that human nature is good, then where does evil come from? Although he pointed out that the insufficiency expression of good nature can lead to “badness”, there is no direct explanation of where evil comes from. “not good” includes “bad”, but it also contains neutral “not good and not bad”, while “bad” and “not good and not bad” are not equal. For example, robbery is bad, and the prevention of robbery is good, but neither participates or helps robbery nor prevents it from coming forward is neither good nor bad. If human nature is good, then why do people make steals, robberies, murders, etc.? Mengzi says that this is because the nature of goodness cannot be fully exerted, and it is unreasonable.</p>
+<p>Similarly, Xunzi holds that “human nature is bad”, which also has a theoretical blind spot, and its interpretation of the source of good cannot be justified. Since human nature is bad, then how can it form good? The famous proposition is that the good is not born to be good, but is influenced by the environment, self-cultivation and learning (Xunzi, Human Nature is Bad). Some saints formulate moral and ritual and they are good, then where do the goodness of the saints come from? Is it born to be good? If so, then there is no different to Mengzi’s “human nature is good.” If not, then, who did the saint learn to be good before he became a saint? Is it a former saint? This will be endless, and there will be no solution at all.</p>
+<hr>
+<p>To explore the nature of babies, Karen Wynn and Kiley Hamlin did an <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=HBW5vdhr_PA">interesting experiment</a>. This experiment uses a three-dimensional display with wood-made geometric objects, and these objects were manipulated like puppets. This experiment acted out the helping and hindering situations. a yellow square would help the circle up the hill; a red triangle would push it down. After showing the babies in this scene, the experimenter took out the helper and the hinderer and brought them to the baby. What they do is to record which character they reached for, on the theory that what a baby reaches for is a reliable indicator of what a baby wants (Bloom, 4). </p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giscikiihsj31gk0qqn10.jpg" alt="img"></p>
+<p>In the end, they found that babies overwhelmingly preferred the helpful individual to the hindering individual (Bloom, 10). Baby can identify the helper as nice and the hinderer as mean. This proves that human nature is on the side of goodness.</p>
+<p>The issue of human nature is a big problem in the history of Chinese thought, and it was also an important issue in Confucianism. However, Confucius, the founder of the Confucian doctrine, has little to say about this issue, so it is not surprising that this can lead to endless debates. Regardless of how the descendants think or argue about the thoughts of the Mengzi and Xunzi, Mengzi’s thoughts prevail. This is because Mengzi’s thoughts are more in line with the ideology of the majority and more suitable for the needs of the ruling class.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
+<p>Bloom, P. (2013). Just babies: The origins of good and evil. Broadway Books.</p>
+<p>Ivanhoe, P. J., &amp; Norden, B. W. V.. (2005). Readings in classical Chinese philosophy. Readings in classical Chinese philosophy /. Hackett Pub.</p>
+<p>Xunzi, Chinese Text project. 2018/11/24. <a target="_blank" rel="noopener" href="https://ctext.org/xunzi/ens">https://ctext.org/xunzi/ens</a></p>
+<p>Ying-Fa, Y… (2012). The comparison research between the theory of xunzi ’s evil human nature and Mengzitheory of goodness. Northern Forum.</p>
+</blockquote>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>

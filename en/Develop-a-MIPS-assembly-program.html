@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/program/">
+            program
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        Develop a MIPS Assembly Program
+    </h2>
+    <ul class="post-date">
+        <li>
+            2018-10-08
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <p>​    Develop a MIPS assembly program that operates on a data segment consisting of an array of 32-bit unsigned integers.</p>
+<a id="more"></a>
+
+<h1 id="PROJECT-DESCRIPTION"><a href="#PROJECT-DESCRIPTION" class="headerlink" title="PROJECT DESCRIPTION"></a><strong>PROJECT DESCRIPTION</strong></h1><p>​    Develop a MIPS assembly program that operates on a data segment consisting of an array of 32-bit unsigned integers. In the text (program) segment of memory, write a procedure called main that implements the <code>main()</code> function and other subroutines described below. Assemble, simulate, and carefully comment the file. Screen print your simulation results and explain the results by annotating the screen prints. You should compose an array whose size is determined by you in the main function and is not less than 20 elements. </p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">main() &#123;
+    int size &#x3D; ...;  &#x2F;&#x2F;determine the size of the array here
+    int PassCnt, FailCnt;
+    int testArray[size] &#x3D; &#123; 55, 83,   
+        ... &#x2F;&#x2F;compose your own array here
+                         &#125;;
+    PassCnt &#x3D; countArray(testArray, size, 1);
+    FailCnt &#x3D; countArray(testArray, size, -1);
+&#125;
+
+int countArray(int A[], int numElements, int cntType) &#123;
+&#x2F;**********************************************************************
+* Count specific elements in the integer array A[] whose size is     *
+* numElements and return the following:                              *
+* When cntType &#x3D; 1, count the elements greater than or equal to 60;  *
+* When cntType &#x3D; -1, count the elements less than 60;                *
+**********************************************************************&#x2F;
+    int i, cnt &#x3D; 0;
+    for (i&#x3D;numElements-1; i&gt;-1; i--) &#123;
+        switch (cntType) &#123;
+                case &#39;1&#39; : cnt +&#x3D; Pass(A[i]); break;
+                otherwise: cnt +&#x3D; Fail(A[i]); 
+        &#125;
+    &#125;
+    return cnt;
+&#125;
+
+int Pass(int x) &#123;
+    if(x&gt;&#x3D;60) return 1;
+    else return 0;
+&#125;
+
+int Fail(int x) &#123;
+    if (x&lt;60) return 1;
+    else return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly"># Start
+#----------------- Main -----------------
+
+# 1. ajust stack (for &#96;int A[]&#96; and &#96;string output&#96;) and
+#		generate &#96;int numElement&#96;, &#96;int cntType&#96;.
+
+# 2. copy and past &#96;generated_array.s&#96; below
+
+# ---------------- case 1 ----------------
+# 3. generate ARGUIMENT for &#96;countArray()&#96;
+#		with &#96;cntType &#x3D; 1&#96;
+
+# 4. $v0 &#x3D; countArray(A[], size, 1)
+#		count the elements greater than or equal to 60; 
+
+# 5. println(PassNum) like &#96;Pass: 10&#96;
+
+# ---------------- case 2 ----------------
+# 6. generate ARGUIMENT for &#96;countArray()&#96;
+#		with &#96;cntType &#x3D; -1&#96;
+
+# 7. $v0 &#x3D; countArray(A[], size, -1)
+#		count the elements less than 60; 
+
+# 8. println(FailNum) like &#96;Fail: 10&#96;
+
+# ----------- Functions (Procedures) ------------
+
+# 1. int countArray(int A[], int numElements, int cntType)
+
+# 2. int Pass(int x)
+
+# 3. int Fail(int x)
+
+# ----------------- Exit() --------------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="C-Programe-to-generate-arrays"><a href="#C-Programe-to-generate-arrays" class="headerlink" title="C++ Programe to generate arrays"></a>C++ Programe to generate arrays</h3><h4 id="MIPS-random-generator-cpp"><a href="#MIPS-random-generator-cpp" class="headerlink" title="MIPS_random_generator.cpp"></a>MIPS_random_generator.cpp</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;      
+#include &lt;ctime&gt; 
+#include &lt;fstream&gt;
+using namespace std;
+
+#define MIN 30    
+#define MAX 90  
+#define SIZE 60
+
+int main(int argc, char *argv[]) &#123;
+  ofstream oFile;
+  oFile.open(&quot;generated_array.s&quot;);
+  int* arr &#x3D; new int[SIZE];
+  srand((unsigned)time(NULL));  
+    cout&lt;&lt;&quot;Generate &quot;&lt;&lt; SIZE &lt;&lt;&quot; random numbers from &quot;
+    	&lt;&lt;MIN&lt;&lt;&quot; to &quot;&lt;&lt;MAX&lt;&lt;&quot; :\n[&quot;; 
+    for(int i&#x3D;0; i&lt;SIZE; i++) 
+    &#123;  
+    	arr[i] &#x3D; MIN + rand() % (MAX - MIN - 1); 
+    	oFile&lt;&lt;&quot;\taddi $t0, $0, &quot;&lt;&lt;arr[i]&lt;&lt;&quot;  \t# $t0 &#x3D; &quot;
+    		&lt;&lt;arr[i]&lt;&lt;endl;
+    	oFile&lt;&lt;&quot;\tsw $t0, &quot;&lt;&lt; 4*i &lt;&lt;&quot;($s4)&quot;&lt;&lt;&quot;  \t# testArray[&quot;
+    		&lt;&lt;i&lt;&lt;&quot;] &#x3D; $t0&quot;&lt;&lt;endl;
+    	cout &lt;&lt; arr[i];
+    	if(i &#x3D;&#x3D; SIZE - 1)break;
+    	cout &lt;&lt; &quot;, &quot;;  
+    &#125;
+    cout&lt;&lt;&quot;]&quot;&lt;&lt;endl;  
+    delete[] arr;
+    oFile.close();
+    return 0;  
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h4><pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span> MIPS_random_generator.cpp
+  g++ -o gen MIPS_random_generator.cpp
+<span class="token symbol">run</span><span class="token punctuation">:</span> all
+  ./gen<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>First <code>cd path/to/the/file</code> to get into folder, then input <code>make run</code> to the terminal, and you can get the feedback below with a file named <a href="generated_array.s">generated_array.s</a>.</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">Generate 60 random numbers from 30 to 90 :
+[61, 51, 35, 67, 74, 66, 45, 87, 55, 53, 39, 43, 65, 71, 79, 80, 81, 81, 30, 70, 69, 51, 52, 37, 40, 30, 49, 52, 39, 81, 30, 85, 50, 49, 64, 60, 75, 61, 86, 40, 52, 72, 42, 61, 30, 88, 44, 45, 30, 63, 53, 75, 71, 85, 78, 37, 36, 57, 64, 61]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="print-string-and-int"><a href="#print-string-and-int" class="headerlink" title="print string and int"></a>print <em>string</em> and <em>int</em></h3><p>You can check <strong>Table of Common Services</strong> for more information.</p>
+<pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly"># print(&quot;P: &quot;);
+
+# Init the string &quot;P: \0&quot;
+addi $t0, $0, 80  	# &#39;P&#39;
+sb $t0, 0($s3)
+addi $t0, $0, 58	# &#39;:&#39;
+sb $t0, 1($s3)
+addi $t0, $0, 32	# &#39; &#39;
+sb $t0, 2($s3)
+addi $t0, $0, 0		# &#39;\0&#39; the end of a string
+sb $t0, 3($s3)
+addiu $a0, $s3, 0	# $a0 &#x3D; $s3 (&quot;P: \0&quot;)
+addi $v0, $0, 4 	# string output (system call 4)
+syscall        		# print(&quot;P: &quot;);
+
+# print(a0);
+addu $a0, $0, $s5 	# $a0 &#x3D; $s4
+addi $v0, $0, 1 	# int output (system call 1)
+syscall         	# print(a0);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="generate-ARGUIMENT-for-countArray-and-call-function"><a href="#generate-ARGUIMENT-for-countArray-and-call-function" class="headerlink" title="generate ARGUIMENT for countArray() and call function"></a>generate ARGUIMENT for <code>countArray()</code> and call function</h3><h4 id="generate-ARGUIMENT"><a href="#generate-ARGUIMENT" class="headerlink" title="generate ARGUIMENT"></a>generate ARGUIMENT</h4><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly"># 3. generate ARGUIMENT for &#96;countArray()&#96;
+#		with &#96;cntType &#x3D; 1&#96;
+
+  addu $a0, $0, $s4	# $a0 &#x3D; A[]
+  addu $a1, $0, $s0	# $a1 &#x3D; size
+  addi $a2, $0, 1 	# $a2 &#x3D; 1 
+        # if with &#96;cntType &#x3D; -1&#96;, &#96;addi $a2, $0, -1&#96;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="call-procedure"><a href="#call-procedure" class="headerlink" title="call procedure"></a>call procedure</h4><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly"># 4. $v0 &#x3D; countArray(A[], size, 1)
+#		count the elements greater than or equal to 60; 
+  jal countArray   	# $v0 &#x3D; countArray(A, size, 1)
+  addi $t1, $0, 0  	# wait for delay
+  addu $s5, $0, $v0 	# save the result into $s5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="In-procedure"><a href="#In-procedure" class="headerlink" title="In procedure"></a>In procedure</h3><p><code>$s0, $s1, $s2, $s3, $s4 </code>are used in my program, so I need to store hem to stack before they are used in this procedure.</p>
+<p>Moreover, <code>countArry()</code> calls other functions like <code>Pass()</code> and <code>Fail()</code>, so we need alse store <code>$ra</code> into stack.</p>
+<h3 id="Pass-and-Fail"><a href="#Pass-and-Fail" class="headerlink" title="Pass and Fail"></a>Pass and Fail</h3><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly"># 2. int Pass(int x)
+Pass:
+  addi $t0, $0, 60        # $t0 &#x3D; 60
+    slt $t1, $a0, $t0       # $t1 &#x3D; x &lt; 60
+    beq $t1, $0, PassCntPP     # if ($t1 &#x3D;&#x3D; 1) goto PassCntPP
+    addi $v0, $0, 0         # $v0 &#x3D; 0
+    jr $ra                  # return
+    addi $t0, $0, 0         # delay to wait for previous progress
+
+PassCntPP:
+  addi $v0, $0, 1         # $v0 &#x3D; 1
+    jr $ra                  # return
+    addi $t0, $0, 0         # delay to wait for previous progress
+
+# 3. int Fail(int x)
+Fail:
+  addi $t0, $0, 60        # $t0 &#x3D; 60
+    slt $t1, $a0, $t0       # $t1 &#x3D; x &lt; 60
+    bne $t1, $0, FailCntPP    # if ($t1 !&#x3D; 1) goto FailCntPP
+    addi $v0, $0, 0         # $v0 &#x3D; 0
+    jr $ra                  # return
+    addi $t0, $0, 0         # delay to wait for previous progress
+
+FailCntPP:
+    addi $v0, $0, 1         # $v0 &#x3D; 1
+    jr $ra                  # return
+    addi $t0, $0, 0         # delay to wait for previous progress<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="Adjust-stack-for-used-items"><a href="#Adjust-stack-for-used-items" class="headerlink" title="Adjust stack for used items"></a>Adjust stack for used items</h4><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">addi $sp, $sp, -24  # adjust stack for 6 items
+   sw $s0, 0($sp)  	# save $s0 on stack
+   sw $s1, 4($sp) 	 	# save $s1 on stack
+   sw $s2, 8($sp)  	# save $s2 on stack
+   sw $s3, 12($sp) 	# save $s3 on stack
+   sw $s4, 16($sp) 	# save $s4 on stack
+   sw $ra, 20($sp)   	# save $ra on stack<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Destroy-stack-after-use"><a href="#Destroy-stack-after-use" class="headerlink" title="Destroy stack after use"></a>Destroy stack after use</h4><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">lw $s0, 0($sp)          # restore $s0 from stack
+lw $s1, 4($sp)          # restore $s1 from stack
+lw $s2, 8($sp)          # restore $s2 from stack
+lw $s3, 12($sp)         # restore $s3 from stack
+lw $s4, 16($sp)         # restore $s4 from stack
+lw $ra, 20($sp)         # restore $ra from stack
+addi $sp, $sp, 24       # recover the stack<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Exit"><a href="#Exit" class="headerlink" title="Exit()"></a>Exit()</h3><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">exit:
+  addi $v0, $0, 10
+  syscall<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="countArray-function"><a href="#countArray-function" class="headerlink" title="countArray function"></a><code>countArray</code> function</h3><p>​        Because I used <code>jal countArray </code>, <code>$ra</code> is automatic saved. Procedure call operations. Jump and link <code>jal</code> ProcedureLabel (J-type) makes  <code>$ra</code> = PC+4; Address of following instruction put in <code>$ra</code>.</p>
+<h3 id="Stack-usage"><a href="#Stack-usage" class="headerlink" title="Stack usage"></a>Stack usage</h3><p>​    Table below summarizes what is preserved across a procedure call. </p>
+<table>
+<thead>
+<tr>
+<th>Preserved</th>
+<th>Not preserved</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Saved register s: <code>$s0–$s7</code></td>
+<td>Temporar y register s: <code>$t0–$t9</code></td>
+</tr>
+<tr>
+<td>Stack pointer register : <code>$sp</code></td>
+<td>Argument register s: <code>$a0–$a3</code></td>
+</tr>
+<tr>
+<td>Return address register : <code>$ra</code></td>
+<td>Return value register s: <code>$v0–$v1</code></td>
+</tr>
+<tr>
+<td>Stack abo ve the stack pointer</td>
+<td>Stack below the stack pointer</td>
+</tr>
+</tbody></table>
+<h3 id="How-to-use-SYSCALL-system-services"><a href="#How-to-use-SYSCALL-system-services" class="headerlink" title="How to use SYSCALL system services"></a>How to use SYSCALL system services</h3><p>Step 1. Load the service number in register $v0.</p>
+<p>Step 2. Load argument values, if any, in <code>$a0, $a1, $a2,</code> or <code>$f12</code> as specified.</p>
+<p>Step 3. Issue the SYSCALL instruction.</p>
+<p>Step 4. Retrieve return values, if any, from result registers as specified.</p>
+<p><em>Example: display the value stored in <code>$t0</code> on the console</em></p>
+<pre class="line-numbers language-none"><code class="language-none">li $v0, 1           # service 1 is print integer
+add $a0, $t0, $zero  
+# load desired value into argument register $a0, using pseudo-op
+syscall<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Table-of-Common-Services"><a href="#Table-of-Common-Services" class="headerlink" title="Table of Common Services"></a>Table of Common Services</h3><p>You can check full Table <a target="_blank" rel="noopener" href="https://blog.csdn.net/csshuke/article/details/48542677">HERE</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Code in $v0</th>
+<th>Arguments</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>print integer</td>
+<td>1</td>
+<td>$a0 = integer to print</td>
+</tr>
+<tr>
+<td>print float</td>
+<td>2</td>
+<td>$f12 = float to print</td>
+</tr>
+<tr>
+<td>print double</td>
+<td>3</td>
+<td>$f12 = double to print</td>
+</tr>
+<tr>
+<td>print string</td>
+<td>4</td>
+<td>$a0 = address of null-terminated string to print</td>
+</tr>
+<tr>
+<td>exit (terminate execution)</td>
+<td>10</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>For print string, you can check <code>ascii </code> Table <a target="_blank" rel="noopener" href="http://ascii.911cha.com/">HERE</a>.</p>
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">Generate 60 random numbers from 30 to 90 :
+[61, 51, 35, 67, 74, 66, 45, 87, 55, 53, 39, 43, 65, 71, 79, 80, 81, 81, 30, 70, 69, 51, 52, 37, 40, 30, 49, 52, 39, 81, 30, 85, 50, 49, 64, 60, 75, 61, 86, 40, 52, 72, 42, 61, 30, 88, 44, 45, 30, 63, 53, 75, 71, 85, 78, 37, 36, 57, 64, 61]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>In this array, there are 42 pass and 18 fail.</p>
+<p>$$42+18 = 60$$</p>
+<p>which is equal to the number of numbers, and it is the right answer.</p>
+<p>The simulation shortcut is shown in Figure 1.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gisae017grj30tb0pnn0d.jpg" alt="Figure 1"></p>
+<h2 id="Conclution"><a href="#Conclution" class="headerlink" title="Conclution"></a>Conclution</h2><h3 id="Some-problems"><a href="#Some-problems" class="headerlink" title="Some problems"></a>Some problems</h3><h4 id="Delay-to-wait-for-previous-progress"><a href="#Delay-to-wait-for-previous-progress" class="headerlink" title="Delay to wait for previous progress"></a>Delay to wait for previous progress</h4><p>The delay in different procedures are very confusing. It’s so hard to debug with MIPS language because sometimes only a small delay could cause big problem! </p>
+<p>For example:</p>
+<pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">FailCntPP:
+    addi $v0, $0, 1         # $v0 &#x3D; 1
+    jr $ra                  # return
+    addi $t0, $0, 0         # delay to wait for previous progress<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Without <code>addi $t0, $0, 0</code> here, the answer will be <code>P: 42 F: 180</code>, which is wrong because Fail should be <code>18</code> instead of <code>180</code>.</p>
+<h4 id="Print-strings"><a href="#Print-strings" class="headerlink" title="Print strings"></a>Print strings</h4><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly"># Init the string &quot;F: \0&quot;
+addi $t0, $0, 70  	# &#39;F&#39;
+sb $t0, 0($s3)
+addi $t0, $0, 58	# &#39;:&#39;
+sb $t0, 1($s3)
+addi $t0, $0, 32	# &#39; &#39;
+sb $t0, 2($s3)
+addi $t0, $0, 0		# &#39;\0&#39; the end of a string
+sb $t0, 3($s3)
+addiu $a0, $s3, 0	# $a0 &#x3D; $s3 (&quot;F: \0&quot;)
+addi $v0, $0, 4 	# string output (system call 4)
+syscall        		# print(&quot;F: &quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>You must add <code>\0</code> at the end of the string, without <code>addi $t0, $0, 0</code> and <code>sb $t0, 3($s3)</code>, the outprint string will be strange (Some times it will be normal).</p>
+<h3 id="Suggestions"><a href="#Suggestions" class="headerlink" title="Suggestions"></a>Suggestions</h3><p>It will be better for you to debug with adding <code>delay part</code> after every <code>j</code> and <code>jal</code>.</p>
+<p>You can print whatever you want to debug or just watch the <code>Int Regs [16]</code> with QtSpim step by step.</p>
+<p>Manually stepping through a program can be tedious for long-running programs. To make things easier, you can specify a stopping point called a “breakpoint” in your code. </p>
+<h2 id="Full-Program-p1-s"><a href="#Full-Program-p1-s" class="headerlink" title="Full Program p1.s"></a>Full Program <code>p1.s</code></h2><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly"># p1.s
+# Wrote by Bingcheng, SJTU, 2018, 10, 07
+  .text
+  .globl __start
+__start:
+# Start
+#----------------- Main -----------------
+  
+# 1. ajust stack (for &#96;int A[]&#96; and &#96;string output&#96;) and
+#		generate &#96;int numElement&#96;, &#96;int cntType&#96;.
+
+  addi $sp, $sp, -204 # adjust stack for 50*4+12 items
+    addi $s0, $0, 60 	# int size &#x3D; 60
+    addu $s1, $0, $0 	# int PassCnt &#x3D; 0
+    addu $s2, $0, $0 	# int FailCnt &#x3D; 0
+    addu $s3, $0, $sp 	# String with length 4-1 &#x3D; 3
+    addiu $s4, $s3, 4	# int A[size]
+
+# 2. copy and past &#96;generated_array.s&#96; below
+
+  addi $t0, $0, 48  	# $t0 &#x3D; 48
+  sw $t0, 0($s4)  	# A[0] &#x3D; $t0
+  addi $t0, $0, 134  	# $t0 &#x3D; 134
+  sw $t0, 4($s4)  	# A[1] &#x3D; $t0
+  addi $t0, $0, 128  	# $t0 &#x3D; 128
+  sw $t0, 8($s4)  	# A[2] &#x3D; $t0
+  addi $t0, $0, 83  	# $t0 &#x3D; 83
+  sw $t0, 12($s4)  	# A[3] &#x3D; $t0
+  addi $t0, $0, 65  	# $t0 &#x3D; 65
+  sw $t0, 16($s4)  	# A[4] &#x3D; $t0
+  addi $t0, $0, 111  	# $t0 &#x3D; 111
+  sw $t0, 20($s4)  	# A[5] &#x3D; $t0
+  addi $t0, $0, 92  	# $t0 &#x3D; 92
+  sw $t0, 24($s4)  	# A[6] &#x3D; $t0
+  addi $t0, $0, 41  	# $t0 &#x3D; 41
+  sw $t0, 28($s4)  	# A[7] &#x3D; $t0
+  addi $t0, $0, 113  	# $t0 &#x3D; 113
+  sw $t0, 32($s4)  	# A[8] &#x3D; $t0
+  addi $t0, $0, 79  	# $t0 &#x3D; 79
+  sw $t0, 36($s4)  	# A[9] &#x3D; $t0
+  addi $t0, $0, 60  	# $t0 &#x3D; 60
+  sw $t0, 40($s4)  	# A[10] &#x3D; $t0
+  addi $t0, $0, 57  	# $t0 &#x3D; 57
+  sw $t0, 44($s4)  	# A[11] &#x3D; $t0
+  addi $t0, $0, 66  	# $t0 &#x3D; 66
+  sw $t0, 48($s4)  	# A[12] &#x3D; $t0
+  addi $t0, $0, 93  	# $t0 &#x3D; 93
+  sw $t0, 52($s4)  	# A[13] &#x3D; $t0
+  addi $t0, $0, 136  	# $t0 &#x3D; 136
+  sw $t0, 56($s4)  	# A[14] &#x3D; $t0
+  addi $t0, $0, 58  	# $t0 &#x3D; 58
+  sw $t0, 60($s4)  	# A[15] &#x3D; $t0
+  addi $t0, $0, 57  	# $t0 &#x3D; 57
+  sw $t0, 64($s4)  	# A[16] &#x3D; $t0
+  addi $t0, $0, 132  	# $t0 &#x3D; 132
+  sw $t0, 68($s4)  	# A[17] &#x3D; $t0
+  addi $t0, $0, 134  	# $t0 &#x3D; 134
+  sw $t0, 72($s4)  	# A[18] &#x3D; $t0
+  addi $t0, $0, 118  	# $t0 &#x3D; 118
+  sw $t0, 76($s4)  	# A[19] &#x3D; $t0
+  addi $t0, $0, 129  	# $t0 &#x3D; 129
+  sw $t0, 80($s4)  	# A[20] &#x3D; $t0
+  addi $t0, $0, 34  	# $t0 &#x3D; 34
+  sw $t0, 84($s4)  	# A[21] &#x3D; $t0
+  addi $t0, $0, 55  	# $t0 &#x3D; 55
+  sw $t0, 88($s4)  	# A[22] &#x3D; $t0
+  addi $t0, $0, 120  	# $t0 &#x3D; 120
+  sw $t0, 92($s4)  	# A[23] &#x3D; $t0
+  addi $t0, $0, 117  	# $t0 &#x3D; 117
+  sw $t0, 96($s4)  	# A[24] &#x3D; $t0
+  addi $t0, $0, 42  	# $t0 &#x3D; 42
+  sw $t0, 100($s4)  	# A[25] &#x3D; $t0
+  addi $t0, $0, 110  	# $t0 &#x3D; 110
+  sw $t0, 104($s4)  	# A[26] &#x3D; $t0
+  addi $t0, $0, 81  	# $t0 &#x3D; 81
+  sw $t0, 108($s4)  	# A[27] &#x3D; $t0
+  addi $t0, $0, 132  	# $t0 &#x3D; 132
+  sw $t0, 112($s4)  	# A[28] &#x3D; $t0
+  addi $t0, $0, 46  	# $t0 &#x3D; 46
+  sw $t0, 116($s4)  	# A[29] &#x3D; $t0
+  addi $t0, $0, 102  	# $t0 &#x3D; 102
+  sw $t0, 120($s4)  	# A[30] &#x3D; $t0
+  addi $t0, $0, 47  	# $t0 &#x3D; 47
+  sw $t0, 124($s4)  	# A[31] &#x3D; $t0
+  addi $t0, $0, 117  	# $t0 &#x3D; 117
+  sw $t0, 128($s4)  	# A[32] &#x3D; $t0
+  addi $t0, $0, 76  	# $t0 &#x3D; 76
+  sw $t0, 132($s4)  	# A[33] &#x3D; $t0
+  addi $t0, $0, 56  	# $t0 &#x3D; 56
+  sw $t0, 136($s4)  	# A[34] &#x3D; $t0
+  addi $t0, $0, 60  	# $t0 &#x3D; 60
+  sw $t0, 140($s4)  	# A[35] &#x3D; $t0
+  addi $t0, $0, 106  	# $t0 &#x3D; 106
+  sw $t0, 144($s4)  	# A[36] &#x3D; $t0
+  addi $t0, $0, 143  	# $t0 &#x3D; 143
+  sw $t0, 148($s4)  	# A[37] &#x3D; $t0
+  addi $t0, $0, 50  	# $t0 &#x3D; 50
+  sw $t0, 152($s4)  	# A[38] &#x3D; $t0
+  addi $t0, $0, 50  	# $t0 &#x3D; 50
+  sw $t0, 156($s4)  	# A[39] &#x3D; $t0
+  addi $t0, $0, 145  	# $t0 &#x3D; 145
+  sw $t0, 160($s4)  	# A[40] &#x3D; $t0
+  addi $t0, $0, 47  	# $t0 &#x3D; 47
+  sw $t0, 164($s4)  	# A[41] &#x3D; $t0
+  addi $t0, $0, 115  	# $t0 &#x3D; 115
+  sw $t0, 168($s4)  	# A[42] &#x3D; $t0
+  addi $t0, $0, 49  	# $t0 &#x3D; 49
+  sw $t0, 172($s4)  	# A[43] &#x3D; $t0
+  addi $t0, $0, 90  	# $t0 &#x3D; 90
+  sw $t0, 176($s4)  	# A[44] &#x3D; $t0
+  addi $t0, $0, 118  	# $t0 &#x3D; 118
+  sw $t0, 180($s4)  	# A[45] &#x3D; $t0
+  addi $t0, $0, 70  	# $t0 &#x3D; 70
+  sw $t0, 184($s4)  	# A[46] &#x3D; $t0
+  addi $t0, $0, 111  	# $t0 &#x3D; 111
+  sw $t0, 188($s4)  	# A[47] &#x3D; $t0
+  addi $t0, $0, 64  	# $t0 &#x3D; 64
+  sw $t0, 192($s4)  	# A[48] &#x3D; $t0
+  addi $t0, $0, 34  	# $t0 &#x3D; 34
+  sw $t0, 196($s4)  	# A[49] &#x3D; $t0
+  addi $t0, $0, 95  	# $t0 &#x3D; 95
+  sw $t0, 200($s4)  	# A[50] &#x3D; $t0
+  addi $t0, $0, 49  	# $t0 &#x3D; 49
+  sw $t0, 204($s4)  	# A[51] &#x3D; $t0
+  addi $t0, $0, 112  	# $t0 &#x3D; 112
+  sw $t0, 208($s4)  	# A[52] &#x3D; $t0
+  addi $t0, $0, 91  	# $t0 &#x3D; 91
+  sw $t0, 212($s4)  	# A[53] &#x3D; $t0
+  addi $t0, $0, 98  	# $t0 &#x3D; 98
+  sw $t0, 216($s4)  	# A[54] &#x3D; $t0
+  addi $t0, $0, 107  	# $t0 &#x3D; 107
+  sw $t0, 220($s4)  	# A[55] &#x3D; $t0
+  addi $t0, $0, 106  	# $t0 &#x3D; 106
+  sw $t0, 224($s4)  	# A[56] &#x3D; $t0
+  addi $t0, $0, 58  	# $t0 &#x3D; 58
+  sw $t0, 228($s4)  	# A[57] &#x3D; $t0
+  addi $t0, $0, 140  	# $t0 &#x3D; 140
+  sw $t0, 232($s4)  	# A[58] &#x3D; $t0
+  addi $t0, $0, 136  	# $t0 &#x3D; 136
+  sw $t0, 236($s4)  	# A[59] &#x3D; $t0
+
+# 3. generate ARGUIMENT for &#96;countArray()&#96;
+#		with &#96;cntType &#x3D; 1&#96;
+
+  addu $a0, $0, $s4	# $a0 &#x3D; A[]
+  addu $a1, $0, $s0	# $a1 &#x3D; size
+  addi $a2, $0, 1 	# $a2 &#x3D; 1
+  
+# 4. $v0 &#x3D; countArray(A[], size, 1)
+#		count the elements greater than or equal to 60; 
+  jal countArray   
+  addi $t1, $0, 1  
+  add $s1, $0, $v0 
+
+# 5. generate ARGUIMENT for &#96;countArray()&#96;
+#		with &#96;cntType &#x3D; -1&#96;
+  addu $a0, $0, $s4  	# $a0 &#x3D; A[]
+  addu $a1, $0, $s0	# $a1 &#x3D; size
+  addi $a2, $0, -1	# $a2 &#x3D; -1
+  
+# 6. $v0 &#x3D; countArray(A[], size, -1)
+#		count the elements less than 60; 
+  jal countArray		
+  addi $t1, $0, 1		
+  add $s2, $0, $v0 	
+
+# 7. println(PassNum) like &#96;P: 10&#96;
+  # Init the string &quot;P: \0&quot;
+  addi $t0, $0, 80  	# &#39;P&#39;
+  sb $t0, 0($s3)
+  addi $t0, $0, 58	# &#39;:&#39;
+  sb $t0, 1($s3)
+  addi $t0, $0, 32	# &#39; &#39;
+  sb $t0, 2($s3)
+  addi $t0, $0, 0		# &#39;\0&#39; the end of a string
+  sb $t0, 3($s3)
+  addiu $a0, $s3, 0	# $a0 &#x3D; $s3 (&quot;P: \0&quot;)
+  addi $v0, $0, 4 	# string output (system call 4)
+  syscall        		# print(&quot;P: &quot;);
+
+  add $a0, $0, $s1 	# $a0 &#x3D; $s4
+  addi $v0, $0, 1 	# int output (system call 1)
+  syscall         	# print(a0);
+# print a blank
+  addi $t0, $0, 32	# &#39; &#39;
+  sb $t0, 0($s3)
+  addi $t0, $0, 0		# &#39;\0&#39; the end of a string
+  sb $t0, 1($s3)
+  addiu $a0, $s3, 0	# $a0 &#x3D; $s3 (&quot; &quot;)
+  addi $v0, $0, 4 	# string output (system call 4)
+  syscall        		# print(&quot; &quot;);
+
+# 8. println(FailNum) like &#96;F: 10&#96;
+  # Init the string &quot;F: \0&quot;
+  addi $t0, $0, 70  	# &#39;F&#39;
+  sb $t0, 0($s3)
+  addi $t0, $0, 58	# &#39;:&#39;
+  sb $t0, 1($s3)
+  addi $t0, $0, 32	# &#39; &#39;
+  sb $t0, 2($s3)
+  addi $t0, $0, 0		# &#39;\0&#39; the end of a string
+  sb $t0, 3($s3)
+  addiu $a0, $s3, 0	# $a0 &#x3D; $s3 (&quot;F: \0&quot;)
+  addi $v0, $0, 4 	# string output (system call 4)
+  syscall        		# print(&quot;F: &quot;);
+
+  add $a0, $0, $s2 	# $a0 &#x3D; $s5
+  addi $v0, $0, 1 	# int output (system call 1)
+  syscall         	# print(a0);
+
+# 9. exit
+  jal exit
+    addi $t0, $0, 0
+
+# ----------- Functions (Procedures) ------------
+
+# 1. int countArray(int A[], int numElements, int cntType)
+countArray:
+  addi $sp, $sp, -24  # adjust stack for 6 items
+    sw $s0, 0($sp) 
+    sw $s1, 4($sp) 	
+    sw $s2, 8($sp) 
+    sw $s3, 12($sp)
+    sw $s4, 16($sp)
+    sw $ra, 20($sp)  
+
+    addu $s0, $0, $a0   
+    addu $s1, $0, $a1  
+    add $s2, $0, $a2    
+
+    addi $s3, $s1, -1   
+    addi $s4, $0, 0     
+    addi $v0, $0, 0     
+
+Loop:
+  addi $t0, $0, 0         # delay to wait for previous progress
+  slt $t0, $s3, $0        # $t0 &#x3D; i &lt; 0
+  bne $t0, $0, breakHere
+  
+  sll $t0, $s3 ,2         # $t0 &#x3D; i * 4
+  add $t0, $s0, $t0       # $t0 &#x3D; A + $t0
+  lw $a0, 0($t0)          # $a0 &#x3D; $t0 &#x3D; A[]
+  addi $t1, $0, 1         # $t1 &#x3D; 1
+  addi $t1, $0, 1         # delay to wait for previous progress
+  beq $s2, $t1, JalToPass	# if (cntType &#x3D;&#x3D; 1) JalToPass
+  addi $t0, $0, 0         # delay to wait for previous progress
+
+JalToFail:
+  jal Fail                # $v0 &#x3D; Fail(A[i])
+  addi $t0, $0, 0         # delay to wait for previous progress
+  add $s4, $s4, $v0      	# cnt +&#x3D; $v0
+    addi $s3, $s3, -1       # i--
+    j Loop         			# jump to Loop
+    addi $t0, $0, 0         # delay to wait for previous progress
+
+JalToPass:
+    jal Pass                # $v0 &#x3D; Pass(A[i])
+    addi $t1, $0, 0         # delay to wait for previous progress
+    add $s4, $s4, $v0      	# cnt +&#x3D; $v0
+    addi $s3, $s3, -1       # i--
+    j Loop         			# jump to Loop
+    addi $t0, $0, 0         # delay to wait for previous progress
+
+
+
+breakHere:
+  addi $t0, $0, 0         # delay to wait for previous progress
+  add $v0, $0, $s4        
+    lw $s0, 0($sp)          
+    lw $s1, 4($sp)          
+    lw $s2, 8($sp)          
+    lw $s3, 12($sp)         
+    lw $s4, 16($sp)         
+    lw $ra, 20($sp)         
+    addi $sp, $sp, 24       
+
+    addi $t0, $0, 0         # delay to wait for previous progress
+    jr $ra                  # return
+    addi $t0, $0, 0         # delay to wait for previous progress
+
+# 2. int Pass(int x)
+Pass:
+  addi $t0, $0, 60        # $t0 &#x3D; 60
+    slt $t1, $a0, $t0       # $t1 &#x3D; x &lt; 60
+    beq $t1, $0, PassCntPP  # if ($t1 &#x3D;&#x3D; 1) goto PassCntPP
+    addi $v0, $0, 0         # $v0 &#x3D; 0
+    jr $ra                  # return
+    addi $t0, $0, 0         # delay to wait for previous progress
+
+PassCntPP:
+  addi $v0, $0, 1         # $v0 &#x3D; 1
+    jr $ra                  # return
+    addi $t0, $0, 0         # delay to wait for previous progress
+
+# 3. int Fail(int x)
+Fail:
+  addi $t0, $0, 60        # $t0 &#x3D; 60
+    slt $t1, $a0, $t0       # $t1 &#x3D; x &lt; 60
+    bne $t1, $0, FailCntPP  # if ($t1 !&#x3D; 1) goto FailCntPP
+    addi $v0, $0, 0         # $v0 &#x3D; 0
+    jr $ra                  # return
+    addi $t0, $0, 0         # delay to wait for previous progress
+
+FailCntPP:
+    addi $v0, $0, 1         # $v0 &#x3D; 1
+    jr $ra                  # return
+    addi $t0, $0, 0         # delay to wait for previous progress
+
+
+# ----------------- Exit() --------------------
+exit:
+  addi $v0, $0, 10
+  syscall<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>

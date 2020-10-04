@@ -1,0 +1,524 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>学校申请</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) { 
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.701961); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
+.CodeMirror-linenumber { }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit inherit; background-repeat: inherit inherit; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; background-repeat: initial initial; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print { 
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid-page; break-before: avoid-page; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid-page; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) { 
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; background-position: initial initial; background-repeat: initial initial; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; }
+a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+
+
+:root {
+    --monospace: Courier, monospace;
+    --bg-color: #f9f9f9;
+    --text-color: #303030;
+    --active-file-bg-color: #E6E8EA;
+    --side-bar-bg-color: #f9f9f9;
+    /*--text-color: #223c61;*/
+}
+
+/*forked from https://github.com/chloerei/scribble*/
+
+#write {
+    --bg-color: #fff;
+}
+
+#write div ,
+#write p {
+    width: auto;
+}
+
+html {
+    font-size: 15px;
+}
+
+body {
+    background: #f9f9f9;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+    line-height: 19px;
+    padding: 0;
+    margin: 0;
+}
+
+#footer-word-count-info {
+    background: var(--bg-color);
+}
+
+header,
+.dropmenu {
+    --text-color: #223c61;
+}
+
+header {
+    color: #333;
+}
+
+#typora-sidebar {
+    font-size: 14px;
+    /*background: transparent;
+    background-color: transparent;*/
+}
+
+.file-list-item {
+    border: 0;
+}
+
+.file-list-item:hover,
+.file-tree-node[data-is-directory='false']:hover>.file-node-background {
+    transition: background-color 0.6s ease;
+    background: var(--active-file-bg-color);
+}
+
+.file-node-content {
+    cursor: default;
+}
+
+.file-list-item-summary {
+    height: 34px;
+ }
+
+ .show-folder-name .file-list-item {
+    padding-top: 16px;
+    padding-bottom: 24px;
+}
+
+.file-list-item {
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.file-list-item-file-name {
+    line-height: 20px;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+#sidebar-files-menu,
+#ty-sidebar-footer {
+    background: var(--bg-color);
+}
+
+body,
+html {
+    background-color: rgba(255, 255, 255, 0);
+    background: url(file:///Users/bingcheng/Library/Application%20Support/abnerworks.Typora/themes/scribble/light_wool.png);
+    background-repeat: repeat;
+}
+
+#write {
+    width: 100%;
+    max-width: 768px;
+    background: #fff;
+    margin: 40px auto 20px;
+    border-radius: 7px;
+    border: 1px solid #eee;
+    min-height: calc(100vh - 6em);
+    margin-bottom: 120px;
+    padding: 60px;
+    line-height: 1.6em;
+}
+
+
+@media screen and (max-width: 820px) {
+    body,
+    html {
+        --side-bar-bg-color: #fff;;
+        background: #fff;
+    }
+
+    #write {
+        border: none;
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 1160px) {
+    body.pin-outline {
+        --side-bar-bg-color: #fff;;
+        background: #fff;
+    }
+
+    body.pin-outline #write{ 
+        border: none;
+        margin-top: 0;
+    }
+}
+
+.typora-node #write {
+  min-height: calc(100% - 6em);
+}
+
+h1 {
+    text-align: center;
+    line-height: 1.5em;
+    margin-bottom: 60px;
+}
+
+h2, h3, h4, h5 {
+  margin: 2em 0 1em; }
+
+ul, ol {
+    padding: 0 0 0 30px;
+}
+
+blockquote {
+    padding: 0 1em;
+    margin: 14px 0;
+    border: 2px dashed #d0dfda;
+    border-radius: 5px;
+    color: #606060;
+    background: #f9f9f9;
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
+    font-style: normal !important;
+}
+
+ #write .md-toc {
+    margin: 2em -60px;
+    border-bottom: 1px dotted #CCC;
+    border-top: 1px dotted #CCC;
+    /*background: #f4f4f4;*/
+    width: calc(100% + 120px);
+    border-radius: 0;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+#write>.md-toc:first-child {
+    margin-top: 0;
+    border-top: 0;
+}
+
+#write>.md-meta-block:first-child {
+    margin: 2em -60px;
+    margin-top: -60px;
+    width: calc(100% + 120px);
+    border-bottom: 1px dotted #CCC;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    background: #fdfdfd;
+    font-size: 14px;
+    border-radius: 0;
+    color: var(--text-color);
+
+    /*margin-top: -24px;
+    margin-bottom: 64px;
+    padding: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 14px;*/
+}
+
+.md-toc:focus .md-toc-content {
+    border: none;
+    border-color: inherit;
+    margin: auto;
+    margin-top: auto;
+    margin: 20px 0px;
+}
+
+.md-toc-content {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#write div.md-toc-tooltip {
+    left: 0;
+    padding-left: 60px;
+    padding-right: 20px;
+    top: -24px;
+    border-top: 1px dotted #CCC;
+}
+
+pre[mdtype] {
+    word-wrap: break-word;
+    background: #f8f8f8;
+    padding: 1em;
+    border-radius: 5px;
+    width: 100%;
+    line-height: 1.2em;
+}
+
+code {
+    background: #f8f8f8;
+    padding: 0.05rem;
+    font-size: 0.9rem;
+    border-radius: 3px;
+    color: #009688;
+    color: #8a0004;;
+}
+
+p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+blockquote >:first-child {
+    margin-top: 1em;
+}
+
+blockquote >:last-child {
+    margin-bottom: inherit;
+}
+
+.md-fences {
+    font-size: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #269;
+  line-height: 1.4em;
+  display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
+  -webkit-transition: color 0.3s;
+  -moz-transition: color 0.3s;
+  -ms-transition: color 0.3s;
+  -o-transition: color 0.3s;
+  transition: color 0.3s; 
+}
+  
+[md-inline] a:hover {
+    color: #1d5884;
+    background-image: url(file:///Users/bingcheng/Library/Application%20Support/abnerworks.Typora/themes/scribble/line.png);
+    background-repeat: repeat-x;
+    background-position: left bottom; 
+}
+
+#write .code-tooltip {
+    width: auto;
+}
+
+#write > hr {
+    margin: 2em -60px;
+    border: 0;
+    border-bottom: 1px dotted #CCC;
+}
+
+#write [cid]>table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #CCCACC;
+}
+
+#write table th {
+    padding:10px 15px;
+    border-right:1px solid #CCCACC;
+    background:#E9E7E9;
+    text-shadow: 1px 1px 1px #f3f3f3;
+    font-weight: inherit;
+}
+
+#write table [cid]>td{
+    padding:10px;
+    border-right:1px solid #CCCACC;
+    border-top:1px solid #CCCACC;
+}
+
+.cm-s-typora-default .cm-header, .cm-s-typora-default .cm-property {
+    color: #223c61;
+}
+
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor{
+    border-left: 3px solid #223c61;
+}
+
+.outline-content li, .outline-content ul {
+    line-height: 1.4rem;
+}
+
+.dropdown-menu {
+    background-color:  #f9f9f9;;
+}
+
+.cm-s-inner .cm-header, .cm-s-inner.cm-header {color: #566ada;}
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color:#75787b; }
+.cm-s-inner .cm-keyword, .cm-s-inner .cm-property, .cm-s-inner.cm-keyword, .cm-s-inner.cm-property { color:#1d75b3; }
+.cm-s-inner .cm-atom,.cm-s-inner .cm-number, .cm-s-inner.cm-atom,.cm-s-inner.cm-number { color:#75438a; }
+.cm-s-inner .cm-node,.cm-s-inner .cm-tag, .cm-s-inner.cm-node,.cm-s-inner.cm-tag { color:#9c3328; }
+.cm-s-inner .cm-string, .cm-s-inner.cm-string { color:#b35e14; }
+.cm-s-inner .cm-variable, .cm-s-inner .cm-qualifier, .cm-s-inner.cm-variable, .cm-s-inner.cm-qualifier { color:#047d65; }
+
+.file-node-open-state, .file-node-icon {
+    color: #9E9E9E;
+}
+
+.code-tooltip.md-hover-tip {
+    background: #000;
+}
+
+
+ .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+</style>
+</head>
+<body class='typora-export' >
+<div  id='write'  class = 'is-mac'><h1><a name="application" class="md-header-anchor"></a><span> Application</span></h1><hr /><h2><a name="umsi" class="md-header-anchor"></a><span>UMSI</span></h2><p><span>【IPO-GDP】 UMSI GDP is Now Open for Application</span></p><p><span> </span></p><p><span>Dear students,</span></p><p><span>Please now start your application to the Global Degree Pathways Program with School of Information (SI) of the University of Michigan for 2020 Fall Entry.</span></p><p><span>  Master of Science in Information</span>
+<span>At the School of Information (SI) of the University of Michigan</span></p><p><span>For Junior and Senior students</span></p><p><span> </span></p><p><span>Degree Options/Tracks:</span></p><p><span>Data Analytics</span>
+<span>User Experience Research and Design</span>
+<span>Both tracks feature an “accelerated Python” option for those students not familiar with the programming language.</span></p><p><span> </span></p><p><span>Application deadline: January 1th, 2020</span></p><p><span>Minimum GPA: 3.0</span></p><p><span>Recommended GPA: 3.5</span></p><p><span>Minimum TOEFL: 100, taken within last two years.</span></p><p><span>Recommended TOEFL: 102, at least 25 in each category.</span></p><p><span>GRE: Not required</span></p><p><span> </span></p><p><span> Other requirements:</span></p><p><span>Must have completed 102 credits at JI by the end of the Junior year.</span>
+<span>Must have taken Ve401 Probabilistic Methods in Engineering at JI.</span>
+<span>Must pass the Python programming language waiver exam or take the “accelerated Python” degree option at the School of Information.</span></p><p><span>Application Materials:</span></p><p><span>For U-M</span></p><p><span>Transcript</span>
+<span>TOEFL certificate</span>
+<span>Three letters of recommendation</span>
+<span>Statement of Purpose</span>
+<span>Personal Statement</span>
+<span>Résumé</span>
+<span>See </span><a href='https://www.si.umich.edu/academics/admissions/msi-application-requirements' target='_blank' class='url'>https://www.si.umich.edu/academics/admissions/msi-application-requirements</a><span> for details.</span></p><p><span>For JI</span></p><p><span>Study plan</span></p><p><span>Notes:</span></p><p><span>Up to 20 credits of courses taken at SI can be transferred back to JI.</span></p><p><span>Sample Course Sequencing:</span></p><p><span>Big Data Analytics:</span></p><p><span>Students interested in working towards a mastery course in Big Data Analytics will take courses towards mastery of data collection, processing, analysis, retrieval, mining, visualization, and prediction. Students synthesize methods from information retrieval, statistical data analysis, data mining, machine learning, and other big-data related fields. They work on semester-long projects that deal with industry-scale data sets and solve real-world problems. Aligned with best industry practices, students are expected to work in a fast-paced, collaborative environment and to demonstrate independence and leadership. Students must be able to create and use tools to handle very large transactional, text, network, behavioral, and/or multimedia data sets.</span></p><p><span> </span></p><p><span>Big Data Analytics</span></p><p><span>Sample Required and Selective Required Course Sequencing</span></p><p><span>Fall 1</span></p><p><span>SI 501 - Contextual Inquiry and Consulting Foundations</span></p><p><span>SI 618 - Data Manipulation and Analysis</span></p><p><span>SI 650 - Information Retrieval*</span></p><p><span>Elective or Cognate**</span></p><p><span>Winter 1</span></p><p><span>SI 649 - Information Visualization*</span></p><p><span>SI 630 - Natural Language Processing: Algorithms and People*</span></p><p><span>SI 505 - Career and Internship Studio (1 credit)</span></p><p><span>Elective or Cognate**</span></p><p><span>Elective or Cognate**</span></p><p><span>Summer 1</span></p><p><span>Return to JI</span></p><p><span>Fall 2</span></p><p><span>SI 671 - Data Mining</span></p><p><span>SI 608 - Networks*</span></p><p><span>SI 6XX - Applied Machine Learning</span></p><p><span>Elective or Cognate**</span></p><p><span>Winter 2</span></p><p><span>699 - Big Data Analytics Mastery Course</span></p><p><span>690 - Internship (3 credits or could elect to hold this until the summer)</span></p><p><span>Elective or Cognate**</span></p><p><span>Elective or Cognate**</span></p><p><span>Summer 2</span></p><p><span>681 - Full-time summer internship (3-6 credits) or 691 Global Information Engagement Program (6 credits and fulfills internship requirement)</span></p><p><span>*Selective Requirement: Must choose at least 2 of these courses</span></p><p><span>**Students can count up to 9 credits (3 courses) of cognates towards the MSI</span></p><p><span> </span></p><p><span>UMSI elective or broader UM cognate choices are quite wide open for students to pursue interest areas, although some cognates may have limited availability. Elective and cognate choices provide an opportunity for students to gain additional depth in an area or to add breadth.</span></p><p><span> </span></p><p><span>Cognate Examples:</span></p><p><span>Students with an interest in Big Data Analytics will often select their non-UMSI elective courses in Electrical Engineering and Computer Science (EECS) or other Engineering departments, Ross School of Business, Statistics, Math, Biostatistics, Bioinformatics, Ford School of Public Policy, Law, Health Sciences, Public Health, and others.</span></p><p><span> </span></p><p><span>Elective Examples:</span></p><p><span>Within the School of Information course offerings, students often choose courses in management, user experience, social computing, and information economics. Sample course titles include Principles in Management, Information and Control, Citizen Interaction Design, Introduction to Interaction Design, Needs Assessment and Usability Evaluation, Fundamentals of Human Behavior, Graphic Design, Design of Complex Websites, Personal Informatics Design, Social User Experience, Game Theory, Information Economics, Choice Architecture,Theories of Social Influence, and others.</span></p><p><span> </span></p><p><span>User Experience Research and Design:</span></p><p><span>Students interested in working towards a mastery course in User Experience (UX) Research and Design will take courses towards mastery of application of design theories, concepts, and principles to defining valid problems, uncovering user needs, articulating service requirements, documenting UX research results, proposing, refining, and prototyping design solutions, and communicating with stakeholders effectively. Students will have individual and group real-world opportunities to engage in portfolio building projects that integrate methods and theories about user experience design from identifying design issues to developing design solutions.</span></p><p><span> </span></p><p><span>User Experience Research and Design</span></p><p><span>Sample Required and Recommended Course Sequencing</span></p><p><span>Fall 1</span></p><p><span>SI 501 - Contextual Inquiry and Consulting Foundations</span></p><p><span>SI 539 - Design of Complex Websites</span></p><p><span>SI 582 - Introduction to Interaction Design</span></p><p><span>SI 588 - Fundamentals of Human Behavior</span></p><p><span>Winter 1</span></p><p><span>SI 520 - Graphic Design</span></p><p><span>SI 622 - Needs Assessment and Usability Evaluation</span></p><p><span>SI 606 - Personal Informatics Design (Recommended)</span></p><p><span>Elective or Cognate**</span></p><p><span>Summer 1</span></p><p><span>Return to JI</span></p><p><span>Fall 2</span></p><p><span>SI 551 - Information Behavior and Search Experience (Recommended)</span></p><p><span>SI 616 - Advanced Topics in Graphic Design (Recommended)</span></p><p><span>Elective or Cognate**</span></p><p><span>Elective or Cognate**</span></p><p><span>Winter 2</span></p><p><span>SI 699 - UX Research and Design Mastery Course</span></p><p><span>SI 690 - Internship (3 credits or could elect to hold this until the summer)</span></p><p><span>Elective or Cognate**</span></p><p><span>Elective or Cognate**</span></p><p><span>Summer 2</span></p><p><span>SI 681 - Full-time summer internship (3-6 credits) or 691 Global Information Engagement Program (6 credits and fulfills internship requirement)</span></p><p><span>**Students can count up to 9 credits (3 courses) of cognates towards the MSI</span></p><p><span> </span></p><p><span>UMSI elective or broader UM cognate choices are quite wide open for students to pursue interest areas, although some cognates may have limited availability. Elective and cognate choices provide an opportunity for students to gain additional depth in an area or to add breadth.</span></p><p><span> </span></p><p><span>Cognate Examples:</span></p><p><span>Students with an interest in User Experience will often select their non-SI elective courses in Industrial Operations Engineering, Computer Science or other Engineering departments, Art and Design, Ross School of Business, Music or Performing Arts Technology, Architecture and Urban Planning, Public Health, and others. Additionally there is a 6-credit Multidisciplinary Design Program (MDP) offered within the College of Engineering, and a 6-credit Integrated Product Development (IPD) program offered jointly with the School of Information, College of Engineering, Ross School of Business, and the School of Art and Design which many students choose for their cognates.</span></p><p><span> </span></p><p><span>Elective Examples:</span></p><p><span>Within the School of Information course offerings, students often choose courses in management, design and modeling, data analytics, information economics, computational social science, and social computing. Sample course titles include Principles in Management, Information and Control, Developing Mobile Experiences, Introduction to AR/VR, Developing AR/VR, Data Manipulation and Analysis, Networks, Information Retrieval, Information Visualization, Natural Language Processing, Machine Learning, Data Mining, Game Theory, Information Economics, Choice Architecture, Theories of Social Influence, Social User Experience, and others.</span></p><p><span> </span></p><p><span>List of SI courses that are transferrable back to JI:</span></p><p><a href='http://www.umji.sjtu.edu.cn/equivalence/university/index/2' target='_blank' class='url'>http://www.umji.sjtu.edu.cn/equivalence/university/index/2</a></p><p><span> </span></p><p><span>Application:</span></p><p><span>Step 1: By 10am, November 1, 2019, please fill up the registration form at </span><a href='https://www.wjx.top/jq/48101948.aspx' target='_blank' class='url'>https://www.wjx.top/jq/48101948.aspx</a><span> if you are interested in applying to the program.</span></p><p><span> </span></p><p><span>Step 2: Start your application at </span><a href='https://www.si.umich.edu/programs/master-science-information/admissions/apply-umsi' target='_blank' class='url'>https://www.si.umich.edu/programs/master-science-information/admissions/apply-umsi</a><span>. Note the deadline is on Jan 1st, 2020.</span></p><p><span>The JI study plans will be collected around the above deadline.</span></p><p><span> </span></p><p><span> </span></p><p><span>Please note of the following policies regarding the application of the GDP programs:</span></p><ol start='' ><li><span>Students can apply to up to two GDP partner universities: U-M is considered to be one partner university. Please note this does not apply to senior students, meaning senior students can apply to multiple GDP programs.</span></li><li><span>All the requirements mentioned in the announcements are considered as recommended. Students can apply to the programs with whatever GPA, TOEFL scores and others they have.</span></li><li><span>Students must register with International Programs Office for the application of the GDP programs, otherwise the application will be considered as disqualified, meaning only students who complete the signup form here are allowed to continue their applications forward with different GDP Programs. </span></li><li><span>Students are allowed to fill up the registration for multiple times.</span></li></ol><p><span> </span></p><p><span> </span></p><p><span> </span></p><p><span>Please visit the International Programs Office at Room 301, JI Building if you have any questions.</span></p><p><span> </span></p><p><span>Wish you all good luck with your applications!</span></p><p><span> </span></p><p><span>Best regards,</span></p><p><span> </span></p><p><span>International Programs Office</span></p><p><span>October 22, 2019</span></p><p><span>附件文件</span>
+<span>SJTU Joint Institute School of Information Presentation.pdf - 5.82 MB </span><a href='https://umjicanvas.com/courses/16/files/221828/download' target='_blank' class='url'>https://umjicanvas.com/courses/16/files/221828/download</a></p><p><span>查看公告</span><span>	</span><span>|</span><span>	</span><span>Update your notification settings</span></p><hr /><h2><a name="kth" class="md-header-anchor"></a><span>KTH</span></h2><p><span>【IPO-GDP】KTH GDP is Now Open for Application</span></p><p><span> </span></p><p><span>Dear Students,</span></p><p><span> </span></p><p><span>Please now start your application to the Global Degree Pathways Program with Royal Institute of Technology(KTH) for 2020 Fall entry.</span></p><p><span> </span></p><p><span>Eligibility:</span></p><p><span>Both junior and senior students are eligible to apply.</span></p><p><span>Note for senior students, you will take the 2 years regular program.</span></p><p><span>TOEFL: 90 (for those who have lower scores, an interview will be arranged in December)</span></p><p><span>GPA: No specific requirements</span></p><p><span>Space: No limit.</span></p><p><span> </span></p><p><span>Master program options: please download the mapping information on the bottom of this page.</span></p><p><span> </span></p><p><span>Scholarship opportunities:</span></p><p><span>One year tuition exemption: for 4 junior students who are accepted by the program</span>
+<span>Other scholarships: based on the applicant’ academic performance and interview performance, could be up to two year’s tuition exemption.</span></p><p><span>Steps to apply:</span></p><p><span>By 10am, November 1, 2019, please fill up the registration form at </span><a href='https://www.wjx.top/jq/48101948.aspx' target='_blank' class='url'>https://www.wjx.top/jq/48101948.aspx</a><span> if you are interested in applying to the program</span></p><p><span>Online application is available from October 16, 2019 onward at </span><a href='https://www.universityadmissions.se/intl/start' target='_blank' class='url'>https://www.universityadmissions.se/intl/start</a><span> (Links to an external site.).</span>
+<span>All students who will enroll in 3+2 programmes must go through the application procedure at the above site and pay the application fee.</span></p><p><span>The students follow the instructions at University Admissions to finish the application and upload all the required documents according to each master program. Questions concerning “how to apply” can be found at </span><a href='https://www.kth.se/en/studies/master/how-to-apply-1.68487' target='_blank' class='url'>https://www.kth.se/en/studies/master/how-to-apply-1.68487</a><span> (Links to an external site.).</span></p><p><span>3+2 applicants must submit all required documents but can otherwise ignore statements on the application web site that they are not eligible for admission since they will not finish the 4th year of Bachelor education before entering KTH.</span></p><p><span>December, 2019:Students with TOEFL less than 90/IETLS less than 6.5 are required to attend a mandatory face-to-face interview with the visiting KTH professor. To be eligible for the interview, students must have TOEFL above 77 /IETLS above 6.</span>
+<span>For these students, it is required to register for the language test and have it sent to KTH before the application deadline in January in order to have an official score in the application.</span></p><p><span>Students who meet the language limits at TOEFL 90 (Writing 20) or IELTS 6,5 (no result under 5,5) do not need to attend the interview.</span></p><p><span>By January 1, 2020:Students must finish the online application. All the materials have to be received by KTH. Please note it’s an earlier deadline than what is mentioned on the KTH website or slides.</span>
+<span>April, 2020:Announcement for scholarships and admission results</span></p><p>&nbsp;</p><p><span>Please note of the following policies regarding the application of the GDP programs:</span></p><ol start='' ><li><span>Students can apply to up to two GDP partner universities: U-M is considered to be one partner university.</span></li><li><span>All the requirements mentioned in the announcements are considered as recommended. Students can apply to the programs with whatever GPA, TOEFL scores and others they have. Please note this does not apply to senior students, meaning senior students can apply to multiple GDP programs.</span></li><li><span>Students must register with International Programs Office for the application of the GDP programs, otherwise the application will be considered as disqualified, meaning only students who complete the signup form here are allowed to continue their applications forward with different GDP Programs. </span></li><li><span>Students are allowed to fill up the registration for multiple times.</span></li></ol><p><span> </span></p><p><span>Please visit the International Programs Office at Room 301, JI Building if you have any questions.</span></p><p><span> </span></p><p><span>Wish you all good luck with your applications!</span></p><p><span> </span></p><p><span>Best regards,</span></p><p><span>International Programs Office</span></p><p><span>October 22, 2019</span></p><p><span>附件文件</span>
+<span>KTH presentation October 2019 SJTU.pdf - 2.85 MB </span><a href='https://umjicanvas.com/courses/16/files/221824/download' target='_blank' class='url'>https://umjicanvas.com/courses/16/files/221824/download</a></p><p><span>查看公告</span><span>	</span><span>|</span><span>	</span><span>Update your notification settings</span></p><hr /><p>&nbsp;</p></div>
+</body>
+</html>

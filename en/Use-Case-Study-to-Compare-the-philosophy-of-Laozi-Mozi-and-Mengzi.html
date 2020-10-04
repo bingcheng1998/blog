@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/philosophy/">
+            philosophy
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        Use Case Study to Compare the Philosophy of Laozi, Mozi, and Mengzi
+    </h2>
+    <ul class="post-date">
+        <li>
+            2018-11-07
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <p>Laozi, Mozi, and Mengzi are three of the most famous philosophers in ancient China. Their thoughts have been written into books, and their philosophy has spread widely, which has had a profound impact on modern China.</p>
+<a id="more"></a>
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Laozi, Mozi, and Mengzi are three of the most famous philosophers in ancient China. Their thoughts have been written into books, and their philosophy has spread widely, which has had a profound impact on modern China. We can explore their philosophy through their books. This essay will firstly explore the philosophy of the Laozi, Mozi, and Mengzi and give the reader a general impression. At the second part the essay will presents a case study and then explores this case from different perspectives.</p>
+<h2 id="Rough-discussion-about-this-three-philosopher"><a href="#Rough-discussion-about-this-three-philosopher" class="headerlink" title="Rough discussion about this three philosopher"></a>Rough discussion about this three philosopher</h2><p>To begin with, this essay is going to talk about the identity of these three philosophers. Without doing this, it’s meaningless to discuss the cultural implications of their work.</p>
+<p>Laozi was one of Kongzi’s teacher and Laozi cannot be a mythical character. According to <em>Zhuangzi</em> we can find the evidence.</p>
+<p>When Confucius was in his fifty-first year, he had not heard of the Dao, and went south to Pei to see Laozi, who said to him, “You have come, Sir; have you? I have heard that you are the wisest man of the North; have you also got the Dao?” “Not yet,” was the reply (Zhuangzi).</p>
+<p>To discuss about Mozi,  we need to talk about xianxue (显学), famous subject。Xianxue refers to the disciplines and doctrines that are at the forefront of the society. Hanfeizi wrote <em>xianxue</em>. In <em>xianxue</em>, Hanfeizi list two most famous subject at that time.</p>
+<p>There are two xianxue in the world, they are Ru and Mo. The most important person for Ru is Kongzi and the most important person for Mo is Mozi (Hanfeizi, xianxue 世之显学，儒墨也。儒之所至，孔丘也；墨之所至，墨翟也。).</p>
+<p>There are different manifestations in different eras and in this book Hanfeizi shows that Mozi and his philosophy are very popular at that time.</p>
+<p><em>Mengzi</em> is a question and answer set for Mencius, or Mengzi. It contains the sayings, dialogues with some kings and Mengzi’s debates with people who have different opinion with him (Sarkissian &amp; Nichols). <em>Mozi</em>, written in the middle and late period of the Warring States, is a summative work written by Mozi and his disciples to record the words and deeds of Mozi. </p>
+<p>After rough discussion about this three philosopher’s background and work, we’ll explore the meaning and cultural implications of their work through case analysis.</p>
+<h2 id="Case-analysis"><a href="#Case-analysis" class="headerlink" title="Case analysis"></a>Case analysis</h2><p>At 2014, official weibo of Traffic Police in Hebei province received a special weibo report, a girl student reported to the police that her father used a handheld phone while driving on the highway. After investigation, the Provincial Highway Police Corps confirmed that the reported person and the reporter were indeed father and daughter relations, and the father acknowledged the illegal facts of the call. The police educated the father in accordance with the law, and rewarded the daughter who reported the traffic violation according to the regulations. </p>
+<p>This incident caused a popular discussion in that year, and essay topic of the college entrance examination at the same year’s was discussion about this incident. And considering these different philosophies, we can come up with different comments.</p>
+<p>Mozi is arguably “the first true philosopher of China (Sarkissian &amp; Nichols).” In <em>Mozi</em> we can find lots of sentence like “Let us consider” and “should one”, which means Mozi like thought experiment.</p>
+<p>Main idea of Mozi is “impartial caring” and Mozi has his own knowledge of filial piety. In <em>Mozi</em> we find that he thought it must be a person who love others’ parents first, then others will take care of this person’s parents.</p>
+<p>Let us consider the case of a filial son who seeks what is beneficial for his parents. … According to the very meaning of filial piety, he must want other people to care for and benefit his parents. Given this, how should one act in order to bring about such a state of affairs? Should one first care for and benefit the parents of another, expecting that they in turn will respond by caring for and benefitting one’s own parents? Or should one first dislike and steal from other people’s parents, expecting that they in turn will respond by caring for and benefitting one’s own parents? Clearly one must first care for and benefit the parents of others in order to expect that they in turn will respond by caring for and benefitting one’s own parents (Mozi).</p>
+<p>Mozi’s theorem can be broadened in the case study about a daughter reporting her father’s illegal behavior. If she wants to be a filial daughter, she should first care for parents of others, which means she can not make others’ parents being hurt. But her father used handheld phone on the high way, which is dangerous to other person including others’ parents. Mozi said that “no idea is not given its due value; no virtue is not rewarded. When a peach is thrown to us, we would return with a prune (Mozi).” And according to this sentence, the daughter should report her father to the police.</p>
+<p>Mengzi attaches great importance to the balance between morality and law in regulating social relations. The most striking point is that “ families will cover each other when they commit crimes.”</p>
+<p>​     Mencius emphasizes the matter of devotion, respect and love, where filial piety is fundamental. It is the premise of implementing benevolent government, the basic ethical principle that legislation and judiciary should follow, and an important basis for distinguishing between crime and non-crime, misdemeanor and felony.</p>
+<p>Tao Ying asked, saying, “Shun being sovereign, and Gao Yao chief minister of justice, if Gu Sou had murdered a man, what would have been done in the case?” </p>
+<p>Mencius said, “Gao Yao would simply have apprehended him.”</p>
+<p>Tao Ying said, “Indeed, how could Shun have forbidden it? Gao Yao had received the law from a proper source. In that case what would Shun have done?”</p>
+<p>Mencius said, “Shun would have regarded abandoning the kingdom as throwing away a worn-out sandal. He would privately have taken his father on his back, and retired into concealment, living somewhere along the sea-coast. There he would have been all his life, cheerful and happy, forgetting the kingdom (Mengzi, 35).”</p>
+<p>Mencius thought that “families should cover each other when they commit crimes” and this has undoubtedly played an important role in promoting family harmony and social stability in the era of agricultural civilization. However, it is easy for future generations to question the law. Many people think that Mencius’s thinking is a manifestation of the opposition between morality and law.</p>
+<p>Laozi is more “a form of philosophical therapy” than “the presentation of a theory (Sarkissian &amp; Nichols).” In the Daodejing, a series of social norms such as law have been portrayed as “mysterious things “ by Laozi. </p>
+<p>Fishes should not be taken from the deep; instruments for the profit of a state should not be shown to the people (Daodejing, 36).</p>
+<p><em>Daodejing</em> doesn’t recommend people and counties to struggle for their own profit and suggest them to tolerant the bad things and we can find more evidence.</p>
+<p>And when (one with the highest excellence) does not wrangle (about his low position), no one finds fault with him (Daodejing, 42).</p>
+<p>The partial becomes complete; the crooked, straight (Daodejing, 35).</p>
+<p>It is because he is thus free from striving that therefore no one in the world is able to strive with him (Daodejing, 28).</p>
+<p>With all the doing in the way of the sage he does not strive (Daodejing, 35).</p>
+<p>It seems that mystery is normal, which has a fundamental conflict with the openness of the law. Laozi attributed the source of all systems and norms to the Dao, and this Dao cannot be expressed in words. Since the Dao cannot be directly expressed, can the law be used as an expression of Dao? Laozi also held a negative attitude. According to <em>Laozi</em>, the daughter should do nothing instead of calling the police. Wuwei(无为), do nothing is the main idea of <em>Daodejing</em>, and due to the influence of this philosophy, many people did not choose to seek legal protection in time when they were illegally violated, but they just keep silent.</p>
+<h2 id="Conclution"><a href="#Conclution" class="headerlink" title="Conclution"></a>Conclution</h2><p>All three philosophers have their own different philosophies. Using different philosophies for the same thing will produce different attitudes. Different philosophies have divided and led to different attitudes of different nationals. But this also enriches China’s philosophical theories and has contributed to the development of new philosophies in China.</p>
+<p><strong>References</strong></p>
+<blockquote>
+<p>Daodejing, Chinese Text project. 2018/11/5. <a target="_blank" rel="noopener" href="https://ctext.org/dao-de-jing/ens">https://ctext.org/dao-de-jing/ens</a></p>
+<p>Hanfeizi, Chinese Text project. 2018/11/5. <a target="_blank" rel="noopener" href="https://ctext.org/hanfeizi/ens">https://ctext.org/hanfeizi/ens</a></p>
+<p>Mozi, Chinese Text project. 2018/11/5. <a target="_blank" rel="noopener" href="https://ctext.org/mozi/ens">https://ctext.org/mozi/ens</a></p>
+<p>Mengzi, Chinese Text project. 2018/11/5. <a target="_blank" rel="noopener" href="https://ctext.org/pre-qin-and-han/ens">https://ctext.org/pre-qin-and-han/ens</a></p>
+<p>Sarkissian, H., &amp; Nichols, R. (2016). Chinese Philosophy as Experimental Philosophy. <em>The Bloomsbury Research Handbook of Chinese Philosophy Methodologies</em>, 353.</p>
+<p>Zhuangzi, Chinese Text project. 2018/11/5. <a target="_blank" rel="noopener" href="https://ctext.org/zhuangzi/ens">https://ctext.org/zhuangzi/ens</a></p>
+</blockquote>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>

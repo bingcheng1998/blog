@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/program/">
+            program
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        Performances of Two Selection Algorithm
+    </h2>
+    <ul class="post-date">
+        <li>
+            2018-10-11
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <p>In order to study the performances of these two selection algorithms, I generated different size of arrays and compared the running speed of them. Small size of arrays were run for several times so that the result can be more accurate.</p>
+<a id="more"></a>
+
+<h1 id="Performances-of-Two-Selection-Algorithm"><a href="#Performances-of-Two-Selection-Algorithm" class="headerlink" title="Performances of Two Selection Algorithm"></a>Performances of Two Selection Algorithm</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>In order to study the performances of these two selection algorithms, I generated different size of arrays and compared the running speed of them. Small size of arrays were run for several times so that the result can be more accurate.</p>
+<p> <strong>Input:</strong> array 𝐴 with 𝑛 distinct numbers and a number 𝑖 </p>
+<p>​     “Distinct” for simplicity </p>
+<p> <strong>Output:</strong> 𝑖-th smallest element in the array </p>
+<p>​     Assume index starts from 0</p>
+<p><strong>Example:</strong> $𝐴 = (6,3,5,4,2),𝑖 = 2$<br>​     Should return 4</p>
+<h2 id="Comparison-of-algorithms"><a href="#Comparison-of-algorithms" class="headerlink" title="Comparison of algorithms"></a>Comparison of algorithms</h2><p>There is no limitation of runtime for all algorithms, because all these two algorithms have similar time complexity $O(n)$. Then I used DataGrapg to plot two graphs, one of small test cases, and another of all cases.</p>
+<h3 id="Loop-several-times"><a href="#Loop-several-times" class="headerlink" title="Loop several times"></a>Loop several times</h3><p>With <code>#define LOOP_TIME 20 we can run it for 20 times so that the result can be more accurate. (Please check </code>performance.cpp`)</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">long time_all &#x3D; 0;
+for (int lo &#x3D; 0; lo &lt; LOOP_TIME; lo++)
+&#123;
+    int arr_copy[lines];
+    &#x2F;&#x2F;use deep copy to make arr_copy evry turn
+    memset(arr_copy,0, lines*sizeof(int));
+    memcpy(arr_copy,arr, lines*sizeof(int));
+    start &#x3D; clock();
+    fn[i](arr_copy, lines);
+    end &#x3D; clock();
+    time_all +&#x3D; (end - start);
+&#125;
+cout&lt;&lt;&quot;Sort algorithm is [&quot;&lt;&lt;sortName[i]&lt;&lt;&quot;],&quot;;
+double time_run &#x3D;  (double)time_all &#x2F; CLOCKS_PER_SEC &#x2F; LOOP_TIME;
+cout &lt;&lt; &quot;Running time: &quot; &lt;&lt;time_run&lt;&lt; endl;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><p>You can run <code>make test0</code>  and <code>make test1</code> to test the program.</p>
+<ol>
+<li>With <code>// #define SELECTION_DEBUG</code></li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bogon:answer bingcheng$ <span class="token function">make</span> test0
+g++ -std<span class="token operator">=</span>c++11 -O3 -Wall -o generate gen_rand.cpp
+g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -c main.cpp
+g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -c selection.cpp
+g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -o main main.o selection.o
+./generate <span class="token number">0</span> <span class="token number">40000</span> <span class="token number">2000</span> <span class="token operator">></span> input.data
+./main <span class="token operator">&lt;</span> input.data
+The order-2000 item is -1932064068
+bogon:answer bingcheng$ <span class="token function">make</span> test1
+g++ -std<span class="token operator">=</span>c++11 -O3 -Wall -o generate gen_rand.cpp
+g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -o main main.o selection.o
+./generate <span class="token number">1</span> <span class="token number">40000</span> <span class="token number">2000</span> <span class="token operator">></span> input.data
+./main <span class="token operator">&lt;</span> input.data
+The order-2000 item is -1932064068<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>With <code> #define SELECTION_DEBUG</code></li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bogon:answer bingcheng$ <span class="token function">make</span> test0
+g++ -std<span class="token operator">=</span>c++11 -O3 -Wall -o generate gen_rand.cpp
+g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -c main.cpp
+g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -o main main.o selection.o
+./generate <span class="token number">0</span> <span class="token number">40000</span> <span class="token number">2000</span> <span class="token operator">></span> input.data
+./main <span class="token operator">&lt;</span> input.data
+selection algorithm is <span class="token punctuation">[</span>R selection<span class="token punctuation">]</span>,
+RunTime:0.000509
+<span class="token comment">#[2000]smallest：[-1932064068], real:[-1932064068]</span>
+The order-2000 item is -1932064068
+bogon:answer bingcheng$ <span class="token function">make</span> test1
+g++ -std<span class="token operator">=</span>c++11 -O3 -Wall -o generate gen_rand.cpp
+g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -o main main.o selection.o
+./generate <span class="token number">1</span> <span class="token number">40000</span> <span class="token number">2000</span> <span class="token operator">></span> input.data
+./main <span class="token operator">&lt;</span> input.data
+selection algorithm is <span class="token punctuation">[</span>D selection<span class="token punctuation">]</span>,
+RunTime:0.000941
+<span class="token comment">#[2000]smallest：[-1932064068], real:[-1932064068]</span>
+The order-2000 item is -1932064068<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>You can get the real ith smallest and the selection ith smallest along with the runtime.</p>
+<h3 id="Big-data-analysis"><a href="#Big-data-analysis" class="headerlink" title="Big data analysis"></a>Big data analysis</h3><p>From <strong>Figure 1</strong>, all these line looks similar, so it’s meaning less. So we make <em>log</em> at both <em>x</em> and <em>y</em> axis. As <strong>Figure 2</strong> shows,  we can find that both Random Selection and Deterministic Selection Algorithm have the runtime $O(n)$, and they are parallel when the size of the numbers is larger than $10^4$.</p>
+<p>So What happend when  the size of the numbers is smaller than $10^3$? it seems that these two lines are connected to each other. Let’s see the <code>Small data analysis</code>.</p>
+<p>![[Figure 1] time vs size in large period without log](../../sources/[selection] time vs size in large period without log.svg)</p>
+<p>As <strong>Figure 2</strong> shows below, Rselection is not stable because the line of it is not as straight as Dselection. Moreover, Rselection is faster than Dselection. </p>
+<p>![[Figure 2] time vs size in large period](../../sources/[selection] time vs size in large period.svg)</p>
+<h3 id="Small-data-analysis"><a href="#Small-data-analysis" class="headerlink" title="Small data analysis"></a>Small data analysis</h3><p>From <strong>Figure 4</strong> we can see that when the data size is small, it’s so hard to recognize the runtime because the datas are so unstable. There are so many data hopping all the time, though I used <code>Loop several times</code> in my code, it doesn’t work because the performance of my computer is not stable.</p>
+<p>![[Figure 3] time vs size in small period without log](../../sources/[selection] time vs size in small period without log.svg)</p>
+<p>Because these two lines are so similar, which means that we can use any of them when the number of datas are small.</p>
+<p>![[Figure 4] time vs size in small period](../../sources/[selection] time vs size in small period.svg)</p>
+<h3 id="check-memory-leakage"><a href="#check-memory-leakage" class="headerlink" title="check memory leakage"></a>check memory leakage</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span> LEAK SUMMARY:
+<span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span>    definitely lost: <span class="token number">0</span> bytes <span class="token keyword">in</span> <span class="token number">0</span> blocks
+<span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span>    indirectly lost: <span class="token number">0</span> bytes <span class="token keyword">in</span> <span class="token number">0</span> blocks
+<span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span>      possibly lost: <span class="token number">0</span> bytes <span class="token keyword">in</span> <span class="token number">0</span> blocks
+<span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span>    still reachable: <span class="token number">72,704</span> bytes <span class="token keyword">in</span> <span class="token number">1</span> blocks
+<span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span>         suppressed: <span class="token number">0</span> bytes <span class="token keyword">in</span> <span class="token number">0</span> blocks
+<span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span> Reachable blocks <span class="token punctuation">(</span>those to <span class="token function">which</span> a pointer was found<span class="token punctuation">)</span> are not shown.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>No memory leakage.</p>
+<h2 id="Conclution"><a href="#Conclution" class="headerlink" title="Conclution"></a>Conclution</h2><p>According to the <code>data analysis</code>, Dselect is not as good as Rselect in practice, because it has worse constants and it’s not in-place.</p>
+<p>With worse constants it will cost more time and you can find that in <em>Figure 1</em>. It’s not in-place so it will cost more time to acquire for datas, which is inefficiency.</p>
+<p>So at most conditions, we should use Rselect in practice.</p>
+<h2 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h2><h3 id="The-project-files"><a href="#The-project-files" class="headerlink" title="The project files"></a>The project files</h3><h4 id="selection-h"><a href="#selection-h" class="headerlink" title="selection.h"></a>selection.h</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#ifndef SELECTION_H
+#define SELECTION_H
+
+int random_selection(int* arr, const int n, const int order);
+&#x2F;&#x2F; Randomized selection algorithm
+&#x2F;&#x2F; MODIFIES: *arr
+&#x2F;&#x2F; EFFECTS: select i-th smallest element in the array
+
+int deterministric_selection(int* arr, const int n, const int order);
+&#x2F;&#x2F; Deterministic selection algorithm
+&#x2F;&#x2F; MODIFIES: *arr
+&#x2F;&#x2F; EFFECTS: select i-th smallest element in the array
+
+#endif<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="selection-cpp"><a href="#selection-cpp" class="headerlink" title="selection.cpp"></a>selection.cpp</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cassert&gt;
+#include &lt;ctime&gt;
+#include &quot;selection.h&quot;
+
+using namespace std;
+
+static void int_append(int *arrA, const int *arrB, const int s)&#123;
+  &#x2F;&#x2F; MODIFIES: *arrA
+    &#x2F;&#x2F; EFFECTS: append first &quot;s&quot; int in arrB tp the biginning if arrA.
+  assert(s &gt;&#x3D; 0);
+  if(s &#x3D;&#x3D; 0) return;
+  for (int i &#x3D; 0; i &lt; s; ++i)
+  &#123;
+    arrA[i] &#x3D; arrB[i];
+  &#125;
+&#125;
+
+static int random_pivot(int* arr, const int n)&#123;
+&#x2F;&#x2F; Choose pivot p from arr uniformly at random;
+&#x2F;&#x2F; Partition arr using pivot p;
+&#x2F;&#x2F; Let j be the index of p, return j;
+  const int size &#x3D; n;
+  int BL &#x3D; 0, BR &#x3D; size-1;
+  int * B &#x3D; new int[size];
+  int * A &#x3D; arr;
+  srand((unsigned)time(NULL));
+  const int pivotat &#x3D; rand()%size;
+  const int t &#x3D; A[pivotat];
+  for (int i &#x3D; 0; i &lt; size; ++i)
+  &#123;
+    if(i &#x3D;&#x3D; pivotat) continue;
+    if(A[i] &gt; t) B[BR--] &#x3D; A[i];
+    else B[BL++] &#x3D; A[i];
+  &#125;
+  assert(BL &#x3D;&#x3D; BR);
+  B[BL] &#x3D; t;
+  int_append(A, B, size);
+  delete[] B;
+  return BL;
+&#125;
+
+static void insertion_sort(int *arr, const int n)&#123;
+&#x2F;&#x2F; MODIFIES: *arr
+&#x2F;&#x2F; EFFECTS: sort integers arr[] in ascending order with insertion_sort.
+  for (int i &#x3D; 1; i &lt; n; ++i)
+  &#123;
+    int t &#x3D; arr[i];
+    int j &#x3D; i;
+    while (j &gt;&#x3D; 1)
+        &#123;
+            if (arr[j - 1] &gt; t)
+            &#123;
+                arr[j] &#x3D; arr[j - 1];
+                j--;
+            &#125;
+            else break;
+        &#125;
+    arr[j] &#x3D; t;
+  &#125;
+&#125;
+
+static int Deterministic_pivot_helper(int* arr, int n)&#123;
+
+  if(n &#x3D;&#x3D; 1) return arr[0]; 
+  int full_bucket &#x3D; n&#x2F;5;
+  int arr_medians_size &#x3D; full_bucket+(n%5+4)&#x2F;5;
+  int* arr_medians &#x3D; new int [arr_medians_size];
+  int incomplete_bucket &#x3D; arr_medians_size - full_bucket;
+  for (int i &#x3D; 0; i &lt; full_bucket; ++i)
+  &#123;
+    int* arr_break_5 &#x3D; arr + i*5;
+    insertion_sort(arr_break_5, 5);
+    arr_medians[i] &#x3D; arr_break_5[2];
+  &#125;
+  if (incomplete_bucket !&#x3D; 0)
+  &#123;
+    int incomplete_bucket_size &#x3D; n%5;
+    int* arr_break_5 &#x3D; arr + full_bucket*5;
+    insertion_sort(arr_break_5, incomplete_bucket_size);
+    arr_medians[full_bucket] &#x3D; arr_break_5[incomplete_bucket_size&#x2F;2];
+  &#125;
+  int pivot &#x3D; Deterministic_pivot_helper(arr_medians, arr_medians_size);
+  return pivot;
+&#125;
+
+static int partition_array(int *arr, const int n, const int pivot)&#123;
+  &#x2F;&#x2F; MODIFIES: *arr
+  &#x2F;&#x2F; EFFECTS: choose a pivotat then Move pivot to its correct place in the array.
+  const int size &#x3D; n;
+  int BL &#x3D; 0, BR &#x3D; size-1;
+  int * B &#x3D; new int[size];
+  int * A &#x3D; arr;
+  const int t &#x3D; pivot;
+  for (int i &#x3D; 0; i &lt; size; ++i)
+  &#123;
+    &#x2F;&#x2F; cerr&lt;&lt;arr[i]&lt;&lt;&quot;, &quot;;
+    if(A[i] &#x3D;&#x3D; t) continue;
+    if(A[i] &gt; t) B[BR--] &#x3D; A[i];
+    else B[BL++] &#x3D; A[i];
+  &#125;
+  &#x2F;&#x2F; cerr&lt;&lt;endl;
+  &#x2F;&#x2F; cerr&lt;&lt;&quot;pivot &#x3D; &quot;&lt;&lt;pivot&lt;&lt;&quot;, size &#x3D; &quot;&lt;&lt;size&lt;&lt;&quot;, BL &#x3D; &quot;&lt;&lt;BL&lt;&lt;&quot;, BR &#x3D; &quot;&lt;&lt;BR&lt;&lt;endl;
+  assert(BL &lt;&#x3D; BR);
+  
+  for (int i &#x3D; BL; i &lt;&#x3D; BR; ++i)
+  &#123;
+    B[i] &#x3D; t;
+  &#125;
+  int_append(A, B, size);
+  delete[] B;
+  return BL;
+&#125;
+
+static int Deterministic_pivot(int* arr, int n)&#123;
+&#x2F;&#x2F; Choose pivot p from arr uniformly at deterministic;
+&#x2F;&#x2F; Partition arr using pivot p;
+&#x2F;&#x2F; Let j be the index of p, return j;
+  int pivot &#x3D; Deterministic_pivot_helper(arr, n);
+  int j &#x3D; partition_array (arr, n, pivot);
+  return j;
+&#125;
+
+int random_selection(int* arr, const int n, const int order)&#123;
+  if(n &#x3D;&#x3D; 1) return arr[0];
+  int j &#x3D; random_pivot(arr, n);
+  if(j &#x3D;&#x3D; order) return arr[order];
+  if(j &gt; order) &#123;
+    int* arr_left &#x3D; arr;
+    int length &#x3D; j;
+    return random_selection(arr_left, length, order);
+  &#125;
+  else&#123;
+    int* arr_right &#x3D; arr + j + 1;
+    int length &#x3D; n - j - 1;
+    return random_selection(arr_right, length, order-j-1);
+  &#125;
+&#125;
+
+int deterministric_selection(int* arr, const int n, const int order)&#123;
+  if(n &#x3D;&#x3D; 1) return arr[0];
+  int j &#x3D; Deterministic_pivot(arr, n);
+  if(j &#x3D;&#x3D; order) return arr[order];
+  if(j &gt; order) &#123;
+    int* arr_left &#x3D; arr;
+    int length &#x3D; j;
+    return deterministric_selection(arr_left, length, order);
+  &#125;
+  else&#123;
+    int* arr_right &#x3D; arr + j + 1;
+    int length &#x3D; n - j - 1;
+    return deterministric_selection(arr_right, length, order-j-1);
+  &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="main-cpp"><a href="#main-cpp" class="headerlink" title="main.cpp"></a>main.cpp</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;assert.h&gt;
+#include &lt;ctime&gt;
+#include &quot;selection.h&quot;
+
+#define SELECTION_WAY_SIZE 2
+&#x2F;&#x2F; #define SELECTION_DEBUG
+
+using namespace std;
+
+const string selectionName[] &#x3D; &#123;
+  &quot;R selection&quot;,&quot;D selection&quot;,&quot;ERROR_SELECTION_Name&quot;
+&#125;;
+
+#ifdef SELECTION_DEBUG
+void insertion_sort(int *arr, const int n)&#123;
+  for (int i &#x3D; 1; i &lt; n; ++i)
+  &#123;
+    int t &#x3D; arr[i];
+    int j &#x3D; i;
+    while (j &gt;&#x3D; 1)
+        &#123;
+            if (arr[j - 1] &gt; t)
+            &#123;
+                arr[j] &#x3D; arr[j - 1];
+                j--;
+            &#125;
+            else break;
+        &#125;
+    arr[j] &#x3D; t;
+  &#125;
+&#125;
+#endif
+
+
+int main(int argc, char *argv[]) &#123;
+  int (*const fn[SELECTION_WAY_SIZE])(int*, const int, const int) &#x3D; &#123;
+        random_selection,
+        deterministric_selection
+    &#125;;
+    int selection_algorithm;
+  cin &gt;&gt; selection_algorithm;
+  assert(selection_algorithm &gt;&#x3D; 0 &amp;&amp; selection_algorithm &lt; SELECTION_WAY_SIZE);
+  #ifdef SELECTION_DEBUG
+  cout&lt;&lt;&quot;selection algorithm is [&quot;&lt;&lt;selectionName[selection_algorithm]&lt;&lt;&quot;],&quot;&lt;&lt;endl;
+  #endif
+
+  int n;
+  cin &gt;&gt; n;
+  int order;
+  cin &gt;&gt; order;
+  int *arr &#x3D; new int[n];
+  for (int i &#x3D; 0; i &lt; n; ++i)
+  &#123;
+    cin&gt;&gt;arr[i];
+  &#125;
+  int i_th_small;
+  clock_t start, end;
+  start &#x3D; clock();
+  i_th_small &#x3D; fn[selection_algorithm](arr, n, order);
+  end &#x3D; clock();
+
+  #ifdef SELECTION_DEBUG
+  int arr_copy[n];
+  &#x2F;&#x2F;use deep copy to make arr_copy evry turn
+  memset(arr_copy,0, n*sizeof(int));
+  memcpy(arr_copy,arr, n*sizeof(int));
+  insertion_sort(arr_copy, n);
+  cout &lt;&lt; &quot;RunTime:&quot; &lt;&lt; (double)(end - start) &#x2F; CLOCKS_PER_SEC &lt;&lt; endl;
+  cout &lt;&lt; &quot;#[&quot;&lt;&lt;order&lt;&lt;&quot;]smallest：[&quot;&lt;&lt;i_th_small&lt;&lt;&quot;], real:[&quot;&lt;&lt;arr_copy[order]&lt;&lt;&quot;]&quot;&lt;&lt;endl;
+  #endif
+  cout&lt;&lt;&quot;The order-&quot;&lt;&lt;order&lt;&lt;&quot; item is &quot;&lt;&lt;i_th_small&lt;&lt;endl;
+  delete[] arr;
+  return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h4><pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span> main.o selection.o
+  g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -o main main.o selection.o
+
+<span class="token symbol">auto</span><span class="token punctuation">:</span> make_auto
+  ./autogen
+
+<span class="token symbol">make_auto</span><span class="token punctuation">:</span> auto_gen.o
+  g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -o autogen auto_gen.o
+
+<span class="token symbol">auto_gen.o</span><span class="token punctuation">:</span> auto_gen.cpp
+  g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -c auto_gen.cpp
+
+<span class="token symbol">t</span><span class="token punctuation">:</span> make_test
+  ./test
+
+<span class="token symbol">make_test</span><span class="token punctuation">:</span> simple_test.o selection.o
+  g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -o test simple_test.o selection.o
+
+<span class="token symbol">simple_test.o</span><span class="token punctuation">:</span> simple_test.cpp
+  g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -c simple_test.cpp
+
+<span class="token symbol">test0</span><span class="token punctuation">:</span> gen all
+  ./generate 0 40000 2000 > input.data
+  ./main &lt; input.data
+
+<span class="token symbol">test1</span><span class="token punctuation">:</span> gen all
+  ./generate 1 40000 2000 > input.data
+  ./main &lt; input.data
+
+<span class="token symbol">gen</span><span class="token punctuation">:</span>
+  g++ -std<span class="token operator">=</span>c++11 -O3 -Wall -o generate gen_rand.cpp
+
+<span class="token symbol">p</span><span class="token punctuation">:</span> perf
+  ./perform 
+
+<span class="token symbol">perf</span><span class="token punctuation">:</span> performance.o selection.o
+  g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -o perform performance.o selection.o
+
+<span class="token symbol">performance.o</span><span class="token punctuation">:</span> performance.cpp
+  g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -c performance.cpp
+
+<span class="token symbol">main.o</span><span class="token punctuation">:</span> main.cpp
+  g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -c main.cpp
+
+<span class="token symbol">selection.o</span><span class="token punctuation">:</span> selection.cpp
+  g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -c selection.cpp
+  
+<span class="token symbol">v</span><span class="token punctuation">:</span>
+  valgrind --leak-check<span class="token operator">=</span>full ./main &lt; input.data
+
+<span class="token symbol">tar</span><span class="token punctuation">:</span>
+  tar czvf p2.tar main.cpp selection.cpp selection.h p2.pdf
+
+<span class="token symbol">clean</span><span class="token punctuation">:</span>
+  rm -f ./main *.o *.data test generate autogen perform
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="auto-gen-cpp"><a href="#auto-gen-cpp" class="headerlink" title="auto_gen.cpp"></a>auto_gen.cpp</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;sstream&gt;
+#include &lt;assert.h&gt;
+#include &lt;fstream&gt;
+#include &lt;math.h&gt;
+using namespace std;
+int main(int argc, char *argv[]) &#123;
+  ofstream oFile;
+
+  for (int i &#x3D; 0; i &lt; 100; ++i)
+  &#123;
+    ostringstream path_stream;
+    path_stream&lt;&lt;&quot;.&#x2F;data_file&#x2F;&quot;&lt;&lt;i&lt;&lt;&quot;.data&quot;;
+    oFile.open(path_stream.str());
+    double k &#x3D; 1.0 + 2.0&#x2F;100*(i);
+    int ek &#x3D; pow(10, k);
+    cerr&lt;&lt;ek&lt;&lt;&quot;, &quot;;
+
+    oFile&lt;&lt;0&lt;&lt;endl;
+    oFile&lt;&lt;ek&lt;&lt;endl;
+    oFile&lt;&lt;0&lt;&lt;endl;
+    for (int i &#x3D; 0; i &lt; ek; ++i)
+    &#123;
+      int k &#x3D; mrand48();
+      oFile &lt;&lt; k &lt;&lt;endl;
+    &#125;
+    oFile.close();
+  &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Generated files look like this.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giscg1e71xj311y0bwaa9.jpg" alt="files"></p>
+<h4 id="performance-cpp"><a href="#performance-cpp" class="headerlink" title="performance.cpp"></a>performance.cpp</h4><p>This program will produce a CSV table as 3.1.7 shows.</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;sstream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;assert.h&gt;
+#include &lt;ctime&gt;
+#include &lt;fstream&gt;
+#include &quot;selection.h&quot;
+
+using namespace std;
+
+#define SELECTION_WAY_SIZE 2
+#define file_num 100
+#define LOOP_TIME 40
+&#x2F;&#x2F; #define SORT_DEBUG
+
+void debug_print(char TAG, string deb_string)&#123;
+  if(TAG &#x3D;&#x3D; &#39;v&#39;) cerr&lt;&lt; deb_string;
+&#125;
+
+void   Delay(int   time)&#123; 
+  clock_t   now   &#x3D;   clock(); 
+  while(   clock()   -   now   &lt;   time   ); 
+&#125; 
+
+const string selectionName[] &#x3D; &#123;
+  &quot;R selection&quot;,&quot;D selection&quot;,&quot;ERROR_SELECTION_Name&quot;
+&#125;;
+
+bool safe_open_file(ifstream&amp; i_file, string file_name)&#123;
+  ostringstream debug_stream;
+  i_file.open(file_name.c_str());
+  if (i_file.fail()) &#123;
+    cout&lt;&lt;&quot;Error: Cannot open file &quot;&lt;&lt; file_name&lt;&lt;&quot;!&quot;&lt;&lt;endl; 
+    exit(0);
+  &#125;
+  debug_stream&lt;&lt;&quot;file opened success!&quot;&lt;&lt;endl;
+  debug_print(&#39;v&#39;, debug_stream.str());
+  debug_stream.clear();
+  return true;
+&#125;
+
+static int int_size[] &#x3D; &#123;
+  10, 10, 10, 11, 12, 12, 13, 13, 14, 15, 15, 16, 17, 18, 19, 19, 20, 21, 22, 23, 25, 26, 27, 28, 30, 31, 33, 34, 36, 38, 39, 41, 43, 45, 47, 50, 52, 54, 57, 60, 63, 66, 69, 72, 75, 79, 83, 87, 91, 95, 100, 104, 109, 114, 120, 125, 131, 138, 144, 151, 158, 165, 173, 181, 190, 199, 208, 218, 229, 239, 251, 263, 275, 288, 301, 316, 331, 346, 363, 380, 398, 416, 436, 457, 478, 501, 524, 549, 575, 602, 630, 660, 691, 724, 758, 794, 831, 870, 912, 954 &#125;;
+
+bool jump_j[] &#x3D; &#123;false, false,false,false,false,false&#125;;
+
+int main(int argc, char *argv[]) &#123;
+  int (*const fn[SELECTION_WAY_SIZE])(int*, const int, const int) &#x3D; &#123;
+        random_selection,
+        deterministric_selection
+    &#125;;
+
+  clock_t start, end;
+  ofstream outFile;
+  outFile.open(&quot;data.csv&quot;, ios::out);
+  outFile &lt;&lt; &quot;size&quot;&lt;&lt;&quot;,&quot;&lt;&lt;selectionName[0]&lt;&lt;&quot;,&quot;&lt;&lt;selectionName[1]&lt;&lt;&quot;,&quot;&lt;&lt;endl;
+  for (int j &#x3D; 0; j &lt; file_num; ++j)
+  &#123;
+    ifstream iFile;
+    
+    
+    ostringstream path_stream;
+    path_stream&lt;&lt;&quot;.&#x2F;data_file&#x2F;&quot;&lt;&lt;j&lt;&lt;&quot;.data&quot;;
+    safe_open_file(iFile, path_stream.str());
+    int lines;
+    iFile &gt;&gt; lines;
+    iFile &gt;&gt; lines;
+    int meanning_less;
+    iFile &gt;&gt; meanning_less;
+
+    
+    int *arr &#x3D; new int[lines];
+    int baz;
+    for (int i &#x3D; 0; i &lt; lines; ++i)
+     &#123;
+     	iFile &gt;&gt; baz;
+     	arr[i] &#x3D; baz;
+     &#125; 
+    outFile &lt;&lt; int_size[j]&lt;&lt;&quot;,&quot;;
+    for (int i &#x3D; 0; i &lt; SELECTION_WAY_SIZE; ++i)
+    &#123;
+      if(jump_j[i] &#x3D;&#x3D; true)&#123;
+        outFile &lt;&lt; &quot;&quot;&lt;&lt;&quot;,&quot;;
+        cerr&lt;&lt;&quot;jump &quot;&lt;&lt;selectionName[i]&lt;&lt;&quot; with &quot;&lt;&lt;int_size[j]&lt;&lt;&quot; size!&quot;&lt;&lt;endl;
+        continue;
+      &#125;
+      if(int_size[j] &lt; 1000)&#123;
+        cerr&lt;&lt;&quot;delay at &quot;&lt;&lt;int_size[j]&lt;&lt;&quot; size&quot;&lt;&lt;endl;
+       	Delay(1000);
+      &#125; else Delay(500);
+
+
+      &#x2F;&#x2F; int arr_copy[lines];
+      &#x2F;&#x2F; &#x2F;&#x2F;use deep copy to make arr_copy evry turn
+      &#x2F;&#x2F; memset(arr_copy,0, lines*sizeof(int));
+      &#x2F;&#x2F; memcpy(arr_copy,arr, lines*sizeof(int));
+      &#x2F;&#x2F; start &#x3D; clock();
+      &#x2F;&#x2F; fn[i](arr_copy, lines, 0);
+      &#x2F;&#x2F; end &#x3D; clock();
+
+      long time_all &#x3D; 0;
+            for (int lo &#x3D; 0; lo &lt; LOOP_TIME; lo++)
+            &#123;
+                int arr_copy[lines];
+                &#x2F;&#x2F;use deep copy to make arr_copy evry turn
+                memset(arr_copy,0, lines*sizeof(int));
+                memcpy(arr_copy,arr, lines*sizeof(int));
+                start &#x3D; clock();
+                fn[i](arr_copy, lines, 0);
+                end &#x3D; clock();
+                time_all +&#x3D; (end - start);
+            &#125;
+
+
+      cout&lt;&lt;&quot;Sort algorithm is [&quot;&lt;&lt;selectionName[i]&lt;&lt;&quot;],&quot;;
+      double time_run &#x3D;  (double)time_all &#x2F; CLOCKS_PER_SEC &#x2F; LOOP_TIME;
+      cout &lt;&lt; &quot;Running time: &quot; &lt;&lt;time_run&lt;&lt; endl;
+      if (time_run &gt;&#x3D; 24.0)
+      &#123;
+        jump_j[i] &#x3D; true;
+      &#125;
+      outFile &lt;&lt; time_run&lt;&lt;&quot;,&quot;;
+    &#125;
+    outFile &lt;&lt;endl;
+
+
+    iFile.close();
+    delete[] arr;
+  &#125;
+  outFile.close();
+  return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="scv-Table"><a href="#scv-Table" class="headerlink" title="scv Table"></a>scv Table</h4><p>You can get full CSV table at <a target="_blank" rel="noopener" href="https://github.com/bingcheng1998/VE281/blob/master/Programming-Assignment/Programming-Assignment-2/answer/data_large.csv">HERE</a>.</p>
+<p>This table was generated by MacBook Pro 2015, i5, 256G.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>size</th>
+<th>R selection</th>
+<th>D selection</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>100</td>
+<td>4.2e-06</td>
+<td>8.4e-06</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>112</td>
+<td>2.8e-06</td>
+<td>6.4e-06</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>125</td>
+<td>2.8e-06</td>
+<td>1.66e-05</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>141</td>
+<td>3.8e-06</td>
+<td>6.6e-06</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>158</td>
+<td>2.6e-06</td>
+<td>6.6e-06</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>177</td>
+<td>4.2e-06</td>
+<td>6.6e-06</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>199</td>
+<td>3.6e-06</td>
+<td>8e-06</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>223</td>
+<td>4e-06</td>
+<td>8e-06</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>251</td>
+<td>6e-06</td>
+<td>9e-06</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>281</td>
+<td>7e-06</td>
+<td>1.38e-05</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>1778279</td>
+<td>0.0146598</td>
+<td>0.0363128</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>7943282</td>
+<td>0.0283762</td>
+<td>0.157991</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="DataGraph"><a href="#DataGraph" class="headerlink" title="DataGraph"></a>DataGraph</h3><p>I used <a target="_blank" rel="noopener" href="http://www.visualdatatools.com/DataGraph/">DataGraph</a> to generate images on MacBook Pro.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giscgmhxm1j31230u0tvo.jpg" alt="image-20181011173601662"></p>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>

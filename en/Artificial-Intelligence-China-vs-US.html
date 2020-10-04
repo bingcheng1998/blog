@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/review/">
+            review
+        </a>
+    </h4>
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/review/AI/">
+            AI
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        Artificial Intelligence: China vs. US
+    </h2>
+    <ul class="post-date">
+        <li>
+            2019-12-08
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <p>The development of artificial intelligence is inseparable from two aspects, one is the theoretical research, the other is the application of technology. </p>
+<a id="more"></a>
+
+<p>The development of artificial intelligence is inseparable from two aspects, one is the theoretical research, the other is the application of technology. There is no doubt that the United States is ahead of China in theory formulation and improvement, and all popular AI frameworks are produced in the United States. But when it comes to the application of artificial intelligence, China is slightly ahead. A variety of AI companies have grown up in China, and due to policies, these companies can easily get AI application test licenses, such as highway test of autonomous vehicles, which is very difficult in the United States.</p>
+<p>Admittedly, China is leading the way in the application of artificial intelligence and has created many praiseworthy products. For example, Dajiang UAV, a kind of UAV that can automatically perform trajectory planning and face recognition, has achieved the first sales volume in the world and more than doubled the lead in the second place. There is also the AI camera of Huawei mobile phone, which can perform real-time video matting. These achievements are inseparable from the support of the Chinese government. The Chinese government has invested heavily in the AI industry. These investments have promoted the AI industry, hatched a large number of AI companies, and occupied a place in the world. And China has a lot of population-based data, which is authorized by the government to use by large companies. It is almost impossible for enterprises abroad to obtain so much data. Firstly, the population base is not large, and secondly, the privacy protection policy limits access to information. So China’s AI industry is developing rapidly with the help of a huge amount of information. Moreover, China is eager for talents. In recent years, China has launched a talent retention program and introduced a lot of advanced talents. However, the United States has restricted the work of Chinese in the United States, which has led to a large number of high-tech talents flowing back. In terms of domestic education, China has also strengthened the training of AI and launched AI courses in undergraduate courses. In order to strengthen China’s leadership in the field of artificial intelligence, the Chinese government has undoubtedly made many fruitful efforts in this regard.</p>
+<p>However, application leadership is based on the accumulation of technologies, most of which are from the United States. From the perspective of China’s system, China’s political system and hierarchy limit the emergence of new innovations. Chinese developers refuse to create a new technology framework because the existing open-source framework in the United States can meet their requirements. Due to the lack of innovation, we can be sure that China will not have a fully independent framework in the future, which will lead to China’s always lagging behind the United States in core technology. In terms of core hardware design, although Huawei, a technology company in China, is guarding the bottom line of chip design, China’s chip design lags far behind the United States, Japan, and South Korea. The U.S. policy of blocking China’s chip technology has seriously affected China’s independent AI chip research and development. In terms of researchers, there are many ordinary researchers in China, but this is largely due to China’s huge population base. When it comes to the number of senior AI researchers in China, it’s a totally different picture, because China only accounts for 6% of top researchers. There is no fundamental innovation in the framework of artificial intelligence, just looking for breakthroughs in the application. Although it seems to greatly promote the prosperity of the AI industry in China in the short term, it limits the development limit.</p>
+<p>China still hasn’t changed its strategy in the plan of AI development, which seems to work well now, but it is bound to limit the peak of development in the future. In order to master the core technology, China should strengthen the protection of intellectual property rights, so as to encourage researchers to innovate in the AI framework. There is no doubt that China has the ability to compete with the United States. Although China is still a long way from the United States in AI core technology, China leads the United States in AI application. But whether we can surpass the United States in the development of the AI industry depends on the future policy trends of China and the United States.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>[1] will china overtake the us<a target="_blank" rel="noopener" href="https://www.scientificamerican.com/article/will-china-overtake-the-u-s-in-artificial-intelli/">https://www.scientificamerican.com/article/will-china-overtake-the-u-s-in-artificial-intelli/</a></p>
+<p>[2] AI Wars_ China’s Lead Over the U.S. Won’t Last - Bloomberg <a target="_blank" rel="noopener" href="https://www.bloomberg.com/opinion/articles/2019-11-12/ai-wars-china-s-lead">https://www.bloomberg.com/opinion/articles/2019-11-12/ai-wars-china-s-lead</a></p>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>

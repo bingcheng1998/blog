@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/sociology/">
+            sociology
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        The Influence of Oversea Study on Brain Drain in China
+    </h2>
+    <ul class="post-date">
+        <li>
+            2018-07-29
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <p>This research focuses on the influence of oversea study on brain drain in China. And the target object of study is chosen to be undergraduate students in JI, because a large percent of them will study abroad. The proportion of undergraduate students in JI that go abroad is much higher than the average proportion of Chinese overall undergraduate students. </p>
+<a id="more"></a>
+
+<blockquote>
+<p><em>Key words: oversea study, brain drain, heat wave of going abroad</em></p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gischdzlu6j30e909u755.jpg" alt="30e96c0e47b31d17d472bbb37a28b14d"></p>
+<h2 id="I-Definition-of-topic"><a href="#I-Definition-of-topic" class="headerlink" title="I.  Definition of topic"></a>I.  Definition of topic</h2><p>This research focuses on the influence of oversea study on brain drain in China. And the target object of study is chosen to be undergraduate students in JI, because a large percent of them will study abroad. The proportion of undergraduate students in JI that go abroad is much higher than the average proportion of Chinese overall undergraduate students. This is because JI is a Sino-US joint college, many students go to the United States for two years at the time of undergraduate studies. This kind of project is called “2+2” project, which means that the student will study in college for two years in China and then go abroad for two years. This research will not investigate the impact of overseas study in primary and secondary schools on brain drain for two reasons. First of all, there are very few Chinese students studying abroad in secondary schools. Secondly, they cannot be judged as talents before they go to college.</p>
+<p>This research defines brain drain as a phenomenon that highly educated people tend to work overseas instead of returning to motherland. In this research, data surveys were used to get the proportion of people who work abroad to study abroad. Also, questionnaires were introduced to investigate the reasons why Chinese college students go abroad, and why overseas study leads to brain drain.</p>
+<h2 id="II-Background"><a href="#II-Background" class="headerlink" title="II. Background"></a>II. Background</h2><p>With the rapid growth of GDP and higher extent of openness to the rest of the world, the number of Chinese immigrants to Western countries has increased dramatically, especially to the United States, Canada and Australia. In 2007, China became the world’s largest immigrant investor. By 2009, 65,000 Chinese in the Chinese state had obtained immigration or permanent resident status in the United States, 25,000 in Canada and 15,000 in Australia (Mok, 373). The largest immigrant group consisted of professionals and experts with a middle-class background who were returning to China. According to a 2007 study, 7 out of every 10 registered overseas universities had never returned home (Mok, 274).</p>
+<p>Since the beginning of the last century, international students have been sent to different countries to learn advanced skills, and they returned to save the country from invasion and poverty. From the 1950s to the 1970s, China was in a period of general turmoil due to political instability (Brain Drain, 56). As a result, many Chinese were uneasy and disappointed with the society. After China’s gradual liberalization in the 1980s, the situation did not improve; Many people went abroad to seek for more opportunities.</p>
+<p>Now that China has experienced peaceful development for decades, it is no longer a backward country. However, the enthusiasm for studying abroad continues. Some top students who study at domestic universities are not satisfied with the course the college offers. They might want to learn further and deeper or experience the foreign teaching style. After they graduate from foreign prestigious universities, they choose to work abroad. Thus, there comes the issue of brain drain.</p>
+<h2 id="III-Motivation"><a href="#III-Motivation" class="headerlink" title="III. Motivation"></a>III. Motivation</h2><p>Being an undergraduate school student, the reason why I want to investigate time in studying this topic lies in my personal experience. Nowadays, there is a widespread concern over brain drain in China. While shortages of talents trouble many universities and state-owned companies, thousands upon thousands young talents either emigrate to developed countries or work for foreign companies who is invading Chinese market. Moreover, millions of the better educated who are determined to follow their foot prints, take TOEFL and GRE as their visa to the land of opportunity. </p>
+<p>This phenomenon is very serious in my college. Almost half of the students are willing to study abroad, and a large number of students will continue to study in foreign countries. And many of them will work abroad.</p>
+<p>There was a research about what motivates students to study abroad. Studies reveal that the reasons ranging from professional to cultural to personal. The reasons include the desire to study abroad to gain further knowledge, to gain work experience through a host university’s internship program that will facilitate an international career, to master a foreign language, to make new international friends (Zweig, 102). However, nowadays most of these goals can also be fulfilled if they study in domestic universities so there is no need for them to study abroad at a cost of such great tuition. </p>
+<p>The State Council published the “The overall program to promote the world-class universities in China” in 2012, which stated the goal and task of internationalize the top universities (Kristi, 21). And the internationalization of university includes five different aspects —— international teachers, internationalized education, international scientific research, international innovation base and international influence. Most top universities are now implementing the strategy to introduce teachers and technologies together with several detailed programs. All of these programs provide students with an internationalized education and international studying and living atmosphere. </p>
+<p>Has the brain drain rate been reduced under the efforts of the state? Why do many people go abroad after the education level in the country is already high?</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gischgqsjpj30y00dbq4m.jpg" alt="e251f3bc3f607ae528d94480ffbcce8a"></p>
+<h2 id="IV-Methodology"><a href="#IV-Methodology" class="headerlink" title="IV. Methodology"></a>IV. Methodology</h2><p>We will use Official data survey combined with questionnaire surveys. If only data surveys are conducted, we will find that the proportion of people who study abroad and have overseas work experience accounts for all those who study abroad. However, this ratio is only a mapping relationship and cannot directly indicate the impact of overseas learning on brain drain. So, we still need questionnaire survey.</p>
+<h3 id="1-Official-data-survey"><a href="#1-Official-data-survey" class="headerlink" title="1. Official data survey"></a>1. Official data survey</h3><p>In this study, the main method of research is questionnaire survey. But we still need some data to assist us in drawing the conclusions we need. We need official overseas study population data and data on working population abroad. Due to the privacy policy, the state cannot provide more detailed information, such as the number of overseas working people in the study abroad population. So this part of the data needs to be investigated by ourselves.</p>
+<p>We decided to obtain this data from existing literature and government published information. These data are required to be accurate, although these data do not yield accurate conclusions. The number of people studying abroad can be approximated from the number of people who have obtained a study visa. According to our definition of brain drain, we define people with work visas or foreign green cards as brain drain.</p>
+<h3 id="2-Questionnaire-Survey"><a href="#2-Questionnaire-Survey" class="headerlink" title="2. Questionnaire Survey"></a>2. Questionnaire Survey</h3><p>This study aims to study the impact of overseas study on brain drain in China. It’s hard to find similar research on the Internet to acquired data I need. This study is an exploratory study that needs to reflect data on the impact of overseas research on brain drain in China. Therefore, questionnaires are an easier and more flexible way to investigate large samples and obtain quantitative data compared with doing an official data survey.</p>
+<p>The sample is about 300 JI students with overseas study experience. </p>
+<p>Here is the questionnaire that will be used in this study. </p>
+<hr>
+<blockquote>
+<p>Please draw “√” in the “·” before the option you want to choose. </p>
+<p>a). Part one</p>
+<ol>
+<li>Do you have a foreign work experience?<ul>
+<li>Yes</li>
+<li>No</li>
+</ul>
+</li>
+<li>When did you go abroad?<ul>
+<li>Bachelor</li>
+<li>Postgraduate</li>
+<li>Doctor</li>
+<li>master’s degree or above</li>
+</ul>
+</li>
+<li>Which country are you studying in?<ul>
+<li>United States</li>
+<li>United Kingdom</li>
+<li>Germany</li>
+<li>Australia</li>
+<li>Others __</li>
+</ul>
+</li>
+</ol>
+<p>b). Part II</p>
+<ol>
+<li>You think that studying abroad is very necessary for college students.<ul>
+<li>Strongly agree</li>
+<li>Agree</li>
+<li>Neither agree nor disagree</li>
+<li>Disagree</li>
+<li>Strongly disagree</li>
+</ul>
+</li>
+<li>The main purpose of your going abroad is to learn professional skills.<ul>
+<li>Strongly agree</li>
+<li>Agree</li>
+<li>Neither agree nor disagree</li>
+<li>Disagree</li>
+<li>Strongly disagree</li>
+</ul>
+</li>
+<li>The main purpose of your going abroad is to associate with foreign friends.<ul>
+<li>Strongly agree</li>
+<li>Agree</li>
+<li>Neither agree nor disagree</li>
+<li>Disagree</li>
+<li>Strongly disagree</li>
+</ul>
+</li>
+<li>You want to work abroad before you leave your home country.<ul>
+<li>Strongly agree</li>
+<li>Agree</li>
+<li>Neither agree nor disagree</li>
+<li>Disagree</li>
+<li>Strongly disagree</li>
+</ul>
+</li>
+</ol>
+<p>C). If you decide to work abroad or have a foreign work experience, please continue to answer the following questions:</p>
+<ol>
+<li>What level of education do you plan to start working abroad?<ul>
+<li>Bachelor</li>
+<li>Postgraduate</li>
+<li>Doctor</li>
+<li>master’s degree or above</li>
+</ul>
+</li>
+<li>You decide to work abroad for more compensation.<ul>
+<li>Strongly agree</li>
+<li>Agree</li>
+<li>Neither agree nor disagree</li>
+<li>Disagree</li>
+<li>Strongly disagree</li>
+</ul>
+</li>
+<li>You are working abroad to learn more about social experience.<ul>
+<li>Strongly agree</li>
+<li>Agree</li>
+<li>Neither agree nor disagree</li>
+<li>Disagree</li>
+<li>Strongly disagree</li>
+</ul>
+</li>
+<li>Overall, how satisfied or dissatisfied are you with your oversea work.<ul>
+<li>Very satisfied</li>
+<li>Somewhat satisfied</li>
+<li>Neither satisfied nor dissatisfied</li>
+<li>Somewhat dissatisfied</li>
+<li>Very dissatisfied</li>
+</ul>
+</li>
+<li>How long do you plan to work abroad?<ul>
+<li>Within a year</li>
+<li>One to two years</li>
+<li>Two to three years</li>
+<li>Three to five years</li>
+<li>More than five years</li>
+</ul>
+</li>
+<li>You will settle abroad.<ul>
+<li>Strongly agree</li>
+<li>Agree</li>
+<li>Neither agree nor disagree</li>
+<li>Disagree</li>
+<li>Strongly disagree</li>
+</ul>
+</li>
+</ol>
+<p><em>That’s all for this questionnaire. Thank you for your patience and kindness.</em> </p>
+</blockquote>
+<hr>
+<p>The first question in the questionnaire is aimed at investigating whether the volunteers who take this questionnaire have experience studying abroad, which is the independent variable in this study. </p>
+<p>If the answer to the first question is NO, then the person answering the question does not have to continue with the following questions. If the answer is YES, then the answers to the following questions are very important to the survey. </p>
+<p>And the answer to part c needs to be judged in conjunction with the first question in part a. Why not put the first question in section c? Because this will affect the judgment of the volunteers. We inserted part b between the first question and the c part, thus reducing the impact of the first question on the part c.</p>
+<p>For part a, there are some questions about the background of the volunteers. It seems that these questions are less connected to the survey, but in fact, there questions were set to let the volunteers have a clear understanding of the aim of the survey and s/he may select not suitable answers. </p>
+<p>For part b, we studied volunteers’ views on overseas study. These questions help us understand the impact of overseas learning on volunteers and the impact of this impact on volunteer decisions. These questions help us to ask further questions in part c.</p>
+<p>Part c is not for all volunteers studying abroad. The first question defines that international students who answer this part must have overseas work experience. This section asks international students what they think about their overseas work experience and why they work overseas. At the end, I also asked if I would settle overseas, and this question is also related to the previous question. The previous question of overseas working years is instructive for the latter question.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gischlc180j30sg0hywll.jpg" alt="7818822843e5edd9fc1e6ee67aa3e097"></p>
+<h3 id="3-Anticipated-Obstacles"><a href="#3-Anticipated-Obstacles" class="headerlink" title="3. Anticipated Obstacles"></a>3. Anticipated Obstacles</h3><p>The biggest problem with this research is the accuracy of data. The state pays attention to personal privacy and cannot give accurate data on people who have studied abroad and who have worked abroad. These data can only be investigated by ourselves. However, the total number of people going abroad and the total number of work visas can be checked. The conclusions drawn from these data can be very inaccurate. Therefore, it cannot be used directly.</p>
+<p>For the questionnaire survey, the possible difficulty is to guarantee the volunteers take the questionnaire serious and they choose the answers that reflect their true ideas. Besides, another obstacle may be how to collect enough samples. As the questionnaire need a sample of certain scale, how are we able to find enough audience is a major challenge. </p>
+<h3 id="4-Potential-Ethical-Issues"><a href="#4-Potential-Ethical-Issues" class="headerlink" title="4. Potential Ethical Issues"></a>4. Potential Ethical Issues</h3><p>The respondents were asked to answer some personal questions during the survey. These problems can be very sharp. They may feel being offended to be observed and the privacy may not be kept. To solve the problem, a debriefing will be hold after the experiment. We will explain to the subjects in detail what the class is actually meant for and inform them of explicit procedure about how the experiment is conducted and how the data will be analyzed. We will give all the volunteers the opportunity to delete their data. All the reserved data will be kept in private of course. Since the experiment does no real harm to the volunteers and there is no risk to the volunteers, thus the ethnical problem isn’t that severe in this research. </p>
+<h2 id="V-Expectations"><a href="#V-Expectations" class="headerlink" title="V. Expectations"></a>V. Expectations</h2><p>I believe oversea study will cause brain drain in China according to my experience. But I also believed that this proportion will be gradually reduced. Since the enthusiasm for studying abroad fading, the resulting brain drain will also decrease.</p>
+<h2 id="VI-Reference"><a href="#VI-Reference" class="headerlink" title="VI. Reference"></a>VI. Reference</h2><blockquote>
+<p>Mok, Ka Ho, and Xiao Han. 2016. “From ‘brain drain’ to ‘brain bridging’: transnational higher education development and graduate employment in China.” <em>Journal Of Higher Education Policy &amp; Management</em> 38, no. 3: 369-389. <em>Academic Search Complete</em>, EBSCO<em>host</em> (accessed July 20, 2018).</p>
+<p>Brain Drain. <em>Beijing Review</em> [serial online]. June 13, 2013;56(24):4. Available from: Academic Search Complete, Ipswich, MA. Accessed July 20, 2018.</p>
+<p>Zweig, D. 1997. “To return or not to return? Politics vs. economics in China’s brain drain.” <em>Studies In Comparative International Development</em> 32, no. 1: 92-125. <em>MEDLINE</em>, EBSCO<em>host</em> (accessed July 20, 2018).</p>
+<p>Kristi, Heim. n.d. “Young talent returns to China, reversing decades of brain drain.” <em>San Jose Mercury News (CA)*</em>Newspaper Source*, EBSCO<em>host</em> (accessed July 20, 2018).</p>
+<p>China’s Wealth and Brain Drain: China Leads in International Emigration. <em>Chinascope</em> [serial online]. January 2013;(61):43. Available from: Academic Search Complete, Ipswich, MA. Accessed July 20, 2018.</p>
+<p>Chang S. Causes of brain drain and solutions: The Taiwan experience. <em>Studies In Comparative International Development</em> [serial online]. Spring92 1992;27(1):27. Available from: Academic Search Complete, Ipswich, MA. Accessed July 20, 2018.</p>
+</blockquote>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>

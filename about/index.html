@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    <h2 class="post-title">
+        Bingcheng HU 胡炳城
+    </h2>
+    <ul class="post-date">
+        <li>
+            2020-10-04
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <img src="./index.assets/head_photo.png" width="180" align=right />  
+
+<p>800 Dongchuan Rd., Minhang District, Shanghai, 200240</p>
+<p><a href="mailto:&#98;&#105;&#110;&#103;&#99;&#104;&#101;&#x6e;&#103;&#64;&#111;&#112;&#101;&#x6e;&#109;&#99;&#46;&#x63;&#110;">&#98;&#105;&#110;&#103;&#99;&#104;&#101;&#x6e;&#103;&#64;&#111;&#112;&#101;&#x6e;&#109;&#99;&#46;&#x63;&#110;</a></p>
+<h2 id="RESUME-↓"><a href="#RESUME-↓" class="headerlink" title="RESUME [↓]"></a>RESUME [<a href="../PDF/Bingcheng%20Hu%20CV-Ver.5.pdf">↓</a>]</h2><p>version: 2019/11/21</p>
+<h2 id="EDUCATION"><a href="#EDUCATION" class="headerlink" title="EDUCATION"></a><strong>EDUCATION</strong></h2><table>
+<thead>
+<tr>
+<th align="left"><strong>Shanghai   Jiao Tong University (SJTU)</strong>,   China</th>
+<th align="right">Sept   2016 – Present</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">·        University of Michigan–Shanghai Jiao Tong University Joint Institute (UM-SJTU JI)</td>
+<td align="right"><img src="./index.assets/SJTU.png" width="100" align=right /></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><strong>Sophia   University</strong>, Japan</th>
+<th align="right">Feb   2018 – Mar 2018</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>·        Visiting Student: Japanese Education. Contemporary Japanese Culture &amp; Society</td>
+<td align="right"><img src="./index.assets/sophia.jpg" width="80" align=right /></td>
+</tr>
+</tbody></table>
+<h2 id="PUBLICATIONS"><a href="#PUBLICATIONS" class="headerlink" title="PUBLICATIONS"></a><strong>PUBLICATIONS</strong></h2><p>[1] Xian Song, Yuxin Peng, Bingcheng Hu &amp; Wenming Liu (2020) Characterization of the fine hand movement in badminton by a smart glove, Instrumentation Science &amp; Technology, 48:4, 443-458,DOI: <a target="_blank" rel="noopener" href="https://doi.org/10.1080/10739149.2020.1737814">10.1080/10739149.2020.1737814</a></p>
+<p>[2] Bingcheng Hu, Tian Ding, Yuxin Peng, Li Liu &amp; Xu wen (2020 )A flexible and attachable IMU-based motion capture system for measurement of hand kinematics: A pilot study, (Under Review)</p>
+<h2 id="RESEARCH-EXPERIENCE"><a href="#RESEARCH-EXPERIENCE" class="headerlink" title="RESEARCH EXPERIENCE"></a>RESEARCH EXPERIENCE</h2><table>
+<thead>
+<tr>
+<th><strong>Department   of Physical Education and Sports Science – Zhejiang University</strong></th>
+<th align="right">Oct   2017 – Feb 2019</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<p>·        Develop a data processing system for the 3D force sensor independently.</p>
+<p>·        Designed and made a gesture sensor based on a bending sensor. </p>
+<p>·        Created a sophisticated gesture sensing device based on inertial sensors.</p>
+<p>·        Two papers are being reviewed (first author and second author).</p>
+<table>
+<thead>
+<tr>
+<th><strong>Collaborative   Information Systems Laboratory – Shanghai Jiao Tong University</strong></th>
+<th align="right">Mar 2019 – Present</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<p>·        Wrote the crawler software to crawl the GitHub user data and save it as a SQL database file for easy use by peers.</p>
+<p>·        Perform data processing and sentiment analysis based on the collected data.</p>
+<h2 id="SELECTED-PROJECTS"><a href="#SELECTED-PROJECTS" class="headerlink" title="SELECTED PROJECTS"></a><strong>SELECTED PROJECTS</strong></h2><table>
+<thead>
+<tr>
+<th><strong>Data   set based recommendation system for machine learning model – Team leader</strong></th>
+<th align="right">Oct   2018 – Present</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<p>·        Wrote a web crawler and crawled all the data on the OpenML website</p>
+<p>·        Trained the data and used a tag-based recommendation system.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Design   of a gesture sensor with six-axis gyro control – Experimental assistant</strong></th>
+<th align="right">Jan   2018 – May 2018</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<p>·        Proposed a flexible, attachable and low-cost IMU-based motion capture system</p>
+<p>·        Designed and made a PCB board. Completed the soldering and wiring of the device. Produced a 3D printed shell.</p>
+<p>·        Wrote a full set of code for data acquisition, transmission, and post-processing</p>
+<table>
+<thead>
+<tr>
+<th><strong>SJTU-company   innovation practice program for undergraduates</strong> <strong>– Team leader</strong></th>
+<th align="right">Nov   2017 – Nov 2018</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<p>·        Designed a lighting device for indoor photography</p>
+<p>·        Wrote an app for controlling smart light bulbs</p>
+<h2 id="AWARDS"><a href="#AWARDS" class="headerlink" title="AWARDS"></a><strong>AWARDS</strong></h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>University  Scholarship for Merit Student, SJTU</td>
+<td>Scale: &lt;  5%</td>
+<td>2018-2019</td>
+</tr>
+<tr>
+<td>University Third  Scholarship for Academic Excellency, SJTU</td>
+<td>Scale: 20%</td>
+<td>Nov. 2019; Nov. 2018</td>
+</tr>
+<tr>
+<td>University Academic Improvement Scholarship</td>
+<td>Scale: 5%</td>
+<td>Nov. 2018</td>
+</tr>
+<tr>
+<td>2018 China-US Young Maker Competition (Shanghai) second  prize</td>
+<td>Scale: 2/30</td>
+<td>Sept. 2018</td>
+</tr>
+<tr>
+<td>2018 VEX Robot Shanghai Division Selection Competition  first prize</td>
+<td>Scale: 1/20</td>
+<td>Jul. 2018</td>
+</tr>
+<tr>
+<td>The 8th University Engineering Comprehensive Ability  Competition first prize</td>
+<td>Scale: 3/40</td>
+<td>June 2018</td>
+</tr>
+</tbody></table>
+<h2 id="PROFESSIONAL-SKILLS"><a href="#PROFESSIONAL-SKILLS" class="headerlink" title="PROFESSIONAL SKILLS"></a><strong>PROFESSIONAL SKILLS</strong></h2><ul>
+<li>Programming Language: MATLAB, C++, C, Python, Verilog HDL, MIPS Assembly</li>
+<li>Software: OrCAD, DataGraph, Mathematica, Xilinx, AutoCAD, CTex, Qt, Solidworks, Altium Designer</li>
+<li>Operating System: Linux, Android, iOS, macOS</li>
+<li>Skills: Native in Chinese; Fluent in English; Basic in Japanese</li>
+</ul>
+<h2 id="OTHER-MATERIALS"><a href="#OTHER-MATERIALS" class="headerlink" title="OTHER MATERIALS"></a>OTHER MATERIALS</h2><p>TOEFL iBT 96 [[Web](/sources/2019Jul07TOEFLiBT/View Scores - NEEA TOEFL iBT Online Registration.html)] [<a href="/PDF/toefl_grade_96.pdf">PDF</a>]</p>
+<p>CET6 503 [[Web](/sources/CET6/全国大学英语四、六级考试成绩查询 - 中国教育考试网.html)]</p>
+<p>CET4 557 [<a href="/sources/CET4.jpg">JPG</a>]</p>
+<p>Honor Certificates (Chinese version) [<a href="/PDF/certificates-of-honor.pdf">PDF</a>]</p>
+<p>Transcript of the winter program (Official) [<a href="/PDF/transcript-of-winter-program.pdf">PDF</a>]</p>
+<p>Transcript of SJTU (Official) [<a href="/PDF/official-transcript-of-SJTU.pdf">PDF</a>]</p>
+<blockquote>
+<p>Since some documents are large, it may take a minute to load, please be patient.</p>
+</blockquote>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>

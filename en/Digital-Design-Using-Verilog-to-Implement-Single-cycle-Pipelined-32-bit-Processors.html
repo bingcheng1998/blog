@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/program/">
+            program
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        Digital Design Using Verilog to Implement Single-Cycle &amp; Pipelined 32-Bit Processors
+    </h2>
+    <ul class="post-date">
+        <li>
+            2018-11-23
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <p>Aiming at enhancing our understanding of how the central processing unit (CPU) works, this project invites us to build a MIPS single-cycle processor and a MIPS pipelined processor using Verilog. </p>
+<a id="more"></a>
+
+<p>Full report <a href="../../PDF/VE370-simulate-32-Bit-Processors.pdf">[↓]</a></p>
+<meta name="referrer" content="no-referrer" />
+
+<h2 id="I-Objectives"><a href="#I-Objectives" class="headerlink" title="I. Objectives"></a>I. Objectives</h2><ul>
+<li>To build up both single-cycle and pipelined datapaths and construct a simple version of a processor sufficient to implement a subset of the MIPS instruction set that includes: <ol>
+<li>The <strong>memory-reference instructions</strong> load word (<code>lw</code>) and store word (<code>sw</code>) </li>
+<li>The <strong>arithmetic-logical instructions</strong> <code>add, addi, sub, and, andi, or</code>, and <code>slt</code></li>
+<li>The <strong>jumping instructions</strong> branch equal (<code>beq</code>), branch not equal (<code>bne</code>), and jump (<code>j</code>) </li>
+</ol>
+</li>
+<li>To model and simulate the single-cycle and pipelined datapaths in Verilog HDL</li>
+<li>To synthesize the results by using Xilinx synthesis tools </li>
+</ul>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Aiming at enhancing our understanding of how the central processing unit (CPU) works, this project invites us to build a MIPS single-cycle processor and a MIPS pipelined processor using Verilog. </p>
+<p>The single-cycle implementation executes all instructions in one clock cycle. This means that no datapath resource can be used more than once per instruction, so any element needed more than once must be duplicated. Therefore, a memory for instructions is separated from one for data. Although some of the functional units will need to be duplicated, many of the elements can be shared by different instruction flows. In order to share a datapath element between two or more different instruction classes, multiple connections to the input of an element are allowed, and multiplexors and control signals are designed carefully to select among the multiple inputs.</p>
+<p>However, the single-cycle implementation has an unsatisfactory performance due to its inefficiency; the execution time of each instruction is one clock cycle, which is determined by the longest possible path in the processor. Using the same hardware components, the pipelined implementation allows different functional units of a system to run concurrently. As a result, pipelining technique significantly reduces the execution time of a same program compared to the single-cycle implementation. </p>
+<p>In order to prevent data hazards in the pipeline and minimize the delay created by stalls, a forwarding unit and a hazard detection unit are implemented. The forwarding technique retrieves the missing data element from internal buffers rather than waiting for it to arrive from programmer-visible registers or memory. The hazard detection unit operates during the ID stage so that it can insert the stall between the load and its use; in this case, stalling is inevitable. For control hazards that might occur during the operation of jumping instructions, we assume branch is not taken and stall if the assumption is not correct during the ID stage via the hazard detection unit.  For the case when there is a load before a branch, unfortunately, as stated before, stalls are added so that the word is successfully written in the instruction memory.</p>
+<h2 id="II-Circuit-Design"><a href="#II-Circuit-Design" class="headerlink" title="II. Circuit Design"></a>II. Circuit Design</h2><h3 id="i-Single-cycle-datapath"><a href="#i-Single-cycle-datapath" class="headerlink" title="i. Single-cycle datapath"></a>i. Single-cycle datapath</h3><p>Our project follows the following single-cycle processor schematic from the textbook. This version of the MIPS single-cycle processor can execute the following instructions: add, sub, and, or, slt, lw, sw, beq, bne, addi, andi and j. </p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gisag12prdj31280u0tb7.jpg"></p>
+<p>The model divides the machine into two main units: control and data paths. Each unit consists of various functional blocks, such as a 32-bit ALU, register file, sign extension logic, and five multiplexers to select the appropriate operand.</p>
+<p>For the ALU control unit and the 32-bit ALU, our design follows six combinations of four control inputs in the textbook. The figure below shows how to set the ALU control bits according to the different function codes of the ALUOp control bit and the R type command.</p>
+<h3 id="ii-Pipelined-datapath"><a href="#ii-Pipelined-datapath" class="headerlink" title="ii. Pipelined datapath"></a>ii. Pipelined datapath</h3><p>Our project follows the following pipelined processor schematic from the textbook. This version of the MIPS single-cycle processor can execute the following instructions: add, sub, and, or, slt, lw, sw, beq, bne, addi, andi and j. </p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gisagdrxgcj31dy0u0jwn.jpg"></p>
+<h2 id="III-Design-of-Components"><a href="#III-Design-of-Components" class="headerlink" title="III. Design of Components"></a>III. Design of Components</h2><h3 id="i-IF-Stage"><a href="#i-IF-Stage" class="headerlink" title="i. IF Stage"></a>i. IF Stage</h3><h4 id="1-PC-MUX"><a href="#1-PC-MUX" class="headerlink" title="1. PC MUX"></a>1. PC MUX</h4><p>The  PC multiplexor controls what value replaces the PC (PC+4, the branch destination address or the jump destination address). The Verilog code for the PC multiplexor is</p>
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> <span class="token function">Mux_N_bit</span><span class="token punctuation">(</span>in1<span class="token punctuation">,</span>in2<span class="token punctuation">,</span>out<span class="token punctuation">,</span>select<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">parameter</span> N <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
+    <span class="token keyword">input</span><span class="token punctuation">[</span>N<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> in1<span class="token punctuation">,</span>in2<span class="token punctuation">;</span>
+    <span class="token keyword">input</span> select<span class="token punctuation">;</span>
+    <span class="token keyword">output</span><span class="token punctuation">[</span>N<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> out<span class="token punctuation">;</span>
+    <span class="token keyword">assign</span> out <span class="token operator">=</span> select<span class="token operator">?</span>in2<span class="token punctuation">:</span>in1<span class="token punctuation">;</span>
+<span class="token keyword">endmodule</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-PC-Register"><a href="#2-PC-Register" class="headerlink" title="2. PC Register"></a>2. PC Register</h4><p>The program counter is a 32-bit register that is written at the end of every clock cycle and thus does not need a write control signal. The Verilog code for PC register is</p>
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> PC <span class="token punctuation">(</span>
+     <span class="token keyword">input</span>               clk<span class="token punctuation">,</span>
+                         PCWrite<span class="token punctuation">,</span>
+     <span class="token keyword">input</span>       <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>  in<span class="token punctuation">,</span>
+     <span class="token keyword">output</span> <span class="token keyword">reg</span>  <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>  out
+ <span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+     <span class="token keyword">initial</span> <span class="token keyword">begin</span>
+         out <span class="token operator">=</span> <span class="token number">32'b0</span><span class="token punctuation">;</span>
+     <span class="token keyword">end</span>
+ 
+     <span class="token important">always @</span> <span class="token punctuation">(</span><span class="token keyword">posedge</span> clk<span class="token punctuation">)</span> <span class="token keyword">begin</span>
+         <span class="token keyword">if</span> <span class="token punctuation">(</span>PCWrite<span class="token punctuation">)</span>
+             out <span class="token operator">&lt;=</span> in<span class="token punctuation">;</span>
+     <span class="token keyword">end</span>
+ 
+ <span class="token keyword">endmodule</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-PC-Adder-4"><a href="#3-PC-Adder-4" class="headerlink" title="3. PC Adder 4"></a>3. PC Adder 4</h4><p>The PC adder is an ALU wired to always add its two 32-bit inputs and place the sum on its output. The Verilog code for the adder is</p>
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> <span class="token function">adder</span><span class="token punctuation">(</span>
+     <span class="token keyword">input</span> <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span>
+     <span class="token keyword">input</span> <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> b<span class="token punctuation">,</span>
+     <span class="token keyword">output</span> <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> sum
+     <span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">reg</span> <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> sum<span class="token punctuation">;</span>
+     <span class="token important">always @</span><span class="token punctuation">(</span>a <span class="token keyword">or</span> b<span class="token punctuation">)</span>
+         <span class="token keyword">begin</span>
+             sum <span class="token operator">=</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+         <span class="token keyword">end</span>
+ <span class="token keyword">endmodule</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="4-Instruction-Memory"><a href="#4-Instruction-Memory" class="headerlink" title="4. Instruction Memory"></a>4. Instruction Memory</h4><p>The instruction memory only reads, we treat it as a combinational logic: the output at any time reflects the contents of the location specified by the address input, and no read control signal is needed. The Verilog code for the instruction memory is</p>
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> instruction_memory <span class="token punctuation">(</span>
+      <span class="token keyword">input</span>       <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>  address<span class="token punctuation">,</span>
+      <span class="token keyword">output</span>      <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>  instruction
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+      <span class="token keyword">parameter</span> size <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span> <span class="token comment">// you can change here, size is the max size of memory</span>
+      <span class="token keyword">integer</span> i<span class="token punctuation">;</span>
+      <span class="token comment">// initialize memory</span>
+      <span class="token keyword">reg</span> <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> memory <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span>size<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token comment">// clear all memory to nop</span>
+      <span class="token keyword">initial</span> <span class="token keyword">begin</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+              memory<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">32'b0</span><span class="token punctuation">;</span>
+          <span class="token comment">// include the instruction_memory</span>
+          <span class="token constant">`include</span> <span class="token string">"InstructionMem_for_P2_Demo.txt"</span>
+      <span class="token keyword">end</span>
+      <span class="token comment">// Output the menmory at address</span>
+      <span class="token keyword">assign</span> instruction <span class="token operator">=</span> memory<span class="token punctuation">[</span>address <span class="token operator">>></span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">endmodule</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="ii-EX-Stage"><a href="#ii-EX-Stage" class="headerlink" title="ii. EX Stage"></a>ii. EX Stage</h3><h4 id="1-Forwarding-Unit-and-MUX"><a href="#1-Forwarding-Unit-and-MUX" class="headerlink" title="1. Forwarding Unit and MUX"></a>1. Forwarding Unit and MUX</h4><p>The forwarding unit detects the hazards in the EX and MEM stage and assigns the ALU forwarding control of the multiplexors. According to the conditions for the two kinds of data hazards, the Verilog code for the forwarding unit module is written as follow.</p>
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> Forward <span class="token punctuation">(</span>
+      <span class="token keyword">input</span>       <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>   registerRsID<span class="token punctuation">,</span>
+                          registerRtID<span class="token punctuation">,</span>
+                          registerRsEX<span class="token punctuation">,</span>
+                          registerRtEX<span class="token punctuation">,</span>
+                          registerRdMEM<span class="token punctuation">,</span>
+                          registerRdWB<span class="token punctuation">,</span>
+      <span class="token keyword">input</span>               regWriteMEM<span class="token punctuation">,</span>
+                          regWriteWB<span class="token punctuation">,</span>
+      <span class="token keyword">output</span> <span class="token keyword">reg</span>  <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>   forwardA<span class="token punctuation">,</span>
+                          forwardB<span class="token punctuation">,</span>
+      <span class="token keyword">output</span> <span class="token keyword">reg</span>          forwardC<span class="token punctuation">,</span>
+                          forwardD
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+      <span class="token keyword">initial</span> <span class="token keyword">begin</span>
+          forwardA <span class="token operator">=</span> <span class="token number">2'b00</span><span class="token punctuation">;</span>
+          forwardB <span class="token operator">=</span> <span class="token number">2'b00</span><span class="token punctuation">;</span>
+          forwardC <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+          forwardD <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+      <span class="token keyword">end</span>
+  
+      <span class="token important">always @</span> <span class="token punctuation">(</span> <span class="token operator">*</span> <span class="token punctuation">)</span> <span class="token keyword">begin</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>regWriteMEM <span class="token operator">&amp;&amp;</span> registerRdMEM <span class="token operator">&amp;&amp;</span> registerRdMEM <span class="token operator">==</span> registerRsEX<span class="token punctuation">)</span>
+              forwardA <span class="token operator">=</span> <span class="token number">2'b10</span><span class="token punctuation">;</span>
+          <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>regWriteWB <span class="token operator">&amp;&amp;</span> registerRdWB <span class="token operator">&amp;&amp;</span> registerRdWB <span class="token operator">==</span> registerRsEX<span class="token punctuation">)</span>
+              forwardA <span class="token operator">=</span> <span class="token number">2'b01</span><span class="token punctuation">;</span>
+          <span class="token keyword">else</span>
+              forwardA <span class="token operator">=</span> <span class="token number">2'b00</span><span class="token punctuation">;</span>
+  
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>regWriteMEM <span class="token operator">&amp;&amp;</span> registerRdMEM <span class="token operator">&amp;&amp;</span> registerRdMEM <span class="token operator">==</span> registerRtEX<span class="token punctuation">)</span>
+              forwardB <span class="token operator">=</span> <span class="token number">2'b10</span><span class="token punctuation">;</span>
+          <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>regWriteWB <span class="token operator">&amp;&amp;</span> registerRdWB <span class="token operator">&amp;&amp;</span> registerRdWB <span class="token operator">==</span> registerRtEX<span class="token punctuation">)</span>
+              forwardB <span class="token operator">=</span> <span class="token number">2'b01</span><span class="token punctuation">;</span>
+          <span class="token keyword">else</span>
+              forwardB <span class="token operator">=</span> <span class="token number">2'b00</span><span class="token punctuation">;</span>
+  
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>regWriteMEM <span class="token operator">&amp;&amp;</span> registerRdMEM <span class="token operator">&amp;&amp;</span> registerRdMEM <span class="token operator">==</span> registerRsID<span class="token punctuation">)</span>
+              forwardC <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+          <span class="token keyword">else</span>
+              forwardC <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+  
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>regWriteMEM <span class="token operator">&amp;&amp;</span> registerRdMEM <span class="token operator">&amp;&amp;</span> registerRdMEM <span class="token operator">==</span> registerRtID<span class="token punctuation">)</span>
+              forwardD <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+          <span class="token keyword">else</span>
+              forwardD <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+      <span class="token keyword">end</span>
+  
+  <span class="token keyword">endmodule</span> <span class="token comment">// Forward</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>As the pipeline registers hold the data to be forwarding, we take inputs to the ALU from any pipeline register rather than jus ID/EX, so that the proper data can be forwarded to the next stage. By adding multiplexors to the input of the ALU, and with the proper controls determined by the forwarding unit showed in the following figure, the pipeline can run at full speed in the presence of the data dependences.  </p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gisagjt6n7j30it067wfc.jpg" alt="image-20181123093904906"></p>
+<p>The Verilog code for each 3-to-1 Mux is </p>
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> Mux_32bit_3to1 <span class="token punctuation">(</span>in00<span class="token punctuation">,</span> in01<span class="token punctuation">,</span> in10<span class="token punctuation">,</span> mux_out<span class="token punctuation">,</span> control<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">input</span> <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> in00<span class="token punctuation">,</span> in01<span class="token punctuation">,</span> in10<span class="token punctuation">;</span>
+    <span class="token keyword">output</span> <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> mux_out<span class="token punctuation">;</span>
+    <span class="token keyword">input</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> control<span class="token punctuation">;</span>
+    <span class="token keyword">reg</span> <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> mux_out<span class="token punctuation">;</span>
+    <span class="token important">always @</span><span class="token punctuation">(</span>in00 <span class="token keyword">or</span> in01 <span class="token keyword">or</span> in10 <span class="token keyword">or</span> control<span class="token punctuation">)</span>
+    <span class="token keyword">begin</span>
+        <span class="token function">case</span><span class="token punctuation">(</span>control<span class="token punctuation">)</span>
+        <span class="token number">2'b00</span><span class="token punctuation">:</span>mux_out<span class="token operator">&lt;=</span>in00<span class="token punctuation">;</span>
+        <span class="token number">2'b01</span><span class="token punctuation">:</span>mux_out<span class="token operator">&lt;=</span>in01<span class="token punctuation">;</span>
+        <span class="token number">2'b10</span><span class="token punctuation">:</span>mux_out<span class="token operator">&lt;=</span>in10<span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token punctuation">:</span> mux_out<span class="token operator">&lt;=</span>in00<span class="token punctuation">;</span>
+        <span class="token keyword">endcase</span>
+    <span class="token keyword">end</span> 
+<span class="token keyword">endmodule</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-ALU-Control"><a href="#2-ALU-Control" class="headerlink" title="2. ALU Control"></a>2. ALU Control</h4><p>The ALU control unit generates a 4-bit control input to the ALU with the function field of the instruction and a 2-bit control field ALUOp determined by the main control unit.  Our design follows the that in the textbook that shows how the ALU control inputs are set based on the 2-bit ALUOp control and the 6-bit function code.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gisagn2ti7j30ij06uaax.jpg" alt="image-20181123093825866"></p>
+<p>The Verilog code for the ALU control module is </p>
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> <span class="token function">ALU_control</span><span class="token punctuation">(</span>
+      funct<span class="token punctuation">,</span>ALUOp<span class="token punctuation">,</span>ALUCtrl
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">input</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> funct<span class="token punctuation">;</span>
+      <span class="token keyword">input</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> ALUOp<span class="token punctuation">;</span>
+      <span class="token keyword">output</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> ALUCtrl<span class="token punctuation">;</span>
+      <span class="token keyword">reg</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> ALUCtrl<span class="token punctuation">;</span>
+      <span class="token important">always @</span> <span class="token punctuation">(</span>funct <span class="token keyword">or</span> ALUOp<span class="token punctuation">)</span>
+      <span class="token keyword">begin</span>
+          <span class="token function">case</span><span class="token punctuation">(</span>ALUOp<span class="token punctuation">)</span>
+              <span class="token number">2'b00</span><span class="token punctuation">:</span> <span class="token keyword">assign</span> ALUCtrl <span class="token operator">=</span> <span class="token number">4'b0010</span><span class="token punctuation">;</span>
+              <span class="token number">2'b01</span><span class="token punctuation">:</span> <span class="token keyword">assign</span> ALUCtrl <span class="token operator">=</span> <span class="token number">4'b0110</span><span class="token punctuation">;</span>
+              <span class="token number">2'b10</span><span class="token punctuation">:</span>
+                  <span class="token keyword">begin</span>
+                      <span class="token keyword">if</span> <span class="token punctuation">(</span>funct <span class="token operator">==</span> <span class="token number">6'b100000</span><span class="token punctuation">)</span>      <span class="token keyword">assign</span> ALUCtrl <span class="token operator">=</span> <span class="token number">4'b0010</span><span class="token punctuation">;</span>
+                      <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>funct <span class="token operator">==</span> <span class="token number">6'b100010</span><span class="token punctuation">)</span> <span class="token keyword">assign</span> ALUCtrl <span class="token operator">=</span> <span class="token number">4'b0110</span><span class="token punctuation">;</span>
+                      <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>funct <span class="token operator">==</span> <span class="token number">6'b100100</span><span class="token punctuation">)</span> <span class="token keyword">assign</span> ALUCtrl <span class="token operator">=</span> <span class="token number">4'b0000</span><span class="token punctuation">;</span>
+                      <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>funct <span class="token operator">==</span> <span class="token number">6'b100101</span><span class="token punctuation">)</span> <span class="token keyword">assign</span> ALUCtrl <span class="token operator">=</span> <span class="token number">4'b0001</span><span class="token punctuation">;</span>
+                      <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>funct <span class="token operator">==</span> <span class="token number">6'b101010</span><span class="token punctuation">)</span> <span class="token keyword">assign</span> ALUCtrl <span class="token operator">=</span> <span class="token number">4'b0111</span><span class="token punctuation">;</span>
+                  <span class="token keyword">end</span>
+              <span class="token number">2'b11</span><span class="token punctuation">:</span>
+                  <span class="token keyword">assign</span> ALUCtrl <span class="token operator">=</span> <span class="token number">4'b0000</span><span class="token punctuation">;</span>            
+              <span class="token comment">// default: assign ALUCtrl = 4'b1111;</span>
+          <span class="token keyword">endcase</span>
+      <span class="token keyword">end</span>
+  <span class="token keyword">endmodule</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="3-ALU"><a href="#3-ALU" class="headerlink" title="3. ALU"></a>3. ALU</h4><p>Depending on the ALU control lines, the ALU performs one of the functions shown in the following table.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gisagqbm3aj30by05a3ym.jpg" alt="image-20181123093919177"></p>
+<p>For load word and store word instructions, ALU computes the memory address by addition. For the R-type instructions, ALU performs one of the five actions: and, or add, subtract, or set on less than. For the instruction beq, the ALU performs subtraction. The Verilog code for the ALU is </p>
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token constant">`ifndef</span> MODULE_ALU
+<span class="token constant">`define</span> MODULE_ALU
+<span class="token constant">`timescale</span> <span class="token number">1</span>ns <span class="token operator">/</span> <span class="token number">1</span>ps
+<span class="token keyword">module</span> <span class="token function">ALU</span><span class="token punctuation">(</span>
+    ALUCtrl<span class="token punctuation">,</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>zero<span class="token punctuation">,</span>ALU_result
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">input</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> ALUCtrl<span class="token punctuation">;</span>
+    <span class="token keyword">input</span> <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> b<span class="token punctuation">;</span>
+    <span class="token keyword">output</span> zero<span class="token punctuation">;</span>
+    <span class="token keyword">output</span> <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> ALU_result<span class="token punctuation">;</span>
+    <span class="token keyword">reg</span> zero<span class="token punctuation">;</span>
+    <span class="token keyword">reg</span> <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> ALU_result<span class="token punctuation">;</span>
+    <span class="token important">always @</span> <span class="token punctuation">(</span>a <span class="token keyword">or</span> b <span class="token keyword">or</span> ALUCtrl<span class="token punctuation">)</span>
+    <span class="token keyword">begin</span>
+        <span class="token keyword">case</span> <span class="token punctuation">(</span>ALUCtrl<span class="token punctuation">)</span>
+            <span class="token number">4'b0000</span><span class="token punctuation">:</span>
+            <span class="token keyword">begin</span>
+                <span class="token keyword">assign</span> ALU_result <span class="token operator">=</span> a <span class="token operator">&amp;</span> b<span class="token punctuation">;</span>
+                <span class="token keyword">assign</span> zero <span class="token operator">=</span> <span class="token punctuation">(</span>a <span class="token operator">&amp;</span> b <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">end</span>
+            <span class="token number">4'b0001</span><span class="token punctuation">:</span>
+            <span class="token keyword">begin</span>
+                <span class="token keyword">assign</span> ALU_result <span class="token operator">=</span> a <span class="token operator">|</span> b<span class="token punctuation">;</span>
+                <span class="token keyword">assign</span> zero <span class="token operator">=</span> <span class="token punctuation">(</span>a <span class="token operator">|</span> b <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">end</span>
+            <span class="token number">4'b0010</span><span class="token punctuation">:</span>
+            <span class="token keyword">begin</span>
+                <span class="token keyword">assign</span> ALU_result <span class="token operator">=</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+                <span class="token keyword">assign</span> zero <span class="token operator">=</span> <span class="token punctuation">(</span>a <span class="token operator">+</span> b <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">end</span>
+            <span class="token number">4'b0110</span><span class="token punctuation">:</span>
+            <span class="token keyword">begin</span>
+                <span class="token keyword">assign</span> ALU_result <span class="token operator">=</span> a <span class="token operator">-</span> b<span class="token punctuation">;</span>
+                <span class="token keyword">assign</span> zero <span class="token operator">=</span> <span class="token punctuation">(</span> a <span class="token operator">==</span> b<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">end</span>
+            <span class="token number">4'b0111</span><span class="token punctuation">:</span>
+            <span class="token keyword">begin</span>
+                <span class="token keyword">assign</span> ALU_result <span class="token operator">=</span> <span class="token punctuation">(</span>a <span class="token operator">&lt;</span> b<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token keyword">assign</span> zero <span class="token operator">=</span> <span class="token punctuation">(</span>a <span class="token operator">&lt;</span> b<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">0</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">end</span>
+            <span class="token keyword">default</span><span class="token punctuation">:</span>
+            <span class="token keyword">begin</span>
+                <span class="token keyword">assign</span> ALU_result <span class="token operator">=</span> a<span class="token punctuation">;</span>
+                <span class="token keyword">assign</span> zero <span class="token operator">=</span> <span class="token punctuation">(</span>a <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">end</span>
+        <span class="token keyword">endcase</span>    
+    <span class="token keyword">end</span>
+<span class="token keyword">endmodule</span>
+<span class="token constant">`endif</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="iii-Memory-Stage-and-Write-Back-Stage"><a href="#iii-Memory-Stage-and-Write-Back-Stage" class="headerlink" title="iii. Memory Stage and Write Back Stage"></a>iii. Memory Stage and Write Back Stage</h3><h4 id="1-Data-Memory"><a href="#1-Data-Memory" class="headerlink" title="1. Data Memory"></a>1. Data Memory</h4><p>This part is used to save the data to a data memory. The data memory must be written on store instructions; hence, data memory  has read and write control signals, an address input, and an input for the data to be written into memory. </p>
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> data_memory <span class="token punctuation">(</span>
+    <span class="token keyword">input</span>            clk<span class="token punctuation">,</span>
+    <span class="token keyword">input</span>            MemRead<span class="token punctuation">,</span>
+                 	 MemWrite<span class="token punctuation">,</span>
+    <span class="token keyword">input</span>    <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>  address<span class="token punctuation">,</span>
+                     write_data<span class="token punctuation">,</span>
+    <span class="token keyword">output</span>   <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>  read_data
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">parameter</span>        size <span class="token operator">=</span> <span class="token number">64</span><span class="token punctuation">;</span>	<span class="token comment">// size of data register_memory</span>
+    <span class="token keyword">integer</span>          i<span class="token punctuation">;</span>
+    <span class="token keyword">wire</span>     <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>  index<span class="token punctuation">;</span>
+    <span class="token keyword">reg</span>      <span class="token punctuation">[</span><span class="token number">31</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>  register_memory <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span>size<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">assign</span> index <span class="token operator">=</span> address <span class="token operator">>></span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment">// address/4 </span>
+    <span class="token keyword">initial</span> <span class="token keyword">begin</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            register_memory<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">32'b0</span><span class="token punctuation">;</span>
+        <span class="token comment">// read_data = 32'b0;</span>
+        <span class="token comment">// wire can not be set within a initial.</span>
+    <span class="token keyword">end</span>
+    <span class="token important">always @</span> <span class="token punctuation">(</span> <span class="token keyword">posedge</span> clk <span class="token punctuation">)</span> <span class="token keyword">begin</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>MemWrite <span class="token operator">==</span> <span class="token number">1'b1</span><span class="token punctuation">)</span> <span class="token keyword">begin</span>
+            register_memory<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> write_data<span class="token punctuation">;</span>
+        <span class="token keyword">end</span>
+    <span class="token keyword">end</span>
+    <span class="token keyword">assign</span> read_data <span class="token operator">=</span> <span class="token punctuation">(</span>MemRead <span class="token operator">==</span> <span class="token number">1'b1</span><span class="token punctuation">)</span><span class="token operator">?</span>register_memory<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token number">32'b0</span><span class="token punctuation">;</span>
+<span class="token keyword">endmodule</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="VI-Control-and-Data-Hazard"><a href="#VI-Control-and-Data-Hazard" class="headerlink" title="VI. Control and Data Hazard"></a>VI. Control and Data Hazard</h2><h3 id="i-EXstage"><a href="#i-EXstage" class="headerlink" title="i. EXstage"></a>i. EXstage</h3><h5 id="Data-Hazard"><a href="#Data-Hazard" class="headerlink" title="Data Hazard"></a>Data Hazard</h5><p>Branch  prediction  and  forwarding  help  make  a  computer  fast  while  still  getting the right answers. This  forwarding  control  will  be  in  the  EX  stage,  because  the  ALU  forwarding  multiplexors  are  found  in  that  stage.  Thus,  we  must  pass  the  operand  register  numbers from the ID stage via the ID/EX pipeline register to determine whether  to forward values. </p>
+<pre class="line-numbers language-ruby" data-language="ruby"><code class="language-ruby"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant">MEM</span><span class="token operator">/</span><span class="token constant">WB</span><span class="token punctuation">.</span><span class="token constant">RegWrite</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token constant">MEM</span><span class="token operator">/</span><span class="token constant">WB</span><span class="token punctuation">.</span><span class="token constant">RegisterRd</span> ≠ <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token constant">MEM</span><span class="token operator">/</span><span class="token constant">WB</span><span class="token punctuation">.</span><span class="token constant">RegisterRd</span> <span class="token operator">=</span> <span class="token constant">ID</span><span class="token operator">/</span><span class="token constant">EX</span><span class="token punctuation">.</span><span class="token constant">RegisterRs</span><span class="token punctuation">)</span>
+<span class="token keyword">and</span> <span class="token keyword">not</span> <span class="token punctuation">(</span><span class="token constant">EX</span><span class="token operator">/</span><span class="token constant">MEM</span><span class="token punctuation">.</span><span class="token constant">RegWrite</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token constant">EX</span><span class="token operator">/</span><span class="token constant">MEM</span><span class="token punctuation">.</span><span class="token constant">RegisterRd</span> ≠ <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token constant">EX</span><span class="token operator">/</span><span class="token constant">MEM</span><span class="token punctuation">.</span><span class="token constant">RegisterRd</span> <span class="token operator">=</span> <span class="token constant">ID</span><span class="token operator">/</span><span class="token constant">EX</span><span class="token punctuation">.</span><span class="token constant">RegisterRs</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+<span class="token constant">ForwardA</span> <span class="token operator">=</span> <span class="token number">01</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant">MEM</span><span class="token operator">/</span><span class="token constant">WB</span><span class="token punctuation">.</span><span class="token constant">RegWrite</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token constant">MEM</span><span class="token operator">/</span><span class="token constant">WB</span><span class="token punctuation">.</span><span class="token constant">RegisterRd</span> ≠ <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token constant">MEM</span><span class="token operator">/</span><span class="token constant">WB</span><span class="token punctuation">.</span><span class="token constant">RegisterRd</span> <span class="token operator">=</span> <span class="token constant">ID</span><span class="token operator">/</span><span class="token constant">EX</span><span class="token punctuation">.</span><span class="token constant">RegisterRt</span><span class="token punctuation">)</span>
+<span class="token keyword">and</span> <span class="token keyword">not</span> <span class="token punctuation">(</span><span class="token constant">EX</span><span class="token operator">/</span><span class="token constant">MEM</span><span class="token punctuation">.</span><span class="token constant">RegWrite</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token constant">EX</span><span class="token operator">/</span><span class="token constant">MEM</span><span class="token punctuation">.</span><span class="token constant">RegisterRd</span> ≠ <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token constant">EX</span><span class="token operator">/</span><span class="token constant">MEM</span><span class="token punctuation">.</span><span class="token constant">RegisterRd</span> <span class="token operator">=</span> <span class="token constant">ID</span><span class="token operator">/</span><span class="token constant">EX</span><span class="token punctuation">.</span><span class="token constant">RegisterRt</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+<span class="token constant">ForwardB</span> <span class="token operator">=</span> <span class="token number">01</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>According to the figure belowe and the logic above, we can get the verilog program belowe.</p>
+<img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fxccr2uia9j30o40hqjt3.jpg" width=320 />
+
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fxccr2uia9j30o40hqjt3.jpg"></p>
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> <span class="token function">Forwarding</span><span class="token punctuation">(</span>
+    <span class="token comment">// Input Register</span>
+    <span class="token keyword">input</span>   <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>   ID_EX_Reg_Rt<span class="token punctuation">,</span>
+                    ID_EX_Reg_Rs<span class="token punctuation">,</span>
+                    IF_ID_Reg_Rs<span class="token punctuation">,</span>
+                    IF_ID_Reg_Rt<span class="token punctuation">,</span>
+                    EX_MEM_Reg_Rd<span class="token punctuation">,</span>
+                    MEM_WB_Reg_Rd<span class="token punctuation">,</span>
+    <span class="token comment">// Input control signal</span>
+    <span class="token keyword">input</span>           EX_MEM_RegWrite<span class="token punctuation">,</span>
+                    MEM_WB_RegWrite<span class="token punctuation">,</span>
+    <span class="token comment">//  Forward for ALU input</span>
+    <span class="token keyword">output</span>  <span class="token keyword">reg</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>   Forward_ALU_A<span class="token punctuation">,</span>
+                        Forward_ALU_B<span class="token punctuation">,</span>
+    <span class="token comment">//  Forward for state reg input</span>
+    <span class="token keyword">output</span>  <span class="token keyword">reg</span>     Forward_C<span class="token punctuation">,</span>
+                    Forward_D
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token important">always @</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span>
+        <span class="token keyword">begin</span>
+            <span class="token function">if</span><span class="token punctuation">(</span>EX_MEM_RegWrite <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>EX_MEM_Reg_Rd <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>EX_MEM_Reg_Rd <span class="token operator">==</span> ID_EX_Reg_Rs<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                Forward_ALU_A <span class="token operator">=</span> <span class="token number">2'b10</span><span class="token punctuation">;</span>
+            <span class="token comment">// ID_EX for ALU</span>
+            <span class="token keyword">else</span> <span class="token function">if</span><span class="token punctuation">(</span>MEM_WB_RegWrite <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>MEM_WB_Reg_Rd <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>MEM_WB_Reg_Rd <span class="token operator">==</span> ID_EX_Reg_Rs<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                Forward_ALU_A <span class="token operator">=</span> <span class="token number">2'b01</span><span class="token punctuation">;</span>
+            <span class="token comment">// MEM_WB for ALU</span>
+            <span class="token keyword">else</span>
+                Forward_ALU_A <span class="token operator">=</span> <span class="token number">2'b00</span><span class="token punctuation">;</span>
+            <span class="token comment">// Regsiter for ALU</span>
+
+            <span class="token function">if</span><span class="token punctuation">(</span>EX_MEM_RegWrite <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>EX_MEM_Reg_Rd <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>EX_MEM_Reg_Rd <span class="token operator">==</span> ID_EX_Reg_Rt<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                Forward_ALU_B <span class="token operator">=</span> <span class="token number">2'b10</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token function">if</span><span class="token punctuation">(</span>MEM_WB_RegWrite <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>MEM_WB_Reg_Rd <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>MEM_WB_Reg_Rd <span class="token operator">==</span> ID_EX_Reg_Rt<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                Forward_ALU_B <span class="token operator">=</span> <span class="token number">2'b01</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                Forward_ALU_B <span class="token operator">=</span> <span class="token number">2'b00</span><span class="token punctuation">;</span>
+            <span class="token comment">//Select the data input of ID_EX_State_reg</span>
+            <span class="token function">if</span><span class="token punctuation">(</span>EX_MEM_RegWrite <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>MEM_WB_Reg_Rd <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>MEM_WB_Reg_Rd <span class="token operator">==</span> IF_ID_Reg_Rs<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                Forward_C <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                Forward_C <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                
+            <span class="token function">if</span><span class="token punctuation">(</span>EX_MEM_RegWrite <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>MEM_WB_Reg_Rd <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>MEM_WB_Reg_Rd <span class="token operator">==</span> IF_ID_Reg_Rt<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                Forward_D <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                Forward_D <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span>
+<span class="token keyword">endmodule</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="ii-ID-stage"><a href="#ii-ID-stage" class="headerlink" title="ii. ID stage"></a>ii. ID stage</h3><h5 id="Data-Hazard-1"><a href="#Data-Hazard-1" class="headerlink" title="Data Hazard"></a>Data Hazard</h5><p>We use the <code>Hazard Detection Unit</code> to detect the <em>Load-Use Hazard</em> and stall the pipline by one clock cycle.</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giscd2znwjj30sg0b6ab3.jpg" width=396  />
+
+<pre class="line-numbers language-ruby" data-language="ruby"><code class="language-ruby"><span class="token constant">ID</span><span class="token operator">/</span><span class="token constant">EX</span><span class="token punctuation">.</span><span class="token constant">MemRead</span> <span class="token keyword">and</span>
+<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token constant">ID</span><span class="token operator">/</span><span class="token constant">EX</span><span class="token punctuation">.</span><span class="token constant">RegisterRt</span> <span class="token operator">==</span> <span class="token constant">IF</span><span class="token operator">/</span><span class="token constant">ID</span><span class="token punctuation">.</span><span class="token constant">RegisterRs</span><span class="token punctuation">)</span> <span class="token keyword">or</span>
+<span class="token punctuation">(</span><span class="token constant">ID</span><span class="token operator">/</span><span class="token constant">EX</span><span class="token punctuation">.</span><span class="token constant">RegisterRt</span> <span class="token operator">==</span> <span class="token constant">IF</span><span class="token operator">/</span><span class="token constant">ID</span><span class="token punctuation">.</span><span class="token constant">RegisterRt</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>With the logic shown above, we can get the verilog program belowe.</p>
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> <span class="token function">hazard_detection</span><span class="token punctuation">(</span>
+    <span class="token keyword">input</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> ID_Reg_Rt<span class="token punctuation">,</span> 
+                IF_Reg_Rs<span class="token punctuation">,</span> 
+                IF_Reg_Rt<span class="token punctuation">,</span>
+
+    <span class="token keyword">input</span>       EX_MemRead<span class="token punctuation">,</span>
+                EX_regWirte<span class="token punctuation">,</span>
+                MEM_MemRead<span class="token punctuation">,</span>
+                Ins_Beq<span class="token punctuation">,</span>
+                Ins_Bne<span class="token punctuation">,</span>
+    
+    <span class="token keyword">output</span>  <span class="token keyword">reg</span>     stall<span class="token punctuation">,</span>
+                    flush
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">initial</span> <span class="token keyword">begin</span>
+        stall <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+        flush <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    <span class="token important">always @</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">begin</span>
+        <span class="token function">if</span><span class="token punctuation">(</span>EX_MemRead<span class="token operator">&amp;&amp;</span> ID_Reg_Rt<span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>ID_Reg_Rt <span class="token operator">==</span> IF_Reg_Rs<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>ID_Reg_Rt <span class="token operator">==</span> IF_Reg_Rt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">begin</span>
+            stall <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+            flush <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span> <span class="token keyword">else</span> <span class="token function">if</span><span class="token punctuation">(</span>Ins_Beq <span class="token operator">||</span> Ins_Bne<span class="token punctuation">)</span> <span class="token keyword">begin</span>
+            <span class="token function">if</span><span class="token punctuation">(</span>EX_regWirte <span class="token operator">&amp;&amp;</span> ID_Reg_Rt<span class="token operator">&amp;&amp;</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ID_Reg_Rt <span class="token operator">==</span> IF_Reg_Rs<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>ID_Reg_Rt <span class="token operator">==</span> IF_Reg_Rt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">begin</span>
+                stall <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+                flush <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+            <span class="token keyword">end</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>MEM_MemRead <span class="token operator">&amp;&amp;</span>ID_Reg_Rt<span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>ID_Reg_Rt <span class="token operator">==</span> IF_Reg_Rs<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>ID_Reg_Rt <span class="token operator">==</span> IF_Reg_Rt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">begin</span>
+                stall <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+                flush <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+            <span class="token keyword">end</span> <span class="token keyword">else</span> <span class="token keyword">begin</span>
+                stall <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+                flush <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>                
+            <span class="token keyword">end</span>
+        <span class="token keyword">end</span> <span class="token keyword">else</span> <span class="token keyword">begin</span>
+            stall <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+            flush <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">endmodule</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="Control-Hazard"><a href="#Control-Hazard" class="headerlink" title="Control Hazard"></a>Control Hazard</h5><p>We have limited our concern to hazards involving arithmetic operations and  data  transfers.  However,  there  are  also  pipeline hazards involving branches. An instruction must be fetched at  every  clock  cycle  to  sustain  the  pipeline,  yet  in  our  design  the  decision  about  whether  to  branch  doesn’t  occur  until  the  MEM  pipeline  stage. This  delay  in  determining  the  proper  instruction  to  fetch  is  called  a control hazard or branch hazard, in contrast to the data hazards we have just  examined.</p>
+<p>We <em>assume branch not taken</em> and use dynamic branch prediction. We only change prediction on two successive mispredictions.</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giscdbi2fnj31ac0s6jvb.jpg" width=496  />
+
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> HazardDetection <span class="token punctuation">(</span>
+    <span class="token keyword">input</span>               branchEqID<span class="token punctuation">,</span>
+                        branchNeID<span class="token punctuation">,</span>
+                        memReadEX<span class="token punctuation">,</span>
+                        regWriteEX<span class="token punctuation">,</span>
+                        memReadMEM<span class="token punctuation">,</span>
+    <span class="token keyword">input</span>       <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span>   registerRsID<span class="token punctuation">,</span>
+                        registerRtID<span class="token punctuation">,</span>
+                        registerRtEX<span class="token punctuation">,</span>
+                        registerRdEX<span class="token punctuation">,</span>
+                        registerRdMEM<span class="token punctuation">,</span>
+    <span class="token keyword">output</span> <span class="token keyword">reg</span>          stall<span class="token punctuation">,</span>
+                        flush
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">initial</span> <span class="token keyword">begin</span>
+        stall <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+        flush <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+
+    <span class="token important">always @</span> <span class="token punctuation">(</span> <span class="token operator">*</span> <span class="token punctuation">)</span> <span class="token keyword">begin</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>memReadEX <span class="token operator">&amp;&amp;</span> registerRtEX <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>registerRtEX <span class="token operator">==</span> registerRsID <span class="token operator">||</span> registerRtEX <span class="token operator">==</span> registerRtID<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">begin</span>
+            stall <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+            flush <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>branchEqID <span class="token operator">||</span> branchNeID<span class="token punctuation">)</span> <span class="token keyword">begin</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>regWriteEX <span class="token operator">&amp;&amp;</span> registerRdEX <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>registerRdEX <span class="token operator">==</span> registerRsID <span class="token operator">||</span> registerRdEX <span class="token operator">==</span> registerRtID<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">begin</span>
+                stall <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+                flush <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+            <span class="token keyword">end</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>memReadMEM <span class="token operator">&amp;&amp;</span> registerRdMEM <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>registerRdMEM <span class="token operator">==</span> registerRsID <span class="token operator">||</span> registerRdMEM <span class="token operator">==</span> registerRtID<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">begin</span>
+                stall <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+                flush <span class="token operator">=</span> <span class="token number">1'b1</span><span class="token punctuation">;</span>
+            <span class="token keyword">end</span> <span class="token keyword">else</span> <span class="token keyword">begin</span>
+                stall <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+                flush <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+            <span class="token keyword">end</span>
+        <span class="token keyword">end</span> <span class="token keyword">else</span> <span class="token keyword">begin</span>
+            stall <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+            flush <span class="token operator">=</span> <span class="token number">1'b0</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span>
+    <span class="token keyword">end</span>
+
+<span class="token keyword">endmodule</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="VII-Instruction-Implementation"><a href="#VII-Instruction-Implementation" class="headerlink" title="VII. Instruction Implementation"></a>VII. Instruction Implementation</h2><h3 id="i-Data-tables"><a href="#i-Data-tables" class="headerlink" title="i. Data tables"></a>i. Data tables</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giscdf7g6nj30ua0bymyv.jpg" width=420 />
+
+<p>The following table shows the setting of the control lines for each instruction in our design.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Jump</th>
+<th>ALUSrc</th>
+<th>RegDst</th>
+<th>ALUOp</th>
+<th>MemWrite</th>
+<th>MemRead</th>
+<th>Branch</th>
+<th>MemtoReg</th>
+<th>RegWrite</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>R-type</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>addi</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>00</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>andi</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>00</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>slt</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>00</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>beq</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>01</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>bne</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>01</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>lw</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>00</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>sw</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>00</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>j</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>00</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<h2 id="VIII-SSD-and-Top-Module"><a href="#VIII-SSD-and-Top-Module" class="headerlink" title="VIII. SSD and Top Module"></a>VIII. SSD and Top Module</h2><p>The Basys 3 board contains a four-digit common anode SSD. The anodes of the seven LEDs forming each<br>digit are tied together into one “common anode” circuit node, but the LED cathodes remain separate. The<br>common anode signals are available as four “digit enable” input signals to the 4-digit display. The cathodes of<br>similar segments on all four displays are connected into seven circuit nodes labeled CA through CG (so, for<br>example, the four d cathodes from the four digits are grouped together into a single circuit node called “CD”).<br>These seven cathode signals are available as inputs to the 4-digit display. This signal connection scheme makes<br>the cathode signals common to all digits but they can only illuminate the segments of a digit whose<br>corresponding anode signal is asserted.</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giscdkrsczj30l00jst9j.jpg" width=420 />
+
+<pre class="line-numbers language-verilog" data-language="verilog"><code class="language-verilog"><span class="token keyword">module</span> <span class="token function">SSD</span><span class="token punctuation">(</span>Q<span class="token punctuation">,</span>out<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">input</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> Q<span class="token punctuation">;</span>
+    <span class="token keyword">output</span> <span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> out<span class="token punctuation">;</span>
+    <span class="token keyword">reg</span> <span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span> out<span class="token punctuation">;</span>
+    <span class="token important">always @</span><span class="token punctuation">(</span>Q<span class="token punctuation">)</span> <span class="token keyword">begin</span>
+        <span class="token function">case</span><span class="token punctuation">(</span>Q<span class="token punctuation">)</span>
+        <span class="token number">4'b0000</span><span class="token punctuation">:</span> out <span class="token operator">=</span> <span class="token number">7'b0000001</span><span class="token punctuation">;</span>
+        <span class="token number">4'b0001</span><span class="token punctuation">:</span> out <span class="token operator">=</span> <span class="token number">7'b1001111</span><span class="token punctuation">;</span>
+        <span class="token number">4'b0010</span><span class="token punctuation">:</span> out <span class="token operator">=</span> <span class="token number">7'b0010010</span><span class="token punctuation">;</span>
+        <span class="token number">4'b0011</span><span class="token punctuation">:</span> out <span class="token operator">=</span> <span class="token number">7'b0000110</span><span class="token punctuation">;</span>
+        <span class="token number">4'b0100</span><span class="token punctuation">:</span> out <span class="token operator">=</span> <span class="token number">7'b1001100</span><span class="token punctuation">;</span>
+        <span class="token number">4'b0101</span><span class="token punctuation">:</span> out <span class="token operator">=</span> <span class="token number">7'b0100100</span><span class="token punctuation">;</span>
+        <span class="token number">4'b0110</span><span class="token punctuation">:</span> out <span class="token operator">=</span> <span class="token number">7'b0100000</span><span class="token punctuation">;</span>
+        <span class="token number">4'b0111</span><span class="token punctuation">:</span> out <span class="token operator">=</span> <span class="token number">7'b0001111</span><span class="token punctuation">;</span>
+        <span class="token number">4'b1000</span><span class="token punctuation">:</span> out <span class="token operator">=</span> <span class="token number">7'b0000000</span><span class="token punctuation">;</span>
+        <span class="token number">4'b1001</span><span class="token punctuation">:</span> out <span class="token operator">=</span> <span class="token number">7'b0000100</span><span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token punctuation">:</span> out <span class="token operator">=</span> <span class="token number">7'b1111110</span><span class="token punctuation">;</span> 
+    <span class="token keyword">endcase</span>
+<span class="token keyword">end</span>
+<span class="token keyword">endmodule</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="IX-RTL-Schematic-Optional"><a href="#IX-RTL-Schematic-Optional" class="headerlink" title="IX. RTL Schematic (Optional)"></a>IX. RTL Schematic (Optional)</h2><p>Please check the RTL schematic on the next two pages.</p>
+<div STYLE="page-break-after: always;"></div>
+
+<h2 id="X-Textual-Result"><a href="#X-Textual-Result" class="headerlink" title="X. Textual Result"></a>X. Textual Result</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gisbql52j4j315j0u0wks.jpg"></p>
+<p>By running the instruction memory, we can achieve  appendix part.</p>
+<h2 id="XI-Conclusion-and-Discussion"><a href="#XI-Conclusion-and-Discussion" class="headerlink" title="XI. Conclusion and Discussion"></a>XI. Conclusion and Discussion</h2><p>In this project, a MIPS single-cycle processor and a MIPS pipelined processor are modeled, implemented using Verilog and simulated in Vivado. The pipelined processor program is run on a Xilinx FPGA board, which is portal to the Vivado Design Suite. The results on board coincide with the simulation results. </p>
+<p>Throughout the implementation process, some unexpected events occurred and time were spent on debugging the modules. The events can be divided into two categories. The following discusses the reasons that led to the events.</p>
+<ol>
+<li>Simulation errors in Verilog HDL<ul>
+<li>For the implementation of the <code>and</code> instruction in the ALU module, logical AND ‘&amp;&amp;’ should be used rather than bitwise AND ‘&amp;’. Using bitwise AND will lead to problematic results. They are two different logical operations. </li>
+<li>In the single cycle processor, due to the rising edge in the first clock cycle, if the first instruction is ‘lw’, error would occur. Therefore, the program counter starts from ‘-4’ instead of ‘0’.</li>
+<li>When coding the main processor module, where a large number of wires are connected to run the program, the naming of wires was not paid attention to. This led to error in wire connections. The reason is that Verilog is a case-sensitive language. For example, <code>WireReg</code>  and <code>wireReg</code> actually refer to different wires, resulting in the error.</li>
+<li>The naming of the pipeline register wasn’t consistent for different components, some represented the output of a pipeline and some were the input of a pipeline. It led to some errors when simulating the processor too.</li>
+<li>Besides, during the debug process, we learned that the <code>assign</code> statement used for continuous assignment in Verilog can only drive a value to a net but it cannot assign a value to a register.</li>
+</ul>
+</li>
+<li>Unexpected results on FPGA board<ul>
+<li>Because the events in Verilog mostly happen at ‘posedge Clock’ or ‘negedge Clock’, when the switch spends more than half a clock cycle time in between the ‘on’ and ‘off’ position, the program counter will not be determined and hence leads to varying random numbers.</li>
+</ul>
+</li>
+</ol>
+<p>By accomplishing the project, our understanding of how the central processing unit (CPU) works is deepened through practice.  The mechanisms of forwarding and flushing in order to prevent hazards are carefully comprehended during the design process. While theoretical knowledge is the foundation, as programmers, the use of programming language has a series of rules and conventions to follow. Especially for naming, the habit of consistency is important and will save a lot of time in the debug process, no matter what programming project we work on in the future.</p>
+<h2 id="X-Reference"><a href="#X-Reference" class="headerlink" title="X. Reference"></a>X. Reference</h2><blockquote>
+<p>Hennessy, &amp; JohnL. (1998). <em>Computer organization and design:the hardware/software interface</em>. Morgan Kaufmann Publishers.</p>
+<p>Patterson, D. A., &amp; Hennessy, J. L. (2014). Computer organization and design, fourth edition. <em>Tailieu Vn</em>.</p>
+</blockquote>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>
