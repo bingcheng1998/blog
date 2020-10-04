@@ -2,84 +2,84 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/Whether-human-nature-is-good-or-bad.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2018/Whether-human-nature-is-good-or-bad.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/Use-Case-Study-to-Compare-the-philosophy-of-Laozi-Mozi-and-Mengzi.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2018/Use-Case-Study-to-Compare-the-philosophy-of-Laozi-Mozi-and-Mengzi.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/The-influence-of-oversea-study-on-brain-drain-in-China.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2018/The-influence-of-oversea-study-on-brain-drain-in-China.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/Shu-%E6%81%95-of-Kongzi.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2018/Shu-%E6%81%95-of-Kongzi.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/Resonate-Present-visual-stories-that-transform-audiences.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2019/Resonate-Present-visual-stories-that-transform-audiences.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/Priority-Queue-and-its-Application.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2018/Priority-Queue-and-its-Application.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/Performances-of-Two-Selection-Algorithm.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2018/Performances-of-Two-Selection-Algorithm.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/Performances-of-six-sorting-algorithms.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2018/Performances-of-six-sorting-algorithms.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/hybrid-thinking-uses-both-linear-and-nonlinear-thinking.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2019/hybrid-thinking-uses-both-linear-and-nonlinear-thinking.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/Digital-Design-Using-Verilog-to-Implement-Single-cycle-Pipelined-32-bit-Processors.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2018/Digital-Design-Using-Verilog-to-Implement-Single-cycle-Pipelined-32-bit-Processors.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/Develop-a-MIPS-assembly-program.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2018/Develop-a-MIPS-assembly-program.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/Artificial-Intelligence-China-vs-US.html</loc>
+    <loc>https://bingcheng.openmc.cn/blog/en/2019/Artificial-Intelligence-China-vs-US.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
@@ -165,13 +165,6 @@
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/tags/art/</loc>
-    <lastmod>2020-10-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/ancient-Chinese/</loc>
     <lastmod>2020-10-04</lastmod>
     <changefreq>daily</changefreq>
@@ -180,6 +173,13 @@
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/philosophy/</loc>
+    <lastmod>2020-10-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingcheng.openmc.cn/blog/tags/art/</loc>
     <lastmod>2020-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -230,14 +230,14 @@
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/categories/art/</loc>
+    <loc>https://bingcheng.openmc.cn/blog/categories/philosophy/</loc>
     <lastmod>2020-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/categories/philosophy/</loc>
+    <loc>https://bingcheng.openmc.cn/blog/categories/art/</loc>
     <lastmod>2020-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -258,14 +258,14 @@
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/categories/art/review/</loc>
+    <loc>https://bingcheng.openmc.cn/blog/categories/philosophy/review/</loc>
     <lastmod>2020-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://bingcheng.openmc.cn/blog/categories/philosophy/review/</loc>
+    <loc>https://bingcheng.openmc.cn/blog/categories/art/review/</loc>
     <lastmod>2020-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
