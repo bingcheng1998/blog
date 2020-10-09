@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/App-Development/">
+            App Development
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        Safe Back School App: Smart Tracing for School Reopening
+    </h2>
+    <ul class="post-date">
+        <li>
+            2020-08-26
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <h1 id="Safe-Back-School-App"><a href="#Safe-Back-School-App" class="headerlink" title="Safe Back School App"></a>Safe Back School App</h1><h1 id="Smart-Tracing-for-School-Reopening"><a href="#Smart-Tracing-for-School-Reopening" class="headerlink" title="Smart Tracing for School Reopening"></a><strong>Smart Tracing for School Reopening</strong></h1><p><strong>VE441</strong> </p>
+<p><strong>Instructed by <em>Pradeep Ray</em> and <em>Fethi Rabhi</em></strong></p>
+<p>Team:</p>
+<blockquote>
+<p>Ruoxin Geng</p>
+<p>Bingcheng Hu</p>
+<p>Daiyang Li</p>
+<p>Pengqi Lu</p>
+<p>Yuanjie Tao</p>
+</blockquote>
+<p>Download Full Report <a href="../../source/sources/Safe-Back-School-App-final-report.pdf">[↓]</a> </p>
+<p>Download PPT <a href="../../source/sources/Safe-Back-School-App-Final-Pre-v4.pdf">[↓]</a></p>
+<p>Watch the Video [👁]</p>
+<h2 id="Part-1-Requirement-Analysis"><a href="#Part-1-Requirement-Analysis" class="headerlink" title="Part 1. Requirement Analysis"></a><strong>Part 1. Requirement Analysis</strong></h2><h3 id="1-Business-Problem-Recap"><a href="#1-Business-Problem-Recap" class="headerlink" title="1.  Business Problem Recap"></a><strong>1.</strong>  <strong>Business Problem Recap</strong></h3><p>We are all in our “time of cholera”. The only difference is that in our world, cholera is replaced with a much more fierce disease, COVID-19. The current pandemic has caused a series of serious problems to all humankinds, including life threats, economic crashes and most significantly, stoppage in almost every industry. </p>
+<p>As students, what makes us concern most is likely the stoppage in schools, especially the education after this summer. Shall we go back to campus for traditional face-to–face mode? Or shall we keep online? A hybrid mode (some courses in person and some online) has been considered broadly, especially after the announcement from the United States Immigrants and Customs Enforcement that “nonimmigrant F-1 and M-1 students attending schools operating entirely online may not take a full online course load and remain in the United States.”</p>
+<p>The primary concern is “is that really safe to go back to classrooms?” Maybe not a single person can be a hundred percent confident. Thus, the second question to ask becomes “how can we lower the risks as much as possible?” To answer this question, our team decide to develop the “Safe Back School App”.</p>
+<h3 id="2-Features-and-User-Stories"><a href="#2-Features-and-User-Stories" class="headerlink" title="2.   Features and User Stories"></a><strong>2.</strong>   <strong>Features and User Stories</strong></h3><p>The value of our app is serving as a good platform to meet our customers’ requirements. The general requirements are composed of demands from two categories of users. Students and stuff require a platform to record daily health status and get notified when they have a high potential risk to get infected. Administrators require a platform to easily monitor everyone’s health status and find all close contact of an infected person efficiently.</p>
+<p>Since the advantage of our app is based on the Bluetooth tracing technology, we mainly focus on designing features for our major customer, students and stuff. The general requirements for students and stuff can be split into complex features. Those features can be classified into three functions which are Bluetooth tracing function, data collection function and general function.</p>
+<h4 id="2-1-User-story-about-Bluetooth-tracing-function"><a href="#2-1-User-story-about-Bluetooth-tracing-function" class="headerlink" title="2.1  User story about Bluetooth tracing function"></a>2.1  User story about Bluetooth tracing function</h4><hr>
+<p><strong>Requirement:</strong> Bluetooth tracing function</p>
+<hr>
+<blockquote>
+<p><strong>Feature:</strong> Keep Bluetooth on to automatically upload close contact information</p>
+<p><strong>As a:</strong> processor </p>
+<p><strong>So that:</strong> I can store the close contact information</p>
+<p><strong>I want to:</strong> collect address of other detected Bluetooth devices</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Feature:</strong> Push notification when user is at high risk to be infected</p>
+<p><strong>As a:</strong> student</p>
+<p><strong>So that:</strong> I can get early detection and isolation and help control epidemic</p>
+<p><strong>I want to:</strong> get notified </p>
+<p><strong>GIVEN</strong> that my phone is on</p>
+<p><strong>WHEN</strong> anyone in my close contact database is diagnosed</p>
+<p><strong>THEN</strong> I can get a popup notification</p>
+</blockquote>
+<hr>
+<h4 id="2-2-User-story-about-data-collection-function"><a href="#2-2-User-story-about-data-collection-function" class="headerlink" title="2.2 User story about data collection function"></a>2.2 User story about data collection function</h4><hr>
+<p><strong>Requirement:</strong> Data collection function</p>
+<hr>
+<blockquote>
+<p><strong>Feature:</strong> Daily Reminder</p>
+<p><strong>As a:</strong> student</p>
+<p><strong>So that:</strong> I won’t forget to fulfill the health report</p>
+<p><strong>I want to:</strong> set the app to notify me at a certain time</p>
+<p><strong>GIVEN</strong> that I am on the setting page</p>
+<p><strong>WHEN</strong> I set the notification to be pushed at 9:00 a.m.</p>
+<p><strong>THEN</strong> I can get a popup notification to fulfill the report</p>
+<p><strong>WHEN</strong> it’s 9:00 a.m.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Feature:</strong> Simplify health data filling process</p>
+<p><strong>As a:</strong> student</p>
+<p><strong>So that:</strong> I won’t feel tired about the repetitive work</p>
+<p><strong>I want to:</strong> set the app to notify me at a certain time</p>
+<p><strong>GIVEN</strong> that I am on the setting page</p>
+<p><strong>WHEN</strong> I set the notification to be pushed at 9:00 a.m.</p>
+<p><strong>THEN</strong> I can get a popup notification to fulfill the report</p>
+<p><strong>WHEN</strong> it’s 9:00 a.m.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Feature:</strong> Visualize health status</p>
+<p><strong>As a:</strong> student</p>
+<p><strong>So that:</strong> I can show it easily and take it as a proof to enter classrooms or canteens</p>
+<p><strong>I want to:</strong> have a visualized window to show my health status</p>
+<p><strong>GIVEN</strong> that I am on home page</p>
+<p><strong>WHEN</strong> I have a high risk to be infected</p>
+<p><strong>THEN</strong> I can see a red window with a crying face</p>
+<p><strong>WHEN</strong> I don’t have a high risk to be infected</p>
+<p><strong>THEN</strong> I can see a green window with a smile face</p>
+</blockquote>
+<hr>
+<h4 id="2-3-User-story-about-general-function"><a href="#2-3-User-story-about-general-function" class="headerlink" title="2.3 User story about general function"></a>2.3 User story about general function</h4><p>Requirement: users want an easy way to sign-up and get the latest update information about Covid-19</p>
+<hr>
+<blockquote>
+<p><strong>Feature:</strong> Sign-up and Login</p>
+<p><strong>As a:</strong> student</p>
+<p><strong>So that:</strong> my account can be directly bound with university</p>
+<p><strong>I want to:</strong> use my campus email account to sign-up and login</p>
+<p><strong>GIVEN</strong> that I am at login and sign-up page</p>
+<p><strong>WHEN</strong> the university and email account I enter match</p>
+<p><strong>THEN</strong> I can see my account verified and bound with my university</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Feature:</strong> Get access to brief information about Covid-19 situation in designated countries</p>
+<p><strong>As a:</strong> student</p>
+<p><strong>So that:</strong> I can know how the epidemic develops without searching.</p>
+<p><strong>I want to:</strong> see a brief information like number of infected people in selected countries</p>
+<p><strong>GIVEN</strong> that I am at home page</p>
+<p><strong>WHEN</strong> I set the country as China at setting page</p>
+<p><strong>THEN</strong> I can see number of infected, recovered and death people in China</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Feature:</strong> Browse detailed information about Covid-19 </p>
+<p><strong>As a:</strong> student</p>
+<p><strong>So that:</strong> I can know more about Covid-19 situations all over the world</p>
+<p><strong>I want to:</strong> browse detailed information</p>
+<p><strong>GIVEN</strong> that I am at home page</p>
+<p><strong>WHEN</strong> I click ‘more info’ button</p>
+<p><strong>THEN</strong> I can see detailed Covid-19 situations</p>
+</blockquote>
+<hr>
+<h3 id="3-Interface-Design"><a href="#3-Interface-Design" class="headerlink" title="3   Interface Design"></a><strong>3</strong>   <strong>Interface Design</strong></h3><h4 id="3-1-Original-Interface-Prototype-with-Invision-Studio"><a href="#3-1-Original-Interface-Prototype-with-Invision-Studio" class="headerlink" title="3.1 Original Interface Prototype with Invision Studio"></a>3.1 Original Interface Prototype with Invision Studio</h4><p>​    We first designed the prototype of the User Interface (UI) using Invision Studio. We used it because it allows us to quickly prototype our ideas without the need to write any actual codes. As described on its website, Invision studio combines design, prototyping, and collaboration into one harmonious workflow. Below is an overview of our initial design. </p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq68vnxj30d50bg755.jpg" alt="img"></p>
+<h4 id="3-2-Interface-Implementation-in-Android-Studio"><a href="#3-2-Interface-Implementation-in-Android-Studio" class="headerlink" title="3.2 Interface Implementation in Android Studio"></a>3.2 Interface Implementation in Android Studio</h4><p>​    After prototyping UI in Invision Studio, we started to build the actual UI in Android Studio since we are making a native Android application. Below is a flowchart showing transition logics between different UIs (UIs with page numbers on top-right corners are shown in the next page).</p>
+<p>(All page numbers here are noted from left to right, up to down)</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq4g3mlj309v0g5wfc.jpg" alt="img"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq99dy9j30g60jk0v9.jpg" alt="img"></p>
+<h2 id="Part-2-Design-and-Implementation-Details"><a href="#Part-2-Design-and-Implementation-Details" class="headerlink" title="Part 2. Design and Implementation Details"></a><strong>Part 2. Design and Implementation Details</strong></h2><h3 id="1-Final-software-architecture"><a href="#1-Final-software-architecture" class="headerlink" title="1.  Final software architecture"></a><strong>1.</strong>  <strong>Final software architecture</strong></h3><p>In this section, the software architecture will be introduced. To better explain the software architecture, the C4 model was used to visualizing software architecture, which is an “abstraction-first” approach to illustrate software architecture.</p>
+<p>First, the system context diagram is to be introduced. the system context diagram is shown in figure 1. According to this diagram, the big picture of the system can be seen, and it can help the developer to step back to review the whole system. There are two types of users in the proposed system: The Administrator and the university students. In this part, procedures like register and sign-in will be ignored, and the analysis will concentrate on the relationship between the system and the users.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitqbu59lj30af06aaaa.jpg" alt="img"></p>
+<p><strong>Figure 1</strong>. The system context diagram for software architecture.</p>
+<p>As can be found in <strong>Figure 1</strong>, the university students will send the Bluetooth UUIDs around them to the server, and the server will send the list of students who could be infected, with the possibility, to the Administrator. And only after the Administrator tells the server which students should be informed, then those students will receive the information about their health state. Because we need to gather the Bluetooth UUIDs around the user, the application cannot be implemented with web APP, because the web APP cannot get the Bluetooth information of the hardware, android phone.</p>
+<p>Other third-party components such as web browser will be used. A link on the home page of the app will direct the user to the website that can inform them of the latest trends of coronavirus in that university’s region. We will also add links to the webpage of local CDC or university guidance on preventing Covid-19.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq0tdyvj30b605u0sz.jpg" alt="img"></p>
+<p><strong>Figure 2.</strong> The container diagram for software architecture. </p>
+<p>Second, the container diagram is going to be explained <strong>(Figure 2)</strong>. It shows the high-level shape of the software architecture, and by looking into it the responsibilities of every component can be understood. There are 5 most significant containers in the container diagram: The API server, the warning system, the Database, the recommender system, and the Inform system.</p>
+<p>The API server is the bond of the Android APP and the backend; the warning system can inform the administrator which students could be infected and ask for the permission of notify; the Database saves all the UUIDs that the user collected; the recommender system use the data in the database to calculate who could be infected, and the Inform system can inform the students who could be infected.</p>
+<p>Most importantly, let’s look at the Recommender system. In this system, pipeline and filter are used as the design pattern. The data is delivered from the database to the filter, the recommender system, then whether the user has been in the same place with a possibly infected student will be calculated. If so, according to the time, distance (which can be estimated by the strength of the Signal), the probability of that student being affected can be estimated.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq5fdupj30c206gweu.jpg" alt="img"></p>
+<p><strong>Figure 3</strong>. The component diagram for software architecture.</p>
+<p>Third, the component diagram is shown in <strong>Figure 3</strong>, which illustrates the responsibilities of each components. Here Flask is chosen as the API server, and apart from the API component, there are three main parts of components: one is for sign-in, one is for Bluetooth information, and one is for warning. The sign-in controller is connected with the security components, and it can help users to register one account and change the password if needed. The Bluetooth controller can save the Bluetooth UUIDs to the database and serve the infection information to the API server, and the warning system can inform the students who passed the students’ selection components with the administrator’s instruction.</p>
+<p>There are many advantages to the separation of components. Because these components are parallel can will not affect each other, the whole system will not break when one error happens in one component. And the API component can control all the three controllers, so when one controller is broken, the API server can weak it up soon. Besides, the performance of those controllers is not the same, so break them apart and implement them separately can help to improve the overall performance by allowing the significant part, the Bluetooth controller, to use more resources. Finally, because it’s hard to come up with a perfect recommender system, the Recommender system needs to be updated many times. Because the recommender system is not embedded inside any components, it can be updated easily</p>
+<h3 id="2-Sequence-and-Interaction-Diagram"><a href="#2-Sequence-and-Interaction-Diagram" class="headerlink" title="2.  Sequence and Interaction Diagram"></a><strong>2.</strong>  <strong>Sequence and Interaction Diagram</strong></h3><p>The app is divided into two parts - one for the general users and the other for the administrators. The following part of the report contains the complete use case for both cohorts.</p>
+<p>For the users, it is required that the app can achieve:</p>
+<p>l Notify the user if they have been exposed to any close contact with someone postive in Covid-19 test. (U1)</p>
+<p>l Remind and enable user to upload their latest health status. (U2)</p>
+<p>l Periodically detect other mobile devices with the same app installed when the bluetooth is on. (U3)</p>
+<p>For the administrators, the app is expected to handle the following tasks:</p>
+<p>l Get a list of currently infected and potentially infected students and notify them of the risk of necessary. (A1)</p>
+<p>l Synchronize the database with official government / hospital database (simulated one in project demo) to ensure greater authenticity. (May be varied based on actual third party implementation.)</p>
+<p>l Manually update (add / remove people in and out of) the list of infection to make instant change and send alarm immediately. (A2)</p>
+<p>U1:</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq9zeq9j30bj06w74k.jpg" alt="img"></p>
+<p>U2:</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitqawozgj30al09n74q.jpg" alt="img"></p>
+<p>U3:</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq0awc9j30bj0753ys.jpg" alt="img"></p>
+<p>A1:</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitpzfwfej30bj09qwf1.jpg" alt="img"></p>
+<p>A2:</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq3h9o4j30bk06i3yq.jpg" alt="img"></p>
+<h3 id="3-Key-technologies-used-in-our-implementation"><a href="#3-Key-technologies-used-in-our-implementation" class="headerlink" title="3.  Key technologies used in our implementation"></a><strong>3.</strong>  <strong>Key technologies used in our implementation</strong></h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitqcwi7hj30d005ejrg.jpg" alt="img"></p>
+<p><strong>Figure 4.</strong> Key technologies used in front/back end of our APP</p>
+<p>As summarized in <strong>Figure 4</strong>, we used Android Studio to develop our frontend, Flask to develop the backend server and MySQL to develop the DataBase. Okhttp3 is used by the client side to send http requests to the server. A recommender system written in python will help the server to decide which info to be collected from the database.</p>
+<p>In Android Studio, java is used to define the internal logic for each activity (UI pages seen by the user) and XML is used to design the UI for each page (see Part 1 for UI design screenshots). We chose to use Android Studio because it’s one of the most widely used software for Android APP development and is user friendly. Also, building a native app allows us to use Bluetooth for user tracking, which is an important part in our app design. The user info, user health status, Bluetooth tracking results and infection probability are sent/received using okhttp3 HTTP client. </p>
+<p>Flask is a micro web framework written is Python. We use it to write our server which receives requests sent from the frontend. With the help of Flask, we can easily handle http requests such as GET, POST and PUT. Once it collects the data needed, the server will communicate with the DataBase to put/get further info according to different requests.</p>
+<p>The recommender system is another essential part of our backend. It’s an intelligent AI system that will utilize the Bluetooth tracking data and users’ health status from the DataBase to decide the infection probability of a specific user. A person’s health status is composed of the person’s own symptoms and the health status of his or her contacted person <strong>(Figure 5)</strong>. Personal health symptoms include fever, cough, and other symptoms. The influence of the surrounding people that this person has touched is the most complicated part of the system, and this part is assisted by Bluetooth scanning.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq2i36vj30aa02udft.jpg" alt="img"></p>
+<p><strong>Figure 5.</strong> health status is composed of the symptoms and the health status of contacted person</p>
+<p>The detection of possible infected persons in the surrounding area consists of two parts: the user directly scans the Bluetooth of another person, and two users scan the same public Bluetooth <strong>(Figure 6).</strong> If the time between the user and the potentially infected person exceeds the threshold, the user’s probability of infection will increase. The existence of public Bluetooth can also help schools obtain the location information of students, so as to avoid cross-infection in public more effectively. Besides, the location information is anonymous, so service providers cannot know this information.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq783ymj30c0030mx5.jpg" alt="img"></p>
+<p><strong>Figure 6</strong>. the user directly scans the Bluetooth of another person (a), and two users scan the same public Bluetooth (b).</p>
+<p>MyWebSQL is used to manage MySQL DataBase system over the web. All the user related data are securely saved in our database. Currently we have 6 tables in our database which includes Admins, Organizations (in case multiple schools are using our app), infectionDetector (records infection probability of each user), scannedBLE (Bluetooth addresses scanned by each user’s mobile phone), userBLE (Bluetooth address of the user’s mobile phone) and users <strong>(Figure 7). Figure 8</strong> is a screenshot of Bluetooth addresses scanning info. <strong>Figure 9</strong> is a screenshot of users and their corresponding infection probabilities (testing data, not the real data).</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq8541kj303505fjrb.jpg" alt="img"></p>
+<p><strong>Figure 7</strong>. Tables in the Database</p>
+<p><strong><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitq1jv9lj30bf03wq32.jpg" alt="img"></strong></p>
+<p><strong>Figure 8.</strong> Sample Bluetooth scanning info</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjitqd93rgj30ex04wmxg.jpg" alt="img"></p>
+<p><strong>Figure 9.</strong> Sample infection probability data</p>
+<h3 id="4-A-summary-of-the-key-benefits-and-achievements"><a href="#4-A-summary-of-the-key-benefits-and-achievements" class="headerlink" title="4.   A summary of the key benefits and achievements"></a>4.   <strong>A summary of the key benefits and achievements</strong></h3><p>Our core idea is to develop the app that is user friendly and offer users one more choice except lock-down policy under the epidemic situation. We select down customers to university since it’s relatively easy for promotion and management as a start-up. The key achievements of our app can be summarized into four parts.</p>
+<p>Firstly, Bluetooth contact tracking technology is implemented as the main function to prevent outbreak of coronavirus in university. The reason why we need to achieve contact tracing function is that it can save lives by helping us diagnose patients earlier, improving the likelihood they’ll be cured and reducing the chance they’ll spread the virus to others. As long as the user’s Bluetooth is on, the app can record information of nearby device and contact duration. Contact tracing based on Bluetooth technology can replace the traditional contact tracking based on manual screening and paperwork because it’s a simpler, quicker and more accurate way.</p>
+<p>Secondly, the app offers school administrators a great platform to collect and visualize all students’ health status. Students’ health data are collected and updated automatically to the database. We design a clear user interface for administrator to know who is infected and the potential infected students. The infection probability calculated based on user’s symptoms and contact time with infected person is also offered to administrator to make the decisions.</p>
+<p>Thirdly, smart alert is also an important feature for our users. Once the user has contacted with an infected person, the app would automatically send the warning message to the user. This can help user to have a clear understanding and judgement about the surrounding environment.</p>
+<p>Lastly, the design of questionnaire in daily health report aims to avoid the tedious and repetitive work. The form memorized the latest information user entered so that users don’t need to waste time on filling the same content. They just need to modify the content when they get new symptoms. Such design matches our core idea and increases user viscosity to some extent.</p>
+<h2 id="Part-3-Team-Organization-and-Appraisal"><a href="#Part-3-Team-Organization-and-Appraisal" class="headerlink" title="Part 3. Team Organization and Appraisal"></a><strong>Part 3. Team Organization and Appraisal</strong></h2><h3 id="1-Responsibilities"><a href="#1-Responsibilities" class="headerlink" title="1.  Responsibilities:"></a><strong>1.</strong>  <strong>Responsibilities:</strong></h3><p><strong>Daiyang Li:</strong></p>
+<p>l Initiate and schedule group meetings</p>
+<p>l Design the logic of client App</p>
+<p>l Optimize Bluetooth module and its performance</p>
+<p><strong>Bingcheng Hu:</strong></p>
+<p>l Design the architecture of the server side.</p>
+<p>l Implement the recommender system, the database construction and the bridge between them.</p>
+<p>l Build the cloud server with TenCent Cloud.</p>
+<p><strong>Yuanjie Tao:</strong></p>
+<p>l Design questionnaires and make customer interviews.</p>
+<p>l Business and marketing analysis.</p>
+<p>l Implement a basic connection between frontend and backend.</p>
+<p><strong>Ruoxin Geng:</strong></p>
+<p>l Design the user interface for the app using Sketch</p>
+<p>l Add interactions between different pages and generate workflow chart using InVision Studio</p>
+<p>l Make a showcase video for the app</p>
+<p><strong>Pengqi Lu:</strong></p>
+<p>l Implement the UI using Android Studio on the client side.</p>
+<p>l Implement the APP logic transitions on the client side</p>
+<p>l Set up http communication on the client side </p>
+<h3 id="2-Difficulties-and-Challange"><a href="#2-Difficulties-and-Challange" class="headerlink" title="2.  Difficulties and Challange:"></a><strong>2.</strong>  <strong>Difficulties and Challange:</strong></h3><p>l That trans-pacific team must work against time difference</p>
+<p>l Steep learning curve for members with limited prior knowledge about app dev.</p>
+<p>l Reduced efficiency in communication with mentors in remote mode</p>
+<p>l In order to achieve high-efficiency SQL query, various different queries were tested, and finally the fastest query method was found.</p>
+<p>l In order to implement an instant recommendation system, the background needs to be refreshed efficiently. Finally reached the frequency of refreshing every minute. When you continue to increase the frequency, the server will respond slowly to the app.</p>
+<p>l Because the server is in Shanghai and the developers are in the United States, the server delay is relatively long.</p>
+<p>l The message from the server may take a long time to transmit to the client side (since the server is in China, and we are testing the client in the US). </p>
+<p>l The user interface may not be compatible with mobile phones with different screen size</p>
+<h3 id="3-Overall-appraisal"><a href="#3-Overall-appraisal" class="headerlink" title="3.  Overall appraisal:"></a><strong>3.</strong>  <strong>Overall appraisal:</strong></h3><p>Despite the aforementioned challanges and difficulties, in this course we managed to achieve:</p>
+<p>l Clearly define a business problem</p>
+<p>l Justify why our app helps solve the problem </p>
+<p>l Implement an MVP of the app through joint effort</p>
+<p>l An understanding of agile method in development</p>
+<h3 id="4-What-I-think-could-be-done-differently"><a href="#4-What-I-think-could-be-done-differently" class="headerlink" title="4.  What I think could be done differently:"></a><strong>4.</strong>  <strong>What I think could be done differently:</strong></h3><p>l Meet with business mentors more frequently to constantly make mild adjustments</p>
+<p>l Communiate within the team in a more unified way to avoid overlap of work done.</p>
+<p>l Work more closely with key partners and take their need into account in the app.</p>
+<p>l We may use non-relational databases. Because our system does not require high real-time performance, using MySQL results in slower refresh speed.</p>
+<p>l Will use a larger bandwidth server, because the current server bandwidth is only 1M per second, so that the user experience is not excellent.</p>
+<p>l To make the UI design compatible with different mobile phones, we need to avoid hard-coded layout sizes and may try available layout width qualifiers.</p>
+<h2 id="Part-4-Code-Inspection"><a href="#Part-4-Code-Inspection" class="headerlink" title="Part 4. Code Inspection"></a><strong>Part 4. Code Inspection</strong></h2><p><a target="_blank" rel="noopener" href="https://github.com/bingcheng1998/VE441_Safe-Back-School-App">https://github.com/bingcheng1998/VE441_Safe-Back-School-App</a></p>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/App-Development/">App Development</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/App-Development/" rel="tag">App Development</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/COVID-19/" rel="tag">COVID-19</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bingcheng.openmc.cn/blog/en/2020/Safe-Back-School-App.html</loc>
+    
+    <lastmod>2020-10-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bingcheng.openmc.cn/blog/en/2018/Performances-of-six-sorting-algorithms.html</loc>
+    
+    <lastmod>2020-10-09</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bingcheng.openmc.cn/blog/en/2018/Whether-human-nature-is-good-or-bad.html</loc>
     
     <lastmod>2020-10-04</lastmod>
@@ -45,13 +59,6 @@
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/en/2018/Performances-of-Two-Selection-Algorithm.html</loc>
-    
-    <lastmod>2020-10-04</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bingcheng.openmc.cn/blog/en/2018/Performances-of-six-sorting-algorithms.html</loc>
     
     <lastmod>2020-10-04</lastmod>
     
@@ -123,7 +130,7 @@
 
   <url>
     <loc>https://bingcheng.openmc.cn/blog</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -131,84 +138,105 @@
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/review/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/code/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/sorting/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/algorithms/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/program/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/ancient-Chinese/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/philosophy/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/art/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/MIPS/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/cerilog/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/selection/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/tags/heap/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingcheng.openmc.cn/blog/tags/App-Development/</loc>
+    <lastmod>2020-10-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingcheng.openmc.cn/blog/tags/COVID-19/</loc>
+    <lastmod>2020-10-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingcheng.openmc.cn/blog/tags/Android/</loc>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -217,63 +245,70 @@
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/categories/review/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/categories/program/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/categories/philosophy/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/categories/art/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/categories/review/AI/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/categories/sociology/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/categories/philosophy/review/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/categories/art/review/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingcheng.openmc.cn/blog/categories/philosophy/review/sociology/</loc>
-    <lastmod>2020-10-04</lastmod>
+    <lastmod>2020-10-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingcheng.openmc.cn/blog/categories/App-Development/</loc>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
