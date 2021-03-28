@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="bingcheng HU, 胡炳城, blogs, papers, Machine Learning, Artificial Intelligence" />
+    <title>
+        JAZZ IT UP
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://bingcheng.openmc.cn/resources/small.png" />
+     
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R8Y6DPG1BC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R8Y6DPG1BC');
+</script>
+<!-- End Google Analytics -->
+
+
+    
+
+<!-- Global site tag (hm.js) - Baidu Analytics -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?736ceb6473823581e338e5ea410a1f7e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/blog/" class="logo">
+                JAZZ IT UP
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/blog/" class="logo">
+            JAZZ IT UP
+        </a>
+    </h1>
+    <h2 class="desc">
+        keep going, keep learning
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn">
+                    home
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://bingcheng.openmc.cn/about/">
+                    about
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/review/">
+            review
+        </a>
+    </h4>
+    
+    <h4 class="post-cat">
+        <a href="/blog/categories/review/AI/">
+            AI
+        </a>
+    </h4>
+    
+    
+    <h2 class="post-title">
+        Embedding-Based News Recommendation for Millions of Users
+    </h2>
+    <ul class="post-date">
+        <li>
+            2021-03-28
+        </li>
+        <li>
+            胡炳城, Bingcheng
+        </li>
+    </ul>
+    <div class="post-content">
+        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>Imagine you are in a subway and on the way to work. You feel so jaded because this will take you one hour to get to your company, so you take out your smartphone and open the web browser to read some news. </p>
+<p>Always, the browser will show you some news on the first page, and there may be some most recent shocking news, which will make you feel interested in, or all these first-page news may be boring and let you feel even fatigued in the subway.</p>
+<blockquote>
+<h2 id="“Users’-click-on-our-page-is-the-only-measure-of-our-efforts-“"><a href="#“Users’-click-on-our-page-is-the-only-measure-of-our-efforts-“" class="headerlink" title="“Users’ click on our page is the only measure of our efforts!“"></a>“Users’ click on our page is the only measure of our efforts!“</h2></blockquote>
+<p>All internet companies want to let users use their service and keep users’ eyes on their service as long as they can. To gather more users, these companies will try all methods to attract the user. One of the most useful technology is the recommendation system.</p>
+<p>The algorithm will learn from your history readings and give you some recommendations. In the beginning, the recommendations may be exceptional and not what you want at all, but as time goes, more efficient algorithms came out and more user information was gathered, the recommendation system becomes smarter and humanize, and the algorithm may be more familiar with you than yourself.</p>
+<p>Let me show you the wonderful world of recommendation systems!</p>
+<h2 id="2-Recommendation-system"><a href="#2-Recommendation-system" class="headerlink" title="2. Recommendation system"></a>2. Recommendation system</h2><p>A recommendation system is one usage of machine learning, which can learn users’ preferences by looking at users’ history. As time goes, these systems always perform better than before with more user data.</p>
+<p>Nowadays, people live in the world of information and electricity. No city citizens can live without smartphones. With the use of smart devices, people can arrange their daily life with the help of the algorithms inside these devices. As shown in figure 1, from finding a good canteen for lunch, watch an interesting movie for rest, to find the soul mate of the rest of your life…</p>
+<blockquote>
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gozsnnm2l9j30ge0f03z4.jpg" alt="image-20210328100723895" style="zoom:50%;" />
+
+<p>Figure 1. People surrounded by recommended systems</p>
+</blockquote>
+<p>Recommendation systems are meaningful in some businesses, as using them can make a much higher income than before. For example, the ads are only worthwhile when they reach the target audience.</p>
+<blockquote>
+<h2 id="“It’s-meaningless-to-persuade-singles-to-buy-strollers-”"><a href="#“It’s-meaningless-to-persuade-singles-to-buy-strollers-”" class="headerlink" title="“It’s meaningless to persuade singles to buy strollers !”"></a>“It’s meaningless to persuade singles to buy strollers !”</h2></blockquote>
+<p>Traditionally, collaborative filtering methods are the major methods used for a recommendation system, whatever the items are, movies, articles, products, collaborative filtering methods always perform adequately.</p>
+<p>Collaborative methods for recommender systems are methods that are “based only on the past interactions recorded between users and items to produce new recommendations” [1]. These interactions are stored in the so-called “user-item interactions matrix” as shown in figure 2.</p>
+<blockquote>
+<p> <img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gozsnvp7a8j31cm0nzmze.jpg" alt="rc s"></p>
+<p> Figure 2. Illustration of the user-item interactions matrix [2].</p>
+</blockquote>
+<p>For collaborative filtering methods, there are two most wildly used methods, the user-user method and the item-item method (Figure 3).</p>
+<p>There is a simple explanation for the user-user method and the item-item method:</p>
+<ul>
+<li><strong>user-user method</strong>: Because we both like those products, we are similar to each other. I also like that product, so you should like it, too.</li>
+<li><strong>item-item method</strong>: people who like this product always like that product, because you like this product, you should like that product, too.</li>
+</ul>
+<blockquote>
+<p> <img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gozsnqz9pqj31cm0oqwgv.jpg" alt="uuii"></p>
+<p> Figure3. Illustration of the difference between item-item and user-user methods.</p>
+</blockquote>
+<p>Nowadays, as machine learning algorithms evolve, more and more other useful algorithms arrived and work nicely with recommendation systems. Though there are many subspaces that recommendation systems are very useful, the news recommendation problem is always one of the most attractive ones.</p>
+<h2 id="3-News-Recommendation-Problem"><a href="#3-News-Recommendation-Problem" class="headerlink" title="3. News Recommendation Problem"></a>3. News Recommendation Problem</h2><p>Again, you are in the subway to your company, due to the time is limited, it’s impossible for you to read all the news, you will choose a news service which will help you to choose the recent host news and other news you may be interested in. Traditionally, you could buy a printed newspaper, where the news is selected by human editors. However, using a smartphone will present the news service company your personal information, like your age, your sex, your address, your recently read news, and your time spend on each news… In this case, one person can be recognized as a single user, who has his or her personal preferences. With that information, the news service can present you with more personalized news.</p>
+<p>Figure 4  is  Yahoo’s homepage on smart-phones. In the personalized News Recommendation model, many news items can be found. By clicking one of these tabs, the user will be redirected to the news description page. This form is a general form of news service all over the world, the only difference is the header and the languages. I think all of you are familiar with this smart-phone presentation of news recommendation.</p>
+<blockquote>
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gozsnte90hj30u10u046y.jpg" alt="yahoo" style="zoom:33%;" />
+
+<p>Figure 4. Example of Yahoo! JAPAN’s homepage on smart-phones.</p>
+</blockquote>
+<p>By storing user ID cookies, the news service can recognize a user and personalize the articles for individual users. However, ID-based methods, such as collaborative filtering was suggested not suitable for news recommendation, as Zhong et al. said [3]. </p>
+<blockquote>
+<h2 id="“Candidate-news-articles-expired-too-quickly-and-were-replaced-with-new-ones-within-short-periods”"><a href="#“Candidate-news-articles-expired-too-quickly-and-were-replaced-with-new-ones-within-short-periods”" class="headerlink" title="“Candidate news articles expired too quickly and were replaced with new ones within short periods”"></a>“Candidate news articles expired too quickly and were replaced with new ones within short periods”</h2></blockquote>
+<p>Thus, the three keys in news recommendations are:</p>
+<ul>
+<li><p>Understanding the content of articles,</p>
+</li>
+<li><p>Understanding user preferences, and</p>
+</li>
+<li><p>Listing selected articles for individual users based on content and preferences.</p>
+</li>
+</ul>
+<p>Based on these key points, Shumpei et al. developed their <strong>previous version</strong> of news recommendation systems.  “An article is regarded as a collection of words included in its text. A user is regarded as a collection of words included in articles he/she has browsed [3].” Then they use the user-user method and the item-item method to do news recommendation.</p>
+<p>But there are <strong>two major negative impacts</strong> using this model:</p>
+<ul>
+<li>The representation of words: two words that had the same meaning were treated as completely different features if the notations were different.</li>
+<li>The handling of browsing histories: it should be handled as a time serials instead of a bag of history because the interest change over time is significant for recommendations.</li>
+</ul>
+<p>To resolving these problems, <strong>new methods</strong> are presented:</p>
+<ul>
+<li>Start with distributed representations of articles based on a variant of the denoising autoencoder</li>
+<li>Generate user representations by using an RNN with browsing histories as input sequences</li>
+</ul>
+<h2 id="4-News-Recommendation-Process-Flow"><a href="#4-News-Recommendation-Process-Flow" class="headerlink" title="4. News Recommendation Process Flow"></a>4. News Recommendation Process Flow</h2><p>To make the news recommendation system works, five steps need to be executed to do article selection for millions of users [3]:</p>
+<ul>
+<li><strong>Identify</strong>: Obtain user features calculated from user history in advance.</li>
+<li><strong>Matching</strong>: Extract articles from all those available using user features.</li>
+<li><strong>Ranking</strong>: Rearrange list of articles on certain priorities.</li>
+<li><strong>De-duplication</strong>: Remove articles that contain the same information as others.</li>
+<li><strong>Advertising</strong>: Insert ads if necessary.</li>
+</ul>
+<p>By analyzing this process, we can find that article representation and user representation are two major tasks that need to be solved. Only if we can represent articles and users as a list of features, we can match them together.</p>
+<h3 id="Article-Representation"><a href="#Article-Representation" class="headerlink" title="Article Representation"></a>Article Representation</h3><p>The previous studies use words as features for an article that did not work well in certain cases of extracting and de-duplicating. Shumpei et al. describe a new method of dealing with articles as a distributed representation [3]. </p>
+<p>As you know, for machine learning, the loss function is the key point that decides how good you can achieve. To find a good representation of the loss function, this paper shows a new way to decide the loss function. As shown in figure 5, for each base article, there are multiple articles, which may be similar or different from the base article. This was done by humans to choose which articles are in the same category, like history, politics, international, and military…</p>
+<p>The encoding process works like “compress” a file to a smaller size, and the decoding process works like “decompress” a small representation to a full article. If you don’t familiar with the encoding and decoding process in machine learning, you can simply think of it as the features of the article.</p>
+<blockquote>
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gozsnutd54j315s0jx0wh.jpg" alt="image-20210328101500326" style="zoom: 33%;" />
+
+<p>Figure 5: Encoder for triplets of articles</p>
+</blockquote>
+<p>With that knowledge, you can come to consider about the loss function: the articles in a similar category should have a larger similarity than articles in different categories. The loss function is the similarity of different categories minus the similarity of similar categories. By minimizing the loss function, we can find a good representation for encoded articles.</p>
+<h3 id="User-Representation"><a href="#User-Representation" class="headerlink" title="User Representation"></a>User Representation</h3><p>The user is more complex than the article. Because users are active and they will always clicking the news that they are interested in, there is a long reading history for users (Figure 6). The user representations need to have the ability to represent the reading history.</p>
+<blockquote>
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gozsnu7i93j311l0rd0vy.jpg" alt="image-20210328101718854" style="zoom:33%;" />
+
+<p>Figure 6: Browsing history and session</p>
+</blockquote>
+<p>To embed a user’s reading history to a size-fixed list of numbers, there are many different technics to achieve. The easiest way is using the word-based model, and this model can be set with an average function instead of max or with a decayed average function. A decaying model is also a good way to generate user representation. It uses the weighted average to aggregate browsing histories, instead of the maximum value.</p>
+<p>But here we only estimate the recurrent models. <strong>Long-short term memory</strong> (LSTM) is a well-known structure for vanishing and exploding gradients. Figure 7 has a network image of the structure of the LSTM-based model.</p>
+<blockquote>
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gozsnnv8a2j30x90k1taj.jpg" alt="image-20210328101844457" style="zoom:33%;" />
+
+<p>Figure 7: LSTM-based model</p>
+</blockquote>
+<p>There will be a list of user reading history gathered as input of each LSTM unit, and bypassing these news articles reading history to this network, the users’ features can be extracted out as user representations.</p>
+<h2 id="5-Offline-Test-and-Deployment"><a href="#5-Offline-Test-and-Deployment" class="headerlink" title="5. Offline Test and Deployment"></a>5. Offline Test and Deployment</h2><h3 id="Offline-Test"><a href="#Offline-Test" class="headerlink" title="Offline Test"></a>Offline Test</h3><h4 id="Models-and-Training"><a href="#Models-and-Training" class="headerlink" title="Models and Training"></a>Models and Training</h4><p>About 12 million users who had clicked at least one article were sampled as the dataset, and there are about 166 million sessions, one billion browses, and two million unique articles. By applying the recommendation system to the dataset, we can do the offline test and compare the result of different models.</p>
+<p>This paper uses three popular metrics, i.e., the area under the ROC curve (AUC), mean reciprocal rank (MRR), and normalized discounted cumulative gain (nDCG), which are regarded clicks as positive labels. For all these three metrics, <strong>the larger the better</strong>.<br>$$<br>\begin{aligned}<br>\mathrm{AUC} &amp;=\frac{1}{|S|} \sum_{s \in S} \frac{\left|\left{(i, j) \mid i&lt;j, c_{s, i}=1, c_{s, j}=0\right}\right|}{\left|\left{i \mid c_{s, i}=1\right}\right|\left|\left{j \mid c_{s, j}=0\right}\right|} \<br>\mathrm{MRR} &amp;=\frac{1}{|S|} \sum_{s \in S} \frac{1}{\min <em>{c</em>{s, i}=1} i} \<br>\mathrm{nDCG} &amp;=\frac{1}{|S|} \sum_{s \in S} \frac{\sum_{i} c_{s, i} / \log <em>{2}(i+1)}{\max <em>{\pi} \sum</em>{i} c</em>{s, \pi(i)} / \log _{2}(\pi(i)+1)}<br>\end{aligned}<br>$$<br>AUC is a metric directly related to training objectives. MRR and nDCG are popular ranking indicators; MRR focuses on the first appearance of a positive instance, while nDCG evaluates the rank of all positive instances.</p>
+<h4 id="Experimental-results"><a href="#Experimental-results" class="headerlink" title="Experimental results"></a>Experimental results</h4><p>This paper evaluated the eight models listed in Table 1.<br>$$<br>\begin{array}{c|l}<br>\hline \text { Name } &amp; \text { Description } \<br>\hline \hline \text { BoW } &amp; \text { The simplest word-based model } \<br>\hline \text { BoW-Ave } &amp; \begin{array}{l}<br>\text { Word-based model that uses average func- } \<br>\text { tion instead of max in Eq.4 }<br>\end{array} \<br>\hline \text { BoW-Dec } &amp; \begin{array}{l}<br>\text { Word-based model that uses decayed aver- } \<br>\text { age function with } \beta=0.9 \text { similar to that } \<br>\text { introduced in Section 4.3 }<br>\end{array} \<br>\hline \text { Average } &amp; \text { Decaying model with } \beta=1 \text { (no decaying) } \<br>\hline \text { Decay } &amp; \text { Decaying model with } \beta=0.9 \<br>\hline R N N &amp; \text { Recurrent model using simple RNN unit } \<br>\hline \text { LSTM } &amp; \text { Recurrent model using LSTM-based unit }\<br>\hline<br>\end{array}<br>$$<br>Table 2 shows results from offline experiments. Values indicate the average of metrics and 99% confidence intervals in ten split test sets. As we already know, for AUC, MRR, nDCG, the larger the better.<br>$$<br>\begin{array}{c|ccc}<br>\hline &amp; \text { AUC } &amp; \text { MRR } &amp; \text { nDCG } \<br>\hline \hline \text { BoW } &amp; 0.582 \pm 0.003 &amp; 0.300 \pm 0.003 &amp; 0.446 \pm 0.002 \<br>\text { BoW-Ave } &amp; 0.579 \pm 0.004 &amp; 0.310 \pm 0.003 &amp; 0.452 \pm 0.002 \<br>\text { BoW-Dec } &amp; 0.560 \pm 0.004 &amp; 0.297 \pm 0.004 &amp; 0.442 \pm 0.003 \<br>\hline \text { Average } &amp; 0.608 \pm 0.003 &amp; 0.313 \pm 0.003 &amp; 0.457 \pm 0.002 \<br>\text { Decay } &amp; 0.596 \pm 0.003 &amp; 0.302 \pm 0.002 &amp; 0.449 \pm 0.001 \<br>\hline \text { RNN } &amp; 0.612 \pm 0.004 &amp; 0.309 \pm 0.004 &amp; 0.455 \pm 0.003 \<br>\text { LSTM } &amp; 0.648 \pm 0.004 &amp; 0.344 \pm 0.004 &amp; 0.481 \pm 0.003 \<br>\hline<br>\end{array}<br>$$<br><strong>LSTM is significantly better</strong> than Average. This was because it was able to express more complex relations for the order of browsing sequences by using the gate structures in these models.</p>
+<h3 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h3><h4 id="Experimental-Results"><a href="#Experimental-Results" class="headerlink" title="Experimental Results"></a>Experimental Results</h4><p>Yahoo began using this new recommendation system in December 2016 for the news recommendation service. And this paper uses four online metrics:</p>
+<ul>
+<li><strong>Sessions</strong>: The average number of times one user utilized our service per day.</li>
+<li><strong>Duration</strong>: The average time (in seconds) that the user spent with our service per session.</li>
+<li><strong>Clicks</strong>: The average number of clicks per session.</li>
+<li><strong>Click-through rate (CTR)</strong>: Clicks / number of displayed articles.</li>
+</ul>
+<p>Figure 8 plots the daily transition in the lift rate of each metric. As you can see, all metrics improved significantly (please pay attention to the y axis), though the improvement rate of sessions is smaller than the other three metrics, it keeps increase as the number of days increases.</p>
+<blockquote>
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gozsnw5lquj30mp0jqq4m.jpg" alt="image-20210328102757471" style="zoom: 50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gozsnotfvhj30ge0f03z4.jpg" alt="image-20210328102729642" style="zoom: 50%;" />
+
+<p>Figure 8: Transition in lift rate for metrics.</p>
+</blockquote>
+<p>Also, users can be split into three different types by their frequency of visits:</p>
+<ul>
+<li>Heavy: &gt;5 days/week.</li>
+<li>Medium: 2-5 days / week.</li>
+<li>Light: &lt;2 days / week.</li>
+</ul>
+<p>Table 3 summarizes the average metric improvement rates in the seventh week and those by different types of users.<br>$$<br>\begin{array}{l|r|rrr}<br>\hline \text { Metric } &amp; \text { ALL } &amp; \text { Heavy } &amp; \text { Medium } &amp; \text { Light } \<br>\hline \hline \text { Sessions } &amp; +2.3 % &amp; +1.1 % &amp; +1.0 % &amp; +1.8 % \<br>\text { Duration } &amp; +7.8 % &amp; +4.9 % &amp; +13.3 % &amp; +17.4 % \<br>\text { Clicks } &amp; +19.1 % &amp; +14.3 % &amp; +26.3 % &amp; +42.3 % \<br>\text { CTR } &amp; +23.0 % &amp; +18.7 % &amp; +29.8 % &amp; +45.1 % \<br>\hline<br>\end{array}<br>$$</p>
+<blockquote>
+<h2 id="“Improvements-in-the-metrics-were-confirmed-for-all-segments-Light-users-demonstrated-particularly-large-improvement-rates-”"><a href="#“Improvements-in-the-metrics-were-confirmed-for-all-segments-Light-users-demonstrated-particularly-large-improvement-rates-”" class="headerlink" title="“Improvements in the metrics were confirmed for all segments. Light users demonstrated particularly large improvement rates!”"></a>“Improvements in the metrics were confirmed for all segments. Light users demonstrated particularly large improvement rates!”</h2></blockquote>
+<h4 id="Challenges-for-large-scale-deployment"><a href="#Challenges-for-large-scale-deployment" class="headerlink" title="Challenges for large-scale deployment"></a>Challenges for large-scale deployment</h4><p>Though the results of the proposed machine learning news recommendation model seem good, there are still many challenges that need to be solved. </p>
+<p>First, for training a large model, it takes a long time to update all weights. As the model is too large, it may take more than one week to train.</p>
+<p>Second, the news article representation can be improved as more data are collected. But after updating the article representation, all previously calculated news articles, need to be recalculated, and this will cost even more time.</p>
+<p>Third, when users’ reading history changes, the user representation needs to be recalculated, and these changes always happen, which means the user representation needs to be recalculated constantly.</p>
+<p>Finally, the update of news article representation and user representation need to process simultaneously, or the system will not match.</p>
+<p>One lazy solution is to generate a new model every week and directly switch these models every week. But this is not a good solution because it can not keep up with the users’ change of interests.</p>
+<h2 id="6-Summary"><a href="#6-Summary" class="headerlink" title="6. Summary"></a>6. Summary</h2><p>This paper shows a novel news recommendation system with a large advance than before. Though there are some drawbacks, it’s still a large step in this machine learning field. More and more people stop read newspapers nowadays because they believe that online news services work better than the old fashion newspapers with human editors. But the recommendation systems may prompt bias due to users’ reading history, which can not be ignored in sketching recommendation systems.</p>
+<p>Though there are still many drawbacks to recommendation systems, the domain is developing fastly, and these challenges will be well dealt with in the future. If you think this field is attractive to you, you should go deeper and build a full knowledge base on the recommendation system. If you need some help, feel free to contact me at <a href="mailto:&#x62;&#x68;&#50;&#50;&#56;&#x33;&#64;&#110;&#121;&#117;&#46;&#x65;&#100;&#x75;">&#x62;&#x68;&#50;&#50;&#56;&#x33;&#64;&#110;&#121;&#117;&#46;&#x65;&#100;&#x75;</a>. Also, I would be exhilarated to receive some feedback from you for drafting easy-to-understand blog articles.</p>
+<h2 id="references"><a href="#references" class="headerlink" title="references"></a>references</h2><p>[1]    F. O. Isinkaye, Y. O. Folajimi, and B. A. Ojokoh, “Recommendation systems: Principles, methods and evaluation,” <em>Egyptian Informatics Journal</em>, vol. 16, no. 3, pp. 261–273, Nov. 2015, doi: <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.eij.2015.06.005">10.1016/j.eij.2015.06.005</a>.</p>
+<p>[2]    B. Rocca, “Introduction to recommender systems,” <em>Medium</em>, Jun. 12, 2019. <a target="_blank" rel="noopener" href="https://towardsdatascience.com/introduction-to-recommender-systems-6c66cf15ada">https://towardsdatascience.com/introduction-to-recommender-systems-6c66cf15ada</a> (accessed Mar. 28, 2021).</p>
+<p>[3]    S. Okura, Y. Tagami, S. Ono, and A. Tajima, “Embedding-based News Recommendation for Millions of Users,” in <em>Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, New York, NY, USA, Aug. 2017, pp. 1933–1942, doi: <a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3097983.3098108">10.1145/3097983.3098108</a>.</p>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/App-Development/">App Development</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/">art</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/art/review/">review</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/">philosophy</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/philosophy/review/sociology/">sociology</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/program/">program</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/">review</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/review/AI/">AI</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/sociology/">sociology</a></li></ul>
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/">2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/App-Development/" rel="tag">App Development</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/COVID-19/" rel="tag">COVID-19</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/MIPS/" rel="tag">MIPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/" rel="tag">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ancient-Chinese/" rel="tag">ancient Chinese</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/art/" rel="tag">art</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cerilog/" rel="tag">cerilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heap/" rel="tag">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/philosophy/" rel="tag">philosophy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/program/" rel="tag">program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/selection/" rel="tag">selection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sorting/" rel="tag">sorting</a></li></ul>
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>
