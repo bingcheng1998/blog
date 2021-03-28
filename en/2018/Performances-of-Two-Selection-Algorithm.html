@@ -147,6 +147,37 @@ var _hmt = _hmt || [];
         <main class="main">
             <article class="post">
     
+        
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            processEscapes: true
+          }
+        });
+      </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+          });
+      </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+              var all = MathJax.Hub.getAllJax(), i;
+              for(i=0; i < all.length; i += 1) {
+                  all[i].SourceElement().parentNode.className += ' has-jax';
+              }
+          });
+      </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
     
     <h4 class="post-cat">
         <a href="/blog/categories/program/">
@@ -169,15 +200,18 @@ var _hmt = _hmt || [];
     <div class="post-content">
         <p>In order to study the performances of these two selection algorithms, I generated different size of arrays and compared the running speed of them. Small size of arrays were run for several times so that the result can be more accurate.</p>
 <a id="more"></a>
-
-<h1 id="Performances-of-Two-Selection-Algorithm"><a href="#Performances-of-Two-Selection-Algorithm" class="headerlink" title="Performances of Two Selection Algorithm"></a>Performances of Two Selection Algorithm</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>In order to study the performances of these two selection algorithms, I generated different size of arrays and compared the running speed of them. Small size of arrays were run for several times so that the result can be more accurate.</p>
-<p> <strong>Input:</strong> array 𝐴 with 𝑛 distinct numbers and a number 𝑖 </p>
-<p>​     “Distinct” for simplicity </p>
-<p> <strong>Output:</strong> 𝑖-th smallest element in the array </p>
-<p>​     Assume index starts from 0</p>
-<p><strong>Example:</strong> $𝐴 = (6,3,5,4,2),𝑖 = 2$<br>​     Should return 4</p>
-<h2 id="Comparison-of-algorithms"><a href="#Comparison-of-algorithms" class="headerlink" title="Comparison of algorithms"></a>Comparison of algorithms</h2><p>There is no limitation of runtime for all algorithms, because all these two algorithms have similar time complexity $O(n)$. Then I used DataGrapg to plot two graphs, one of small test cases, and another of all cases.</p>
-<h3 id="Loop-several-times"><a href="#Loop-several-times" class="headerlink" title="Loop several times"></a>Loop several times</h3><p>With <code>#define LOOP_TIME 20 we can run it for 20 times so that the result can be more accurate. (Please check </code>performance.cpp`)</p>
+<h1 id="performances-of-two-selection-algorithm">Performances of Two Selection Algorithm</h1>
+<h2 id="introduction">Introduction</h2>
+<p>In order to study the performances of these two selection algorithms, I generated different size of arrays and compared the running speed of them. Small size of arrays were run for several times so that the result can be more accurate.</p>
+<p> <strong>Input:</strong> array 𝐴 with 𝑛 distinct numbers and a number 𝑖</p>
+<p>​  “Distinct” for simplicity</p>
+<p> <strong>Output:</strong> 𝑖-th smallest element in the array</p>
+<p>​  Assume index starts from 0</p>
+<p><strong>Example:</strong> <span class="math inline">\(𝐴 = (6,3,5,4,2),𝑖 = 2\)</span> ​  Should return 4</p>
+<h2 id="comparison-of-algorithms">Comparison of algorithms</h2>
+<p>There is no limitation of runtime for all algorithms, because all these two algorithms have similar time complexity <span class="math inline">\(O(n)\)</span>. Then I used DataGrapg to plot two graphs, one of small test cases, and another of all cases.</p>
+<h3 id="loop-several-times">Loop several times</h3>
+<p>With <code>#define LOOP_TIME 20 we can run it for 20 times so that the result can be more accurate. (Please check</code>performance.cpp`)</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">long time_all &#x3D; 0;
 for (int lo &#x3D; 0; lo &lt; LOOP_TIME; lo++)
 &#123;
@@ -193,9 +227,9 @@ for (int lo &#x3D; 0; lo &lt; LOOP_TIME; lo++)
 cout&lt;&lt;&quot;Sort algorithm is [&quot;&lt;&lt;sortName[i]&lt;&lt;&quot;],&quot;;
 double time_run &#x3D;  (double)time_all &#x2F; CLOCKS_PER_SEC &#x2F; LOOP_TIME;
 cout &lt;&lt; &quot;Running time: &quot; &lt;&lt;time_run&lt;&lt; endl;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><p>You can run <code>make test0</code>  and <code>make test1</code> to test the program.</p>
-<ol>
+<h3 id="test">test</h3>
+<p>You can run <code>make test0</code> and <code>make test1</code> to test the program.</p>
+<ol type="1">
 <li>With <code>// #define SELECTION_DEBUG</code></li>
 </ol>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bogon:answer bingcheng$ <span class="token function">make</span> test0
@@ -212,9 +246,8 @@ g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -o main main.o s
 ./generate <span class="token number">1</span> <span class="token number">40000</span> <span class="token number">2000</span> <span class="token operator">></span> input.data
 ./main <span class="token operator">&lt;</span> input.data
 The order-2000 item is -1932064068<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol>
-<li>With <code> #define SELECTION_DEBUG</code></li>
+<ol type="1">
+<li>With <code>#define SELECTION_DEBUG</code></li>
 </ol>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bogon:answer bingcheng$ <span class="token function">make</span> test0
 g++ -std<span class="token operator">=</span>c++11 -O3 -Wall -o generate gen_rand.cpp
@@ -235,30 +268,43 @@ selection algorithm is <span class="token punctuation">[</span>D selection<span 
 RunTime:0.000941
 <span class="token comment">#[2000]smallest：[-1932064068], real:[-1932064068]</span>
 The order-2000 item is -1932064068<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>You can get the real ith smallest and the selection ith smallest along with the runtime.</p>
-<h3 id="Big-data-analysis"><a href="#Big-data-analysis" class="headerlink" title="Big data analysis"></a>Big data analysis</h3><p>From <strong>Figure 1</strong>, all these line looks similar, so it’s meaning less. So we make <em>log</em> at both <em>x</em> and <em>y</em> axis. As <strong>Figure 2</strong> shows,  we can find that both Random Selection and Deterministic Selection Algorithm have the runtime $O(n)$, and they are parallel when the size of the numbers is larger than $10^4$.</p>
-<p>So What happend when  the size of the numbers is smaller than $10^3$? it seems that these two lines are connected to each other. Let’s see the <code>Small data analysis</code>.</p>
-<p>![[Figure 1] time vs size in large period without log](../../sources/[selection] time vs size in large period without log.svg)</p>
-<p>As <strong>Figure 2</strong> shows below, Rselection is not stable because the line of it is not as straight as Dselection. Moreover, Rselection is faster than Dselection. </p>
-<p>![[Figure 2] time vs size in large period](../../sources/[selection] time vs size in large period.svg)</p>
-<h3 id="Small-data-analysis"><a href="#Small-data-analysis" class="headerlink" title="Small data analysis"></a>Small data analysis</h3><p>From <strong>Figure 4</strong> we can see that when the data size is small, it’s so hard to recognize the runtime because the datas are so unstable. There are so many data hopping all the time, though I used <code>Loop several times</code> in my code, it doesn’t work because the performance of my computer is not stable.</p>
-<p>![[Figure 3] time vs size in small period without log](../../sources/[selection] time vs size in small period without log.svg)</p>
+<h3 id="big-data-analysis">Big data analysis</h3>
+<p>From <strong>Figure 1</strong>, all these line looks similar, so it's meaning less. So we make <em>log</em> at both <em>x</em> and <em>y</em> axis. As <strong>Figure 2</strong> shows, we can find that both Random Selection and Deterministic Selection Algorithm have the runtime <span class="math inline">\(O(n)\)</span>, and they are parallel when the size of the numbers is larger than <span class="math inline">\(10^4\)</span>.</p>
+<p>So What happend when the size of the numbers is smaller than <span class="math inline">\(10^3\)</span>? it seems that these two lines are connected to each other. Let's see the <code>Small data analysis</code>.</p>
+<figure>
+<img src="../../sources/%5Bselection%5D%20time%20vs%20size%20in%20large%20period%20without%20log.svg" alt="[Figure 1] time vs size in large period without log" /><figcaption aria-hidden="true">[Figure 1] time vs size in large period without log</figcaption>
+</figure>
+<p>As <strong>Figure 2</strong> shows below, Rselection is not stable because the line of it is not as straight as Dselection. Moreover, Rselection is faster than Dselection.</p>
+<figure>
+<img src="../../sources/%5Bselection%5D%20time%20vs%20size%20in%20large%20period.svg" alt="[Figure 2] time vs size in large period" /><figcaption aria-hidden="true">[Figure 2] time vs size in large period</figcaption>
+</figure>
+<h3 id="small-data-analysis">Small data analysis</h3>
+<p>From <strong>Figure 4</strong> we can see that when the data size is small, it's so hard to recognize the runtime because the datas are so unstable. There are so many data hopping all the time, though I used <code>Loop several times</code> in my code, it doesn't work because the performance of my computer is not stable.</p>
+<figure>
+<img src="../../sources/%5Bselection%5D%20time%20vs%20size%20in%20small%20period%20without%20log.svg" alt="[Figure 3] time vs size in small period without log" /><figcaption aria-hidden="true">[Figure 3] time vs size in small period without log</figcaption>
+</figure>
 <p>Because these two lines are so similar, which means that we can use any of them when the number of datas are small.</p>
-<p>![[Figure 4] time vs size in small period](../../sources/[selection] time vs size in small period.svg)</p>
-<h3 id="check-memory-leakage"><a href="#check-memory-leakage" class="headerlink" title="check memory leakage"></a>check memory leakage</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span> LEAK SUMMARY:
+<figure>
+<img src="../../sources/%5Bselection%5D%20time%20vs%20size%20in%20small%20period.svg" alt="[Figure 4] time vs size in small period" /><figcaption aria-hidden="true">[Figure 4] time vs size in small period</figcaption>
+</figure>
+<h3 id="check-memory-leakage">check memory leakage</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span> LEAK SUMMARY:
 <span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span>    definitely lost: <span class="token number">0</span> bytes <span class="token keyword">in</span> <span class="token number">0</span> blocks
 <span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span>    indirectly lost: <span class="token number">0</span> bytes <span class="token keyword">in</span> <span class="token number">0</span> blocks
 <span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span>      possibly lost: <span class="token number">0</span> bytes <span class="token keyword">in</span> <span class="token number">0</span> blocks
 <span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span>    still reachable: <span class="token number">72,704</span> bytes <span class="token keyword">in</span> <span class="token number">1</span> blocks
 <span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span>         suppressed: <span class="token number">0</span> bytes <span class="token keyword">in</span> <span class="token number">0</span> blocks
 <span class="token operator">==</span><span class="token number">6463</span><span class="token operator">==</span> Reachable blocks <span class="token punctuation">(</span>those to <span class="token function">which</span> a pointer was found<span class="token punctuation">)</span> are not shown.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>No memory leakage.</p>
-<h2 id="Conclution"><a href="#Conclution" class="headerlink" title="Conclution"></a>Conclution</h2><p>According to the <code>data analysis</code>, Dselect is not as good as Rselect in practice, because it has worse constants and it’s not in-place.</p>
-<p>With worse constants it will cost more time and you can find that in <em>Figure 1</em>. It’s not in-place so it will cost more time to acquire for datas, which is inefficiency.</p>
+<h2 id="conclution">Conclution</h2>
+<p>According to the <code>data analysis</code>, Dselect is not as good as Rselect in practice, because it has worse constants and it's not in-place.</p>
+<p>With worse constants it will cost more time and you can find that in <em>Figure 1</em>. It's not in-place so it will cost more time to acquire for datas, which is inefficiency.</p>
 <p>So at most conditions, we should use Rselect in practice.</p>
-<h2 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h2><h3 id="The-project-files"><a href="#The-project-files" class="headerlink" title="The project files"></a>The project files</h3><h4 id="selection-h"><a href="#selection-h" class="headerlink" title="selection.h"></a>selection.h</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#ifndef SELECTION_H
+<h2 id="appendix">Appendix</h2>
+<h3 id="the-project-files">The project files</h3>
+<h4 id="selection.h">selection.h</h4>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#ifndef SELECTION_H
 #define SELECTION_H
 
 int random_selection(int* arr, const int n, const int order);
@@ -272,8 +318,8 @@ int deterministric_selection(int* arr, const int n, const int order);
 &#x2F;&#x2F; EFFECTS: select i-th smallest element in the array
 
 #endif<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="selection-cpp"><a href="#selection-cpp" class="headerlink" title="selection.cpp"></a>selection.cpp</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<h4 id="selection.cpp">selection.cpp</h4>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;cstdlib&gt;
 #include &lt;cassert&gt;
 #include &lt;ctime&gt;
@@ -428,8 +474,8 @@ int deterministric_selection(int* arr, const int n, const int order)&#123;
     return deterministric_selection(arr_right, length, order-j-1);
   &#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="main-cpp"><a href="#main-cpp" class="headerlink" title="main.cpp"></a>main.cpp</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<h4 id="main.cpp">main.cpp</h4>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;cstdlib&gt;
 #include &lt;assert.h&gt;
 #include &lt;ctime&gt;
@@ -505,8 +551,8 @@ int main(int argc, char *argv[]) &#123;
   delete[] arr;
   return 0;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h4><pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span> main.o selection.o
+<h4 id="makefile">Makefile</h4>
+<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span> main.o selection.o
   g++ -std<span class="token operator">=</span>c++11 -O3 -g -Wall -o main main.o selection.o
 
 <span class="token symbol">auto</span><span class="token punctuation">:</span> make_auto
@@ -562,8 +608,8 @@ int main(int argc, char *argv[]) &#123;
 <span class="token symbol">clean</span><span class="token punctuation">:</span>
   rm -f ./main *.o *.data test generate autogen perform
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="auto-gen-cpp"><a href="#auto-gen-cpp" class="headerlink" title="auto_gen.cpp"></a>auto_gen.cpp</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<h4 id="auto_gen.cpp">auto_gen.cpp</h4>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;sstream&gt;
 #include &lt;assert.h&gt;
@@ -593,10 +639,12 @@ int main(int argc, char *argv[]) &#123;
     oFile.close();
   &#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>Generated files look like this.</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giscg1e71xj311y0bwaa9.jpg" alt="files"></p>
-<h4 id="performance-cpp"><a href="#performance-cpp" class="headerlink" title="performance.cpp"></a>performance.cpp</h4><p>This program will produce a CSV table as 3.1.7 shows.</p>
+<figure>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giscg1e71xj311y0bwaa9.jpg" alt="files" /><figcaption aria-hidden="true">files</figcaption>
+</figure>
+<h4 id="performance.cpp">performance.cpp</h4>
+<p>This program will produce a CSV table as 3.1.7 shows.</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;iomanip&gt;
 #include &lt;sstream&gt;
@@ -730,12 +778,12 @@ int main(int argc, char *argv[]) &#123;
   outFile.close();
   return 0;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="scv-Table"><a href="#scv-Table" class="headerlink" title="scv Table"></a>scv Table</h4><p>You can get full CSV table at <a target="_blank" rel="noopener" href="https://github.com/bingcheng1998/VE281/blob/master/Programming-Assignment/Programming-Assignment-2/answer/data_large.csv">HERE</a>.</p>
+<h4 id="scv-table">scv Table</h4>
+<p>You can get full CSV table at <a target="_blank" rel="noopener" href="https://github.com/bingcheng1998/VE281/blob/master/Programming-Assignment/Programming-Assignment-2/answer/data_large.csv">HERE</a>.</p>
 <p>This table was generated by MacBook Pro 2015, i5, 256G.</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
 <th>size</th>
 <th>R selection</th>
@@ -743,114 +791,119 @@ int main(int argc, char *argv[]) &#123;
 <th></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td></td>
 <td>100</td>
 <td>4.2e-06</td>
 <td>8.4e-06</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>112</td>
 <td>2.8e-06</td>
 <td>6.4e-06</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td>125</td>
 <td>2.8e-06</td>
 <td>1.66e-05</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>141</td>
 <td>3.8e-06</td>
 <td>6.6e-06</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td>158</td>
 <td>2.6e-06</td>
 <td>6.6e-06</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>177</td>
 <td>4.2e-06</td>
 <td>6.6e-06</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td>199</td>
 <td>3.6e-06</td>
 <td>8e-06</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>223</td>
 <td>4e-06</td>
 <td>8e-06</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td>251</td>
 <td>6e-06</td>
 <td>9e-06</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>281</td>
 <td>7e-06</td>
 <td>1.38e-05</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>1778279</td>
 <td>0.0146598</td>
 <td>0.0363128</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>7943282</td>
 <td>0.0283762</td>
 <td>0.157991</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-</tbody></table>
-<h3 id="DataGraph"><a href="#DataGraph" class="headerlink" title="DataGraph"></a>DataGraph</h3><p>I used <a target="_blank" rel="noopener" href="http://www.visualdatatools.com/DataGraph/">DataGraph</a> to generate images on MacBook Pro.</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giscgmhxm1j31230u0tvo.jpg" alt="image-20181011173601662"></p>
+</tbody>
+</table>
+<h3 id="datagraph">DataGraph</h3>
+<p>I used <a target="_blank" rel="noopener" href="http://www.visualdatatools.com/DataGraph/">DataGraph</a> to generate images on MacBook Pro.</p>
+<figure>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giscgmhxm1j31230u0tvo.jpg" alt="image-20181011173601662" /><figcaption aria-hidden="true">image-20181011173601662</figcaption>
+</figure>
 
     </div>
 </article>
